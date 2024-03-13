@@ -1,0 +1,3 @@
+class Chocolates extends Products{
+    
+}

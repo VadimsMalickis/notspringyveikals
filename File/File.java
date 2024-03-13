@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 class File{
-    public void ReadFile(String file) throws FileNotFoundException, IOException{
+    public List<List<String>> ReadFile(String file) throws FileNotFoundException, IOException{
             List<List<String>> records = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 String line;
@@ -15,5 +15,7 @@ class File{
                 String[] values = line.split(",");
                 records.add(Arrays.asList(values));
             }}
+
+        return records;
     }
 }

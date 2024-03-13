@@ -1,18 +1,23 @@
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 
 class App{
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException, IOException{
         ArrayList cholotaes = new ArrayList<String>();
 
         File objFile = new File();
-        objFile.ReadFile("chocolate.csv");
+        List<List<String>> smth = objFile.ReadFile("/workspaces/notspringyveikals/CSV/chocolates.csv");
 
-        for (ArrayList<String> x : cholotaes){
-            for (String y : x){
-                System.out.print(y + " ");
-            }
-            System.out.println();
+
+        for (List<String> x : smth){
+            Chocolates chocolates = new Chocolates();
+            chocolates.name = x.get(0);
+            chocolates.price = Double.parseDouble(x.get(1));
+            chocolates.amountInStorage = Integer.parseInt(x.get(2));
+            chocolates.description = x.get(3);
         }
     }
 }

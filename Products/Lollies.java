@@ -1,0 +1,3 @@
+class Lollies extends Products{
+    
+}
