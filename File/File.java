@@ -10,9 +10,11 @@ class File{
 
     String filePath;
     String type = "Chocolate";
-    ArrayList list;
+    //ArrayList list
+    ArrayList<Chocolates> list; //es pieliku
     Chocolates lalala = new Chocolates();
-    public File(String path, String type, ArrayList list){
+
+    public File(String path, String type, /*ArrayList list*/ ArrayList<Chocolates> list /*es pieliku*/){
         filePath = path;
         this.list = list;
         
@@ -32,27 +34,36 @@ class File{
     public void getAll() throws FileNotFoundException, IOException{
         ArrayList<String> CSVrows = new ArrayList<String>();
 
-        CSVrows = ReadFile();
-        System.out.print(CSVrows);
+        CSVrows = ReadFile(); //[row1, row2]
 
-
-        for (String CSVrow : CSVrows) {
-            String[] rowParts = CSVrow.split(", ");
-
+        for (String CSVrow : CSVrows){
+            String[] rowParts = CSVrow.split(",");
             if(type == "Chocolate"){
                 Chocolates chocolateObj = new Chocolates();
                 chocolateObj.name = rowParts[0];
-                chocolateObj.price = Double.parseDouble(rowParts[0]);
-                chocolateObj.amountInStorage = Integer.parseInt(rowParts[0]);
-                chocolateObj.description = rowParts[0];
-            }
-
-            list.add(chocolateObj); //krc te kkas nasegaja ka man likas ka var saiet idk es vel pacakaresu sito lkm vnk neaiztikt
+                chocolateObj.price = Double.parseDouble(rowParts[1]);
+                chocolateObj.amountInStorage = Integer.parseInt(rowParts[2]);
+                chocolateObj.description = rowParts[3];
+                list.add(chocolateObj);
+             }
         }
         
 
-        
-        
+        //TAVS VECAIS KODS
+        // for (String CSVrow : CSVrows) {
+        //     //String[] rowParts = CSVrow.split(", ");
+        //     //System.out.println(rowParts.length);
+
+        //     // if(type == "Chocolate"){
+        //     //     Chocolates chocolateObj = new Chocolates();
+        //     //     chocolateObj.name = rowParts[0];
+        //     //     chocolateObj.price = Double.parseDouble(rowParts[0]);
+        //     //     chocolateObj.amountInStorage = Integer.parseInt(rowParts[0]);
+        //     //     chocolateObj.description = rowParts[0];
+        //     // }
+
+        //     //list.add(chocolateObj); //krc te kkas nasegaja ka man likas ka var saiet idk es vel pacakaresu sito lkm vnk neaiztikt
+        // }
     }
 
     // NEKADA GADIJUM NE_ATKOMNETE SITO HUINU SAVADK VISS SAPLIST
