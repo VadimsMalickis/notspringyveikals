@@ -1,23 +1,21 @@
 import java.io.BufferedReader;
-import java.io.Console;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.lang.reflect.Field;
 
 class File{
 
     String filePath;
     String type = "Chocolate";
-    //ArrayList list
-    ArrayList<Chocolates> list; //es pieliku
+
+    ArrayList<Object> list; 
     Chocolates lalala = new Chocolates();
 
-    public File(String path, String type, /*ArrayList list*/ ArrayList<Chocolates> list /*es pieliku*/){
+    public File(String path, String type, ArrayList<Object> list){
         filePath = path;
         this.list = list;
-        
     }
     
     private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
@@ -29,6 +27,7 @@ class File{
             }}
         return records;
     }
+
 
 
     public void getAll() throws FileNotFoundException, IOException{
@@ -45,7 +44,7 @@ class File{
                 chocolateObj.amountInStorage = Integer.parseInt(rowParts[2]);
                 chocolateObj.description = rowParts[3];
                 list.add(chocolateObj);
-             }
+            }
         }
         
 
