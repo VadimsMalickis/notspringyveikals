@@ -46,7 +46,8 @@ class File{
                     e.printStackTrace();
                 }
             }
-        }
+            }
+            System.out.println();
         }
     }
 

@@ -16,7 +16,10 @@ class App{
 
         // ArrayList<String> smth = 
         chocolatesFile.getAll();
-        //chocolatesFile.check();
+
+        System.out.println("Veikalā pieejamie produkti:");
+        System.out.println("----------------------------------");
+        chocolatesFile.check();
 
         // mes izlasijam jellys csv
         // List<String> jellyCsvRows = new ArrayList<>();
