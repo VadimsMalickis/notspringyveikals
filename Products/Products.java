@@ -1,6 +1,8 @@
+//nomainiju lai printejas araa check() metodee
+
 class Products{
-    String name;
-    double price;
-    int amountInStorage;
-    String description;
+    public String name;
+    public double price;
+    public int amountInStorage;
+    public String description;
 }

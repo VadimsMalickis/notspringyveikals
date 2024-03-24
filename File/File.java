@@ -28,7 +28,27 @@ class File{
         return records;
     }
 
+    //Prints out object
+    public void check(){
+        for (Object s: list){
+           //System.out.println(s);
 
+           //sis viss if ir Chat gpt
+           if (s instanceof Chocolates) {
+            Chocolates chocolateObj = (Chocolates) s;
+            // Use reflection to access fields
+            Field[] fields = Chocolates.class.getFields(); //get fields dabū publiskos arī inherited laukus klases
+            for (Field field : fields) {
+                try {
+                    //field.setAccessible(true); //vinam vajadzje parmainit lauka private -> public bet nez kpc to nedairja product klasei
+                    System.out.println(field.getName() + ": " + field.get(chocolateObj)); 
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        }
+    }
 
     public void getAll() throws FileNotFoundException, IOException{
         ArrayList<String> CSVrows = new ArrayList<String>();
