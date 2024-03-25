@@ -1,8 +1,16 @@
 //nomainiju lai printejas araa check() metodee
 
 class Products{
-    public String name;
-    public double price;
-    public int amountInStorage;
-    public String description;
+    String name;
+    double price;
+    int amountInStorage;
+    String description;
+
+    public void Display(){
+        System.out.println("Nosaukums: " + name);
+        System.out.println("Cena: " + price);
+        System.out.println("Daudzums noliktavā: " + amountInStorage);
+        System.out.println("Apraksts: " +  description);
+        System.out.println();
+    }
 }
