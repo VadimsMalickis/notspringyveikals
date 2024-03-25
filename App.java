@@ -29,9 +29,11 @@ class App{
         File jellysFile = new File(path, "Jellys", jellysObjects);
 
         jellysFile.getAll();
+
+        System.out.println("----------------------------------");
         jellysFile.check();
 
-        
+
         // mes izlasijam jellys csv
         // List<String> jellyCsvRows = new ArrayList<>();
 
