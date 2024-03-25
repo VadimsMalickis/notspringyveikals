@@ -3,17 +3,17 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.lang.reflect.Field;
 
 class File{
 
     String filePath;
-    String type = "Chocolate";
+    String type;
 
     ArrayList<Object> list; 
     Chocolates lalala = new Chocolates();
 
     public File(String path, String type, ArrayList<Object> list){
+        this.type = type;
         filePath = path;
         this.list = list;
     }
@@ -31,23 +31,7 @@ class File{
     //Prints out object
     public void check(){
         for (Object s: list){
-           //System.out.println(s);
-
-           //sis viss if ir Chat gpt
-           if (s instanceof Chocolates) {
-            Chocolates chocolateObj = (Chocolates) s;
-            // Use reflection to access fields
-            Field[] fields = Chocolates.class.getFields(); //get fields dabū publiskos arī inherited laukus klases
-            for (Field field : fields) {
-                try {
-                    //field.setAccessible(true); //vinam vajadzje parmainit lauka private -> public bet nez kpc to nedairja product klasei
-                    System.out.println(field.getName() + ": " + field.get(chocolateObj)); 
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-            }
-            }
-            System.out.println();
+                ((Products) s).Display();
         }
     }
 
@@ -55,17 +39,34 @@ class File{
         ArrayList<String> CSVrows = new ArrayList<String>();
 
         CSVrows = ReadFile(); //[row1, row2]
-
+        
         for (String CSVrow : CSVrows){
+            Products object = new Products();
+
             String[] rowParts = CSVrow.split(",");
             if(type == "Chocolate"){
-                Chocolates chocolateObj = new Chocolates();
-                chocolateObj.name = rowParts[0];
-                chocolateObj.price = Double.parseDouble(rowParts[1]);
-                chocolateObj.amountInStorage = Integer.parseInt(rowParts[2]);
-                chocolateObj.description = rowParts[3];
-                list.add(chocolateObj);
+                object = new Chocolates();
+                // Chocolates chocolateObj = new Chocolates();
+                // chocolateObj.name = rowParts[0];
+                // chocolateObj.price = Double.parseDouble(rowParts[1]);
+                // chocolateObj.amountInStorage = Integer.parseInt(rowParts[2]);
+                // chocolateObj.description = rowParts[3];
+                // list.add(chocolateObj);
             }
+            if(type == "Jellys"){
+                object = new Jellys();
+                // Jellys jellyObj = new Jellys();
+                // jellyObj.name = rowParts[0];
+                // jellyObj.price = Double.parseDouble(rowParts[1]);
+                // jellyObj.amountInStorage = Integer.parseInt(rowParts[2]);
+                // jellyObj.description = rowParts[3];
+                // list.add(jellyObj);
+            }
+            object.name = rowParts[0];
+            object.price = Double.parseDouble(rowParts[1]);
+            object.amountInStorage = Integer.parseInt(rowParts[2]);
+            object.description = rowParts[3];
+            list.add(object);
         }
         
 
