@@ -7,20 +7,31 @@ import java.nio.file.Paths;
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
+        //Chocolates
         ArrayList<Object> chocolateObjects = new ArrayList<Object>();
 
         Path file = Paths.get("CSV/chocolates.csv");
         String path = file.toAbsolutePath() + "";
-        // System.out.println(paths);
-        File chocolatesFile = new File(path, "'smth'", chocolateObjects);
 
-        // ArrayList<String> smth = 
+        File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
+
         chocolatesFile.getAll();
 
         System.out.println("Veikalā pieejamie produkti:");
         System.out.println("----------------------------------");
         chocolatesFile.check();
 
+        //Jellys
+        file = Paths.get("CSV/jellys.csv");
+        path = file.toAbsolutePath() + "";
+
+        ArrayList<Object> jellysObjects = new ArrayList<Object>();
+        File jellysFile = new File(path, "Jellys", jellysObjects);
+
+        jellysFile.getAll();
+        jellysFile.check();
+
+        
         // mes izlasijam jellys csv
         // List<String> jellyCsvRows = new ArrayList<>();
 
