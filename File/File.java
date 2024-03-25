@@ -15,7 +15,7 @@ class File{
     public File(String path, String type, ArrayList<Object> list){
         this.type = type;
         filePath = path;
-        this.list = list;
+        this.list = list; //Padodam tukdu lidt or jua aizpilditu??
     }
     
     private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
@@ -55,13 +55,11 @@ class File{
             }
             if(type == "Jellys"){
                 object = new Jellys();
-                // Jellys jellyObj = new Jellys();
-                // jellyObj.name = rowParts[0];
-                // jellyObj.price = Double.parseDouble(rowParts[1]);
-                // jellyObj.amountInStorage = Integer.parseInt(rowParts[2]);
-                // jellyObj.description = rowParts[3];
-                // list.add(jellyObj);
             }
+            if(type == "Lollies"){
+                object = new Lollies();
+            }
+
             object.name = rowParts[0];
             object.price = Double.parseDouble(rowParts[1]);
             object.amountInStorage = Integer.parseInt(rowParts[2]);
