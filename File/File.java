@@ -13,7 +13,7 @@ class File{
     public File(String path, String type, ArrayList<Object> list){
         this.type = type;
         filePath = path;
-        this.list = list; //Padodam tukdu lidt or jua aizpilditu?? aizpilditu ar ko? (bet anyway i think tuksu jo nav isti jegas no aizpildita)
+        this.list = list; 
     }
     
     private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
@@ -33,7 +33,7 @@ class File{
         }
     }
 
-    public void getAll() throws FileNotFoundException, IOException{
+    public void GetAll() throws FileNotFoundException, IOException{
         ArrayList<String> CSVrows = new ArrayList<String>();
 
         CSVrows = ReadFile(); //[row1, row2]
@@ -44,12 +44,6 @@ class File{
             String[] rowParts = CSVrow.split(",");
             if(type == "Chocolate"){
                 object = new Chocolates();
-                // Chocolates chocolateObj = new Chocolates();
-                // chocolateObj.name = rowParts[0];
-                // chocolateObj.price = Double.parseDouble(rowParts[1]);
-                // chocolateObj.amountInStorage = Integer.parseInt(rowParts[2]);
-                // chocolateObj.description = rowParts[3];
-                // list.add(chocolateObj);
             }
             if(type == "Jellys"){
                 object = new Jellys();
@@ -64,44 +58,5 @@ class File{
             object.description = rowParts[3];
             list.add(object);
         }
-        
-
-        //TAVS VECAIS KODS
-        // for (String CSVrow : CSVrows) {
-        //     //String[] rowParts = CSVrow.split(", ");
-        //     //System.out.println(rowParts.length);
-
-        //     // if(type == "Chocolate"){
-        //     //     Chocolates chocolateObj = new Chocolates();
-        //     //     chocolateObj.name = rowParts[0];
-        //     //     chocolateObj.price = Double.parseDouble(rowParts[0]);
-        //     //     chocolateObj.amountInStorage = Integer.parseInt(rowParts[0]);
-        //     //     chocolateObj.description = rowParts[0];
-        //     // }
-
-        //     //list.add(chocolateObj); //krc te kkas nasegaja ka man likas ka var saiet idk es vel pacakaresu sito lkm vnk neaiztikt
-        // }
     }
-
-    // NEKADA GADIJUM NE_ATKOMNETE SITO HUINU SAVADK VISS SAPLIST
-
-    // public ArrayList<Chocolates> getAllChocolates(chocolateCsvRows){
-    //        // mes izlasijam jellys csv
-    //        List<String> jellyCsvRows = new ArrayList<>();
-
-    //        // Atgriez ArrayList ar Jellys objektiem / return List<Jellyes>
-    //        List<Jellys> jellysList = ProductService.getAllJellys(jellyCsvRows);
-   
-    //        String rowExample = "1, sugar, 2kg, 2 euro";
-   
-    //        String[] rowParts = rowExample.split(", ");
-   
-    //        Jellys someJelly = new Jellys();
-    //        someJelly.setId(rowParts[0]);
-    //        someJelly.setId(rowParts[1]);
-    //        someJelly.setId(rowParts[2]);
-    //        someJelly.setId(rowParts[3]);
-    // }
-
-    
 }
