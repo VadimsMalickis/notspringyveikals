@@ -28,12 +28,14 @@ class File{
     }
 
     public void WriteFile(){
-        try (BufferedWriter writter = Utils.getWriter("jellys.csv")) {
+        try (BufferedWriter writter = Utils.getWriter(ProductFile.CHOCOLATES.getFileName())) {
+            System.out.println("aaaa");
             writter.newLine();
             writter.write("alises želejas zobi, 10.00, 70, nav īsti zobi");
             writter.flush();
-
+            
         } catch (Exception e) {
+            System.out.println("help");
             e.printStackTrace();
         }
     }

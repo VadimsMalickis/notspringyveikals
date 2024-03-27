@@ -90,6 +90,31 @@ class App{
 
         // File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
 
+
+
+        // try (BufferedReader reader = Utils.getReader(ProductFile.CHOCOLATES.getFileName())) {
+        //     String line;
+        //     while ((line = reader.readLine()) != null) {
+        //         System.out.println(line);
+        //     }
+
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+
+        File sfdajafjer = new File(ProductFile.CHOCOLATES.getFileName(), "Chocolates", chocolateObjects);
+        sfdajafjer.WriteFile();
+
+        try (BufferedReader reader = Utils.getReader(ProductFile.CHOCOLATES.getFileName())) {
+            String line;
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+        
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        
         // chocolatesFile.GetAll();
 
         // System.out.println("Veikalā pieejamie produkti:");
