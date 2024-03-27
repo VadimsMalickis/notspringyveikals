@@ -14,29 +14,39 @@ class App{
         // Path file = Paths.get("CSV/chocolates.csv");
         // String path = file.toAbsolutePath() + "";
 
-        try (BufferedWriter writter = Utils.getWriter(ProductFile.CHOCOLATES.getFileName())) {
-            writter.newLine();
-            writter.write("Kikas special šokolāde,1000000.00," + new Random().nextInt(99));
-            writter.flush();
+        // try (BufferedWriter writter = Utils.getWriter(ProductFile.CHOCOLATES.getFileName())) {
+        //     writter.newLine();
+        //     writter.write("Kikas special šokolāde,1000000.00," + new Random().nextInt(99));
+        //     writter.flush();
         
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
 
 
-        try (BufferedReader reader = Utils.getReader("CSV/chocolates.csv")) {
+        // try (BufferedReader reader = Utils.getReader(ProductFile.CHOCOLATES.getFileName())) {
+        //     String line;
+        //     while ((line = reader.readLine()) != null) {
+        //         System.out.println(line);
+        //     }
+
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+
+        File sfdajafjer = new File(ProductFile.CHOCOLATES.getFileName(), "Chocolates", chocolateObjects);
+        sfdajafjer.WriteFile();
+
+        try (BufferedReader reader = Utils.getReader(ProductFile.CHOCOLATES.getFileName())) {
             String line;
-            while ((line = reader.readLine()) != null) {
-                System.out.println(line);
-            }
-
-        } catch (Exception e) {
+        while ((line = reader.readLine()) != null) {
+            System.out.println(line);
+        }
+        
+        }catch (Exception e) {
             e.printStackTrace();
         }
-
-        File chocolatesFile = new File(ProductFile.CHOCOLATES.getFileName(), "Chocolates", chocolateObjects);
-        chocolatesFile.WriteFile();
-
+        
         // chocolatesFile.GetAll();
 
         // System.out.println("Veikalā pieejamie produkti:");
