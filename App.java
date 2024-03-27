@@ -9,7 +9,7 @@ import java.util.Random;
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //Chocolates
-        ArrayList<Object> chocolateObjects = new ArrayList<Object>();
+        ArrayList<Products> chocolateObjects = new ArrayList<Products>();
 
         // Path file = Paths.get("CSV/chocolates.csv");
         // String path = file.toAbsolutePath() + "";

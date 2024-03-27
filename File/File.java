@@ -9,9 +9,9 @@ class File{
 
     String filePath;
     String type;
-    ArrayList<Object> list;
+    ArrayList<Products> list;
 
-    public File(String path, String type, ArrayList<Object> list){
+    public File(String path, String type, ArrayList<Products> list){
         this.type = type;
         filePath = path;
         this.list = list; 
@@ -52,8 +52,8 @@ class File{
 
     //Prints out object
     public void check(){
-        for (Object s: list){
-                ((Products) s).Display();
+        for (Products s: list){
+                s.Display();
         }
     }
 
