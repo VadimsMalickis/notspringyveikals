@@ -1,8 +1,9 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.Random;
 
 
 class App{
@@ -10,58 +11,52 @@ class App{
         //Chocolates
         ArrayList<Products> chocolateObjects = new ArrayList<Products>();
 
-        Path file = Paths.get("CSV/chocolates.csv");
-        String path = file.toAbsolutePath() + "";
+        // Path file = Paths.get("CSV/chocolates.csv");
+        // String path = file.toAbsolutePath() + "";
 
-        File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
-
-        chocolatesFile.GetAll();
-
-        System.out.println("Veikalā pieejamie produkti:");
-        System.out.println("----------------------------------");
-        chocolatesFile.check();
-
-        //Jellys
-        file = Paths.get("CSV/jellys.csv");
-        path = file.toAbsolutePath() + "";
-
-        ArrayList<Products> jellysObjects = new ArrayList<Products>();
-        File jellysFile = new File(path, "Jellys", jellysObjects);
-
-        jellysFile.GetAll();
-
-        System.out.println("----------------------------------");
-        jellysFile.check();
-        System.out.println();
-        Jellys hihi = new Jellys();
-        System.out.println(hihi.count() - 1);
+        try (BufferedWriter writter = Utils.getWriter(ProductFile.CHOCOLATES.getFileName())) {
+            writter.newLine();
+            writter.write("Kikas special šokolāde,1000000.00," + new Random().nextInt(99));
+            writter.flush();
+        
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
-        // mes izlasijam jellys csv
-        // List<String> jellyCsvRows = new ArrayList<>();
+        try (BufferedReader reader = Utils.getReader("CSV/chocolates.csv")) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
 
-        // // Atgriez ArrayList ar Jellys objektiem / return List<Jellyes>
-        // List<Jellys> jellysList = ProductService.getAllJellys(jellyCsvRows);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        // String rowExample = "1, sugar, 2kg, 2 euro";
+        // File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
 
-        // String[] rowParts = rowExample.split(", ");
+        // chocolatesFile.GetAll();
 
-        // Jellys someJelly = new Jellys();
-        // someJelly.setId(rowParts[0]);
-        // someJelly.setId(rowParts[1]);
-        // someJelly.setId(rowParts[2]);
-        // someJelly.setId(rowParts[3]);
+        // System.out.println("Veikalā pieejamie produkti:");
+        // System.out.println("----------------------------------");
+        // chocolatesFile.check();
 
-        // for (List<String> x : smth){
-        //     Chocolates chocolates = new Chocolates();
-            
-        //     chocolates.name = x.get(0);
-        //     chocolates.price = Double.parseDouble(x.get(1));
-        //     chocolates.amountInStorage = Integer.parseInt(x.get(2));
-        //     chocolates.description = x.get(3);
+        // //Jellys
+        // file = Paths.get("CSV/jellys.csv");
+        // path = file.toAbsolutePath() + "";
 
-        //     chocolateObjects.add(chocolates);
-        // }
+        // ArrayList<Object> jellysObjects = new ArrayList<Object>();
+        // File jellysFile = new File(path, "Jellys", jellysObjects);
+
+        // jellysFile.GetAll();
+
+        // System.out.println("----------------------------------");
+        // jellysFile.check();
+        // System.out.println();
+
+        // //Check if Lollies obejcts were made
+        // Jellys hihi = new Jellys();
+        // System.out.println(hihi.count() - 1);
     }
 }
