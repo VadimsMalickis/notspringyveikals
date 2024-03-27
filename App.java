@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //Chocolates
-        ArrayList<Object> chocolateObjects = new ArrayList<Object>();
+        ArrayList<Products> chocolateObjects = new ArrayList<Products>();
 
         Path file = Paths.get("CSV/chocolates.csv");
         String path = file.toAbsolutePath() + "";
@@ -25,7 +25,7 @@ class App{
         file = Paths.get("CSV/jellys.csv");
         path = file.toAbsolutePath() + "";
 
-        ArrayList<Object> jellysObjects = new ArrayList<Object>();
+        ArrayList<Products> jellysObjects = new ArrayList<Products>();
         File jellysFile = new File(path, "Jellys", jellysObjects);
 
         jellysFile.GetAll();
