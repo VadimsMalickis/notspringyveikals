@@ -8,14 +8,12 @@ class File{
 
     String filePath;
     String type;
-
-    ArrayList<Object> list; 
-    Chocolates lalala = new Chocolates();
+    ArrayList<Object> list;
 
     public File(String path, String type, ArrayList<Object> list){
         this.type = type;
         filePath = path;
-        this.list = list; //Padodam tukdu lidt or jua aizpilditu??
+        this.list = list; //Padodam tukdu lidt or jua aizpilditu?? aizpilditu ar ko? (bet anyway i think tuksu jo nav isti jegas no aizpildita)
     }
     
     private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
