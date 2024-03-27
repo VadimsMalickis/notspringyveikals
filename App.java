@@ -15,7 +15,7 @@ class App{
 
         File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
 
-        chocolatesFile.getAll();
+        chocolatesFile.GetAll();
 
         System.out.println("Veikalā pieejamie produkti:");
         System.out.println("----------------------------------");
@@ -28,10 +28,13 @@ class App{
         ArrayList<Object> jellysObjects = new ArrayList<Object>();
         File jellysFile = new File(path, "Jellys", jellysObjects);
 
-        jellysFile.getAll();
+        jellysFile.GetAll();
 
         System.out.println("----------------------------------");
         jellysFile.check();
+        System.out.println();
+        Jellys hihi = new Jellys();
+        System.out.println(hihi.count() - 1);
 
 
         // mes izlasijam jellys csv
