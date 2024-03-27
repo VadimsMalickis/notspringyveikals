@@ -9,7 +9,7 @@ class File{
 
     String filePath;
     String type;
-    ArrayList<Object> list; 
+    ArrayList<Object> list;
 
     public File(String path, String type, ArrayList<Object> list){
         this.type = type;
