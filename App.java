@@ -34,7 +34,8 @@ class App{
             e.printStackTrace();
         }
 
-        // File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
+        File chocolatesFile = new File(ProductFile.CHOCOLATES.getFileName(), "Chocolates", chocolateObjects);
+        chocolatesFile.WriteFile();
 
         // chocolatesFile.GetAll();
 
