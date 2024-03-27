@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,6 +26,29 @@ class File{
             }}
         return records;
     }
+
+    public void WriteFile(){
+        try (BufferedWriter writter = Utils.getWriter("jellys.csv")) {
+            writter.newLine();
+            writter.write("alises želejas zobi, 10.00, 70, nav īsti zobi");
+            writter.flush();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    
+    // public void WriteFile(ArrayList<Products> list){
+    //     try (BufferedWriter writter = Utils.getWriter("jellys.csv")) {
+    //         writter.newLine();
+    //         writter.write("alises želejas zobi, 10.00, 70, nav īsti zobi");
+    //         writter.flush();
+
+    //     } catch (Exception e) {
+    //         e.printStackTrace();
+    //     }
+    // }
 
     //Prints out object
     public void check(){
