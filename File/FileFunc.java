@@ -4,14 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-class File{
-
+class FileFunc{
     String filePath;
     String type;
     ArrayList<Products> list;
 
-    public File(String path, String type, ArrayList<Products> list){
+    public FileFunc(String path, String type, ArrayList<Products> list){
         this.type = type;
         filePath = path;
         this.list = list; 
@@ -27,7 +27,8 @@ class File{
         return records;
     }
 
-    public void WriteFile(){
+    public void WriteFile(ArrayList<Products> list){
+
         try (BufferedWriter writter = Utils.getWriter(ProductFile.CHOCOLATES.getFileName())) {
             System.out.println("aaaa");
             writter.newLine();
