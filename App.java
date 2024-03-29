@@ -55,6 +55,74 @@ class App{
         // }
 
 
+        // try (BufferedReader reader = Utils.getReader("CSV/chocolates.csv")) {
+        //     String line;
+        //     while ((line = reader.readLine()) != null) {
+        //         System.out.println(line);
+        //     }
+
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
+
+
+        // LAKYS SHOPPING CART TEST CODE
+        // ArrayList<Products> smthAll = new ArrayList<Products>();
+
+        // Products testThing = new Chocolates();
+        // testThing.name = "aaaa";
+        // testThing.price = 666.666;
+        // testThing.amountInStorage = 2;
+        // testThing.description = "fdghjkl";
+
+        // smthAll.add(testThing);
+
+        // ShoppingCart usersShoppingCart = new ShoppingCart(smthAll);
+        // System.out.print(usersShoppingCart.getTotalPrice());
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
+
+
+
         // try (BufferedReader reader = Utils.getReader(ProductFile.CHOCOLATES.getFileName())) {
         //     String line;
         //     while ((line = reader.readLine()) != null) {

@@ -1,17 +1,17 @@
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 class ShoppingCart {
     ArrayList<Products> cartProducts;
-    double totalPrice;
+    private double totalPrice;
 
 
     public ShoppingCart(ArrayList<Products> cartProducts){ // constructor - when user has previously saved shopping cart
         this.cartProducts = cartProducts;
-        totalPrice = 0;
-
-
-
+        for (Products product : cartProducts){
+            totalPrice =+ product.price;
+        }
     }
 
     public ShoppingCart(){ // constructor - when user has NO previously saved shopping cart
@@ -24,13 +24,12 @@ class ShoppingCart {
         return totalPrice;
     }
 
-    // Setter method for savings
-    public void setTotalPrice(double value) {
+    public void setTotalPrice() {
 
         for (Products product : cartProducts){
             totalPrice =+ product.price;
         }
 
-        totalPrice = Math.round(value * 100.0) / 100.0;
+        totalPrice = Double.parseDouble(new DecimalFormat("##.##").format(totalPrice));
     }
 }

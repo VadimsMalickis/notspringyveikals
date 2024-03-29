@@ -4,6 +4,13 @@ class Products{
     int amountInStorage;
     String description;
 
+    // public Products(String name, double price, int amountInStorage, String description){
+    //     this.name = name;
+    //     this.price = price;
+    //     this.amountInStorage = amountInStorage;
+    //     this.description = description;
+    // }
+
 
     public String toString(){
         return "{name},{price},{amountInSotrage},{description}";
