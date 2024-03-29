@@ -1,5 +1,3 @@
-//nomainiju lai printejas araa check() metodee
-
 class Products{
     String name;
     double price;
