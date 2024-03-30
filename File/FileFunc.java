@@ -32,21 +32,6 @@ class FileFunc{
         return records;
     }
 
-    public void WriteFile(){
-        try (BufferedWriter writter = new BufferedWriter(new FileWriter("CSV/products.csv"))) {
-            for(int i = 0; i < productsObj.size(); i++){
-                for(int i2 = 0; i2 < productsObj.get(i).size(); i2++){
-                    Products temp = productsObj.get(i).get(i2);
-                    writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
-                    writter.newLine();
-                }
-            }
-            writter.close();         
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     public void GetAll() throws FileNotFoundException, IOException{
         ArrayList<String> CSVrows = new ArrayList<String>();
 
@@ -76,6 +61,21 @@ class FileFunc{
             object.amountInStorage = Integer.parseInt(rowParts[2]);
             object.type = type;
             object.description = rowParts[4];
+        }
+    }
+
+    public void WriteFile(){
+        try (BufferedWriter writter = new BufferedWriter(new FileWriter("CSV/products.csv"))) {
+            for(int i = 0; i < productsObj.size(); i++){
+                for(int i2 = 0; i2 < productsObj.get(i).size(); i2++){
+                    Products temp = productsObj.get(i).get(i2);
+                    writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
+                    writter.newLine();
+                }
+            }
+            writter.close();         
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
