@@ -9,6 +9,14 @@ class Products{
         return name + ", " + price+ ", " + amountInStorage + ", " + type + ", " + description;
     }
 
+    public String getName(){
+        return name;
+    }
+    
+    public double getPrice(){
+        return price;
+    }
+
     //so isti envajag vairak?
     public void Display(){
         System.out.println("Nosaukums: " + name);
