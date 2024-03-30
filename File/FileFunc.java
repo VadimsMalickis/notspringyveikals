@@ -47,18 +47,6 @@ class FileFunc{
         }
     }
 
-    
-    // public void WriteFile(ArrayList<Products> list){
-    //     try (BufferedWriter writter = Utils.getWriter("jellys.csv")) {
-    //         writter.newLine();
-    //         writter.write("alises želejas zobi, 10.00, 70, nav īsti zobi");
-    //         writter.flush();
-
-    //     } catch (Exception e) {
-    //         e.printStackTrace();
-    //     }
-    // }
-
     public void GetAll() throws FileNotFoundException, IOException{
         ArrayList<String> CSVrows = new ArrayList<String>();
 
