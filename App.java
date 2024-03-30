@@ -1,72 +1,54 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
-import java.util.Random;
 
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
-        //Chocolates
-        // ArrayList<Products> chocolateObjects = new ArrayList<Products>();
+        //-------FileFunc TESTING CODE------------------
 
-        // Path file = Paths.get("CSV/chocolates.csv");
-        // String path = file.toAbsolutePath() + "";
+        Path filePath = Paths.get("CSV/products.csv");
+        FileFunc file = new FileFunc(filePath.toString());
 
-        // File chocolatesFile = new File(path, "Chocolate", chocolateObjects);
-        // chocolatesFile.GetAll();
+        //File reading test
+        file.GetAll();
+       
+        System.out.println("Veikalā pieejamie produkti:");
+        System.out.println("---------------------------------------------------");
+        System.out.println("Chocolate products:");
+        for (Products s : file.chocolateObj) {
+            System.out.println(s);
+        }
+        System.out.println();
 
-        // System.out.println("Veikalā pieejamie produkti:");
-        // System.out.println("----------------------------------");
-        // chocolatesFile.Check();
+        System.out.println("Jelly products:");
+        for (Products s : file.jellyObj) {
+            System.out.println(s);
+        }
+        System.out.println();
 
-        // //Jellys
-        // file = Paths.get("CSV/jellys.csv");
-        // path = file.toAbsolutePath() + "";
+        System.out.println("Lolly products:");
+        for (Products s : file.lollyObj) {
+            System.out.println(s);
+        }
 
-        // ArrayList<Products> jellysObjects = new ArrayList<Products>();
-        // File jellysFile = new File(path, "Jellys", jellysObjects);
+        //File writing test
+        Chocolates test = new Chocolates();
+        test.name = "test";
+        test.price = 2.34;
+        test.amountInStorage = 1;
+        test.type = "Chocolate";
+        test.description = "Just a simple test.";
 
-        // jellysFile.GetAll();
+        file.chocolateObj.add(test);
+        file.WriteFile();
 
-        // System.out.println("----------------------------------");
-        // jellysFile.check();
-        // System.out.println();
-
-        // //Check if Lollies obejcts were made
-        // Jellys hihi = new Jellys();
-        // System.out.println(hihi.count() - 1);
-
-        //--------------------------------------
-        // try (BufferedWriter writter = Utils.getWriter(ProductFile.CHOCOLATES.getFileName())) {
-        //     writter.newLine();
-        //     writter.write("Kikas special šokolāde,1000000.00," + new Random().nextInt(99));
-        //     writter.flush();
-        
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
-
-
-        // try (BufferedReader reader = Utils.getReader("CSV/chocolates.csv")) {
-        //     String line;
-        //     while ((line = reader.readLine()) != null) {
-        //         System.out.println(line);
-        //     }
-
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
-
-
-        // LAKYS SHOPPING CART TEST CODE
+        //------- LAKYS SHOPPING CART TEST CODE----------------
         // ArrayList<Products> smthAll = new ArrayList<Products>();
 
         // Products testThing = new Chocolates();
@@ -79,58 +61,5 @@ class App{
 
         // ShoppingCart usersShoppingCart = new ShoppingCart(smthAll);
         // System.out.print(usersShoppingCart.getTotalPrice());
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // File chocolatesFile = new File(path, "Chocolates", chocolateObjects);
-
-
-
-        // try (BufferedReader reader = Utils.getReader(ProductFile.CHOCOLATES.getFileName())) {
-        //     String line;
-        //     while ((line = reader.readLine()) != null) {
-        //         System.out.println(line);
-        //     }
-
-        // } catch (Exception e) {
-        //     e.printStackTrace();
-        // }
     }
 }
