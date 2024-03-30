@@ -37,6 +37,13 @@ class App{
             System.out.println(s);
         }
 
+        //File sorting test
+        System.out.println();
+        System.out.println("--New sorted list:--");
+        Sorter sorter = new Sorter();
+        sorter.SortPrice(file.chocolateObj);
+
+
         //File writing test
         Chocolates test = new Chocolates();
         test.name = "test";
