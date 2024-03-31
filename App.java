@@ -38,11 +38,25 @@ class App{
         }
 
         //File sorting test
-        System.out.println();
-        System.out.println("--New sorted list:--");
+        System.out.println("---------------------------------------------------");
         Sorter sorter = new Sorter();
-        sorter.SortPrice(file.chocolateObj);
 
+        System.out.println("--Price sorted ASCENDING list:--");
+        sorter.SortPrice(file.chocolateObj, false);
+        System.out.println();
+
+        System.out.println("--Price sorte DESCENDING list:--");
+        sorter.SortPrice(file.chocolateObj, true);
+        System.out.println();
+
+        System.out.println("--Name ASCENDING sorted list:--");
+        sorter.SortName(file.chocolateObj, false);
+        System.out.println();
+
+        System.out.println("--Name DESCENDING sorted list:--");
+        sorter.SortName(file.chocolateObj, true);
+
+        System.exit(0);
 
         //File writing test
         Chocolates test = new Chocolates();
