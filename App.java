@@ -37,24 +37,32 @@ class App{
             System.out.println(s);
         }
 
+        //File filtering test
+        System.out.println("---------------------------------------------------");
+        Filter filter = new Filter();
+
+        System.out.println("--Filtering:--");
+        ArrayList<Products> list = filter.FilterList(file.productsObj, true, true, true);
+        
+
         //File sorting test
         System.out.println("---------------------------------------------------");
         Sorter sorter = new Sorter();
 
         System.out.println("--Price sorted ASCENDING list:--");
-        sorter.SortPrice(file.chocolateObj, false);
+        sorter.SortPrice(list, false);
         System.out.println();
 
         System.out.println("--Price sorte DESCENDING list:--");
-        sorter.SortPrice(file.chocolateObj, true);
+        sorter.SortPrice(list, true);
         System.out.println();
 
         System.out.println("--Name ASCENDING sorted list:--");
-        sorter.SortName(file.chocolateObj, false);
+        sorter.SortName(list, false);
         System.out.println();
 
         System.out.println("--Name DESCENDING sorted list:--");
-        sorter.SortName(file.chocolateObj, true);
+        sorter.SortName(list, true);
 
         System.exit(0);
 
