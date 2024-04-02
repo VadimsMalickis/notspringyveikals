@@ -10,26 +10,39 @@ class ShoppingCart {
     public ShoppingCart(ArrayList<Products> cartProducts){ // constructor - when user has previously saved shopping cart
         this.cartProducts = cartProducts;
         for (Products product : cartProducts){
-            totalPrice =+ product.price;
+            totalPrice += product.price;
         }
     }
 
     public ShoppingCart(){ // constructor - when user has NO previously saved shopping cart
         this(new ArrayList<Products>());
-
+        totalPrice = 0;
     }
 
 
-    public double getTotalPrice() {
+    public double GetTotalPrice() {
+        totalPrice = Double.parseDouble(new DecimalFormat("##.##").format(totalPrice));
         return totalPrice;
     }
 
-    public void setTotalPrice() {
 
-        for (Products product : cartProducts){
-            totalPrice =+ product.price;
+    public void AddTo(Products product, int amount){
+
+        for (int i = 0; i < amount; i++) {
+            cartProducts.add(product);
+            totalPrice += product.price;
         }
 
-        totalPrice = Double.parseDouble(new DecimalFormat("##.##").format(totalPrice));
+
     }
+
+    public void RemoveFrom(Products product, int amount){
+
+        for (int i = 0; i < amount; i++) {
+            cartProducts.remove(product);
+            totalPrice -= product.price;
+        }
+
+    }
+
 }
