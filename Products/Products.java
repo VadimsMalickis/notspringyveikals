@@ -1,7 +1,7 @@
 class Products{
     String name;
-    double price;
-    int amountInStorage;
+    double price; // eur for 1 paciņa
+    int amountInStorage; // amount of paciņas in storage
     String type;
     String description;
 

@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
+
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -80,13 +78,11 @@ class App{
         //------- LAKYS SHOPPING CART TEST CODE----------------
         ArrayList<Products> smthAll = new ArrayList<Products>();
 
-        Products testThing = new Chocolates();
-        testThing.name = "aaaa";
-        testThing.price = 666.666;
-        testThing.amountInStorage = 2;
-        testThing.description = "fdghjkl";
-
-        smthAll.add(testThing);
+        Products testThing1 = new Chocolates();
+        testThing1.name = "aaaa";
+        testThing1.price = 666.666;
+        testThing1.amountInStorage = 0;
+        testThing1.description = "fdghjkl";
         
         Products testThing2 = new Jellys();
         testThing2.name = "bbbbb";
@@ -94,26 +90,33 @@ class App{
         testThing2.amountInStorage = 2;
         testThing2.description = "fdghjkl";
 
-        smthAll.add(testThing2);
-
         Products testThing3 = new Jellys();
         testThing3.name = "bbbbb";
         testThing3.price = 1;
-        testThing3.amountInStorage = 2;
+        testThing3.amountInStorage = 20;
         testThing3.description = "fdghjkl";
 
-        //System.out.print(smthAll);
 
-        ShoppingCart usersShoppingCart = new ShoppingCart(smthAll);
-        System.out.println(usersShoppingCart.GetTotalPrice());
+        ShoppingCart usersShoppingCart = new ShoppingCart();
+        System.out.println(usersShoppingCart.GetTotalPrice()); // 0
 
         usersShoppingCart.AddTo(testThing3, 3);
-        System.out.println(usersShoppingCart.GetTotalPrice());
+        System.out.println(usersShoppingCart.GetTotalPrice()); // 3
 
-        usersShoppingCart.AddTo(testThing, 1);
-        System.out.println(usersShoppingCart.GetTotalPrice());
+        usersShoppingCart.AddTo(testThing1, 1); // out of stock -> doesnt add anythng
+        System.out.println(usersShoppingCart.GetTotalPrice()); // 3
 
-        usersShoppingCart.RemoveFrom(testThing, 1);
-        System.out.println(usersShoppingCart.GetTotalPrice());
+        System.out.println(usersShoppingCart.cartProducts);
+
+        usersShoppingCart.SetAmount(testThing3, 15); // amount is 15 not 18
+        System.out.println(usersShoppingCart.GetTotalPrice()); // 15
+
+        usersShoppingCart.SetAmount(testThing3, 0); 
+        System.out.println(usersShoppingCart.GetTotalPrice()); // 0
+
+        System.out.println(usersShoppingCart.cartProducts);
+
+        // usersShoppingCart.RemoveFrom(testThing1, 1);
+        // System.out.println(usersShoppingCart.GetTotalPrice());
     }
 }
