@@ -1,53 +1,33 @@
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
 class BankAccount {
     private double balance;
     private double savings;
-    private Map<String, Double> currencyTypes;
 
     
     // CONSTRUCTOR
     public BankAccount(double startBalance, double savings) {
-        setBalance(startBalance); 
-        setSavings(savings); 
-        currencyTypes = new HashMap<String, Double>() { 
-            {
-                put("USD", 1.0817052);
-                put("GBP", 0.8547581);
-                put("JPY", 162.91697);
-            }
-        };
-
+        balance = startBalance;
+        this.savings = savings;
     }
 
-
-    // GET SETS
-    public double getBalance() {
+    public double GetBalance(){
+        balance = Double.parseDouble(new DecimalFormat("##.##").format(balance));
         return balance;
     }
 
-    public void setBalance(double value) {
-        balance = Math.round(value * 100.0) / 100.0;
-        if (value < 0) {
-            System.out.println("There was an error and you have a negative balance: " + balance + ". Reach out to your bank to resolve that!");
-        }
-    }
-
-    public double getSavings() {
+    public double GetSavings(){
+        savings = Double.parseDouble(new DecimalFormat("##.##").format(savings));
         return savings;
     }
-
-    public void setSavings(double value) {
-        savings = Math.round(value * 100.0) / 100.0;
-    }
-
 
     // METODES
     // naudas saņemšana - atgriež true/false atkarībā no tāi vai ir izdevies
     public boolean reciveMoney(double amount) {
         if (amount > 0) {
-            setBalance(getBalance() + amount);
+            balance += amount;
             return true;
         } else {
             return false;
@@ -57,10 +37,10 @@ class BankAccount {
     // naudas samaksa (atņemšana) - atgriež true/false atkarībā no tāi vai ir izdevies (vai pietika naudas)
     public boolean payMoney(double amount) {
         if (amount > 0) {
-            if (getBalance() - amount < 0) {
+            if (balance - amount < 0) {
                 return false;
             } else {
-                setBalance(getBalance() - amount);
+                setBalance(GetBalance() - amount);
                 return true;
             }
         } else {
