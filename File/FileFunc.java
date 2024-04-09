@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 class FileFunc{
     private String filePath;
@@ -77,13 +78,12 @@ class FileFunc{
 
     public void WriteFile(HashMap<Product, Integer> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
-            for(int i = 0; i < list.size(); i++){
-                    //!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    
-                    // Product temp = productsObj.get(i);
-                    // writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
-                    // writter.newLine();
-            }
+
+            writter.write("----------Check----------");
+            for(Map.Entry m : list.entrySet()){    
+                Product temp = (Product) m.getKey();
+                writter.write(temp.name + "\n\t" + temp.price + " x " + m.getValue());
+            } 
             writter.close(); 
         }catch (Exception e) {
             e.printStackTrace();
