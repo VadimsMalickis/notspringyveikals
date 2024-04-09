@@ -3,26 +3,27 @@ import java.util.ArrayList;
 public class Filter {
     ArrayList<Product> filteredList = new ArrayList<>();
     
-    public  ArrayList<Product> FilterList(ArrayList<ArrayList<Product>> list,boolean chocolateList, boolean jellyList, boolean lollyList){
+    public  ArrayList<Product> FilterList(ArrayList<Product> list,boolean chocolateList, boolean jellyList, boolean lollyList){
         if(chocolateList){
-            for (Product s : list.get(0)) {
-                filteredList.add(s);
-            }
+            AddList(list);
         }
         if(jellyList){
-            for (Product s : list.get(1)) {
-                filteredList.add(s);
-            }
+            AddList(list);
         }
         if(lollyList){
-            for (Product s : list.get(2)) {
-                filteredList.add(s);
-            }
+            AddList(list);
         }
+        
         System.out.println("Chocolates: " + chocolateList);
         System.out.println("Jellys: " + jellyList);
         System.out.println("Lollys: " + lollyList);
-        
+
         return filteredList;
+    }
+
+    private void AddList(ArrayList<Product> list){
+        for (Product s : list) {
+            filteredList.add(s);
+        }
     }
 }
