@@ -10,30 +10,19 @@ class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //-------FileFunc TESTING CODE------------------
 
-        // Path filePath = Paths.get("CSV/products.csv");
+        // Path filePath = Paths.get();
         // FileFunc file = new FileFunc(filePath.toString());
+        FileFunc file = new FileFunc(ProductFile.PRODUCTS.getFileName());
 
-        // //File reading test
-        // file.GetAll();
-       
-        // System.out.println("Veikalā pieejamie produkti:");
-        // System.out.println("---------------------------------------------------");
-        // System.out.println("Chocolate products:");
-        // for (Products s : file.chocolateObj) {
-        //     System.out.println(s);
-        // }
-        // System.out.println();
-
-        // System.out.println("Jelly products:");
-        // for (Products s : file.jellyObj) {
-        //     System.out.println(s);
-        // }
-        // System.out.println();
-
-        // System.out.println("Lolly products:");
-        // for (Products s : file.lollyObj) {
-        //     System.out.println(s);
-        // }
+        //File reading test
+        file.GetAll();
+        Products productsObj = new Products();
+        System.out.println("Veikalā pieejamie produkti:");
+        System.out.println("---------------------------------------------------");
+        System.out.println("Products:");
+        for (Product s : productsObj.getProducts()) {
+            System.out.println(s);
+        }
 
         // //File filtering test
         // System.out.println("---------------------------------------------------");
@@ -76,31 +65,31 @@ class App{
         // file.WriteFile();
 
         //------- LAKYS SHOPPING CART TEST CODE----------------
-        ArrayList<Product> smthAll = new ArrayList<Product>();
+        // ArrayList<Product> smthAll = new ArrayList<Product>();
 
-        Product testThing1 = new Chocolates();
-        testThing1.name = "aaaa";
-        testThing1.price = 666.666;
-        testThing1.amountInStorage = 0;
-        testThing1.description = "fdghjkl";
+        // Product testThing1 = new Chocolates();
+        // testThing1.name = "aaaa";
+        // testThing1.price = 666.666;
+        // testThing1.amountInStorage = 0;
+        // testThing1.description = "fdghjkl";
         
-        Product testThing2 = new Jellys();
-        testThing2.name = "bbbbb";
-        testThing2.price = 5.66;
-        testThing2.amountInStorage = 2;
-        testThing2.description = "fdghjkl";
+        // Product testThing2 = new Jellys();
+        // testThing2.name = "bbbbb";
+        // testThing2.price = 5.66;
+        // testThing2.amountInStorage = 2;
+        // testThing2.description = "fdghjkl";
 
-        Product testThing3 = new Jellys();
-        testThing3.name = "bbbbb";
-        testThing3.price = 1;
-        testThing3.amountInStorage = 20;
-        testThing3.description = "fdghjkl";
-
-
+        // Product testThing3 = new Jellys();
+        // testThing3.name = "bbbbb";
+        // testThing3.price = 1;
+        // testThing3.amountInStorage = 20;
+        // testThing3.description = "fdghjkl";
 
 
-        ShoppingCart usersShoppingCart = new ShoppingCart();
-        System.out.println(usersShoppingCart.GetTotalPrice()); // 0
+
+
+        // ShoppingCart usersShoppingCart = new ShoppingCart();
+        // System.out.println(usersShoppingCart.GetTotalPrice()); // 0
 
         // usersShoppingCart.AddTo(testThing3, 3);
         // System.out.println(usersShoppingCart.GetTotalPrice()); // 3
@@ -119,7 +108,7 @@ class App{
         // System.out.println(usersShoppingCart.cartProducts);
 
 
-        System.out.println(usersShoppingCart.GetTotalPrice());
-        System.out.println(usersShoppingCart.cartProducts);
+        // System.out.println(usersShoppingCart.GetTotalPrice());
+        // System.out.println(usersShoppingCart.cartProducts);
     }
 }

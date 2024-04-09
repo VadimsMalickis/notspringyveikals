@@ -9,13 +9,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 class FileFunc{
-    private String filePath;
-
-    public ArrayList<Product> chocolateObj= new ArrayList<>();
-    public ArrayList<Product> jellyObj= new ArrayList<>();
-    public ArrayList<Product> lollyObj= new ArrayList<>();
-
-    public ArrayList<Product> productsObj = new ArrayList<>();
+    String filePath;
+    Products productsObj;
 
     public FileFunc(String path){
         filePath = path;
@@ -43,30 +38,30 @@ class FileFunc{
             String type = rowParts[3];
 
             if(type.equals("Chocolate")){
-                object = new Chocolates();
-                chocolateObj.add(object);
+                object = new Chocolates(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
             }
             if(type.equals("Jelly")){
-                object = new Jellys();
-                jellyObj.add(object);
+                object = new Jellys(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
             }
             if(type.equals("Lolly")){
-                object = new Lollies();
-                lollyObj.add(object);
+                object = new Lollies(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
             }
 
-            object.name = rowParts[0];
-            object.price = Double.parseDouble(rowParts[1]);
-            object.amountInStorage = Integer.parseInt(rowParts[2]);
-            object.type = type;
-            object.description = rowParts[4];
+            productsObj.getProducts().add(object);
+
+            // //sis nevar but vnk consturcotr????
+            // object.name = rowParts[0];
+            // object.price = Double.parseDouble(rowParts[1]);
+            // object.amountInStorage = Integer.parseInt(rowParts[2]);
+            // object.type = type;
+            // object.description = rowParts[4];
         }
     }
 
     public void WriteFile(ArrayList<Product> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for(int i = 0; i < list.size(); i++){
-                    Product temp = productsObj.get(i);
+                    Product temp = productsObj.getProducts().get(i);
                     writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
                     writter.newLine();
             }

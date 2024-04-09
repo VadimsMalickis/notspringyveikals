@@ -2,6 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+//!!!!!!PAŅIMAĶ!!!!!!!!!!!!!!!
 public class Sorter {
     //Sort based on price
     public void SortPrice(ArrayList<Product> list, boolean reversed){
