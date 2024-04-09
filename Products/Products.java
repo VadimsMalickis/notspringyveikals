@@ -1,29 +1,14 @@
-class Product{
-    String name;
-    double price; // eur for 1 paciņa
-    int amountInStorage; // amount of paciņas in storage
-    String type;
-    String description;
+import java.util.ArrayList;
 
-    public String toString(){
-        return name + ", " + price+ ", " + amountInStorage + ", " + type + ", " + description;
-    }
+public class Products {
+    ArrayList<Product> productsObj;
 
-    public String getName(){
-        return name;
+    //Get set Products obj
+    public ArrayList<Product> getProducts() {
+        return productsObj;
     }
-    
-    public double getPrice(){
-        return price;
-    }
-
-    // //so isti envajag vairak?
-    // public void Display(){
-    //     System.out.println("Nosaukums: " + name);
-    //     System.out.println("Cena: " + price);
-    //     System.out.println("Daudzums noliktavā: " + amountInStorage);
-    //     System.out.println("Kategorija: " + type);
-    //     System.out.println("Apraksts: " +  description);
-    //     System.out.println();
+        
+    // public void setProducts(ArrayList<Product> newProductsObj) {
+    //     this.productsObj = newProductsObj;
     // }
 }

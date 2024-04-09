@@ -37,22 +37,22 @@ class FileFunc{
 
             if(type.equals("Chocolate")){
                 object = new Chocolates();
-                chocolateObj.add(object);
             }
             if(type.equals("Jelly")){
                 object = new Jellys();
-                jellyObj.add(object);
             }
             if(type.equals("Lolly")){
                 object = new Lollies();
-                lollyObj.add(object);
             }
 
+            //sis nevar but vnk consturcotr????
             object.name = rowParts[0];
             object.price = Double.parseDouble(rowParts[1]);
             object.amountInStorage = Integer.parseInt(rowParts[2]);
             object.type = type;
             object.description = rowParts[4];
+
+            
         }
     }
 
