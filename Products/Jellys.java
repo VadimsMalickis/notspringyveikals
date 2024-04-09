@@ -1,2 +1,2 @@
-class Jellys extends Products{
+class Jellys extends Product{
 }

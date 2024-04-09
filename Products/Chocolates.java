@@ -1,3 +1,3 @@
-class Chocolates extends Products{
+class Chocolates extends Product{
 
 }

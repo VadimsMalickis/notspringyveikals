@@ -5,25 +5,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 class ShoppingCart {
-    Map<Products, Integer> cartProducts;
+    Map<Product, Integer> cartProducts;
     private double totalPrice;
 
 
-    public ShoppingCart(HashMap<Products, Integer> cartProducts){ // constructor - when user has previously saved shopping cart
+    public ShoppingCart(HashMap<Product, Integer> cartProducts){ // constructor - when user has previously saved shopping cart
         this.cartProducts = cartProducts;
         totalPrice = GetTotalPrice();
 
     }
 
     public ShoppingCart(){ // constructor - when user has NO previously saved shopping cart
-        this(new HashMap<Products, Integer>());
+        this(new HashMap<Product, Integer>());
         totalPrice = 0;
     }
 
 
     public double GetTotalPrice() { // updtaes and fixes the price
         totalPrice = 0;
-        for (Map.Entry<Products, Integer> addedProduct : cartProducts.entrySet()){
+        for (Map.Entry<Product, Integer> addedProduct : cartProducts.entrySet()){
             totalPrice += addedProduct.getKey().price * addedProduct.getValue();
         }
         totalPrice = Double.parseDouble(new DecimalFormat("##.##").format(totalPrice));
@@ -31,7 +31,7 @@ class ShoppingCart {
     }
 
 
-    public void AddTo(Products product, int amount){ // you can add the product only if its not in the cart, otherways u have to increase/decrease the value 
+    public void AddTo(Product product, int amount){ // you can add the product only if its not in the cart, otherways u have to increase/decrease the value 
 
         if (product.amountInStorage == 0){
              System.out.println("This product is out of stock! :(");
@@ -48,7 +48,7 @@ class ShoppingCart {
 
 
 
-    public void SetAmount(Products product, int amountValue){ // gets triggered when user preses +/- or enters an amount value on ALREADY ADDED PRODUCT 
+    public void SetAmount(Product product, int amountValue){ // gets triggered when user preses +/- or enters an amount value on ALREADY ADDED PRODUCT 
                                                              // -> it happnes in cart window not main search/product window
 
         // first it needs to get/accses the value entered in the websites field and assign it to a variable(amountValue) <- cant do that yet cuz no web
