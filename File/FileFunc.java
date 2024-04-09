@@ -10,12 +10,6 @@ import java.util.HashMap;
 class FileFunc{
     private String filePath;
 
-    public ArrayList<Product> chocolateObj= new ArrayList<>();
-    public ArrayList<Product> jellyObj= new ArrayList<>();
-    public ArrayList<Product> lollyObj= new ArrayList<>();
-
-    public ArrayList<Product> productsObj = new ArrayList<>();
-
     public FileFunc(String path){
         filePath = path;
     }
@@ -79,7 +73,7 @@ class FileFunc{
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for(int i = 0; i < list.size(); i++){
                     //!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    
+
                     // Product temp = productsObj.get(i);
                     // writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
                     // writter.newLine();
