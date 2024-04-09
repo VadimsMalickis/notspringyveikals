@@ -1,7 +1,9 @@
 public enum ProductFile {
-    CHOCOLATES("CSV/chocolates.csv"),
-    JELLYS("CSV/jellys.csv"),
-    LOLLIES("CSV/lollies.csv");
+    // CHOCOLATES("CSV/chocolates.csv"),
+    // JELLYS("CSV/jellys.csv"),
+    // LOLLIES("CSV/lollies.csv");
+
+    PRODUCTS("CSV/products.csv");
 
     private final String fileName;
 

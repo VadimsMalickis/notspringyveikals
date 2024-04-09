@@ -102,21 +102,21 @@ class App{
         ShoppingCart usersShoppingCart = new ShoppingCart();
         System.out.println(usersShoppingCart.GetTotalPrice()); // 0
 
-        usersShoppingCart.AddTo(testThing3, 3);
-        System.out.println(usersShoppingCart.GetTotalPrice()); // 3
+        // usersShoppingCart.AddTo(testThing3, 3);
+        // System.out.println(usersShoppingCart.GetTotalPrice()); // 3
 
-        usersShoppingCart.AddTo(testThing1, 1); // out of stock -> doesnt add anythng
-        System.out.println(usersShoppingCart.GetTotalPrice()); // 3
+        // usersShoppingCart.AddTo(testThing1, 1); // out of stock -> doesnt add anythng
+        // System.out.println(usersShoppingCart.GetTotalPrice()); // 3
 
-        System.out.println(usersShoppingCart.cartProducts);
+        // System.out.println(usersShoppingCart.cartProducts);
 
-        usersShoppingCart.SetAmount(testThing3, 15); // amount is 15 not 18
-        System.out.println(usersShoppingCart.GetTotalPrice()); // 15
+        // usersShoppingCart.SetAmount(testThing3, 15); // amount is 15 not 18
+        // System.out.println(usersShoppingCart.GetTotalPrice()); // 15
 
-        usersShoppingCart.SetAmount(testThing3, 0); 
-        System.out.println(usersShoppingCart.GetTotalPrice()); // 0
+        // usersShoppingCart.SetAmount(testThing3, 0); 
+        // System.out.println(usersShoppingCart.GetTotalPrice()); // 0
 
-        System.out.println(usersShoppingCart.cartProducts);
+        // System.out.println(usersShoppingCart.cartProducts);
 
 
         System.out.println(usersShoppingCart.GetTotalPrice());

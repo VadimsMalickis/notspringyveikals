@@ -5,21 +5,19 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 class FileFunc{
-    String filePath;
+    private String filePath;
 
-    public ArrayList<Products> chocolateObj= new ArrayList<>();
-    public ArrayList<Products> jellyObj= new ArrayList<>();
-    public ArrayList<Products> lollyObj= new ArrayList<>();
-    public ArrayList<ArrayList<Products>> productsObj = new ArrayList<ArrayList<Products>>();
+    public ArrayList<Product> chocolateObj= new ArrayList<>();
+    public ArrayList<Product> jellyObj= new ArrayList<>();
+    public ArrayList<Product> lollyObj= new ArrayList<>();
+
+    public ArrayList<Product> productsObj = new ArrayList<>();
 
     public FileFunc(String path){
         filePath = path;
-
-        productsObj.add(chocolateObj);
-        productsObj.add(jellyObj);
-        productsObj.add(lollyObj);
     }
     
     private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
@@ -38,9 +36,9 @@ class FileFunc{
         CSVrows = ReadFile(); //[row1, row2]
         
         for (String CSVrow : CSVrows){
-            Products object = new Products();
+            Product object = new Product();
 
-            String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz,kategorija, apraksts]
+            String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz, kategorija, apraksts]
             String type = rowParts[3];
 
             if(type.equals("Chocolate")){
@@ -64,18 +62,34 @@ class FileFunc{
         }
     }
 
-    public void WriteFile(){
-        try (BufferedWriter writter = new BufferedWriter(new FileWriter("CSV/products.csv"))) {
-            for(int i = 0; i < productsObj.size(); i++){
-                for(int i2 = 0; i2 < productsObj.get(i).size(); i2++){
-                    Products temp = productsObj.get(i).get(i2);
+    public void WriteFile(ArrayList<Product> list){
+        try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
+            for(int i = 0; i < list.size(); i++){
+                    Product temp = productsObj.get(i);
                     writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
                     writter.newLine();
-                }
             }
-            writter.close();         
-        } catch (Exception e) {
+            writter.close(); 
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void WriteFile(HashMap<Product, Integer> list){
+        try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
+            for(int i = 0; i < list.size(); i++){
+                    //!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    
+                    // Product temp = productsObj.get(i);
+                    // writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
+                    // writter.newLine();
+            }
+            writter.close(); 
+        }catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
+
+//{products: integer
+// products2 : integer}
