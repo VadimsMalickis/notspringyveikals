@@ -13,21 +13,23 @@ class BankAccount {
         this.savings = savings;
     }
 
-    public double GetBalance(){
-        balance = Double.parseDouble(new DecimalFormat("##.##").format(balance));
+    public double GetBalance() {
         return balance;
     }
 
-    public double GetSavings(){
-        savings = Double.parseDouble(new DecimalFormat("##.##").format(savings));
-        return savings;
+    public void SetBalance(double value) {
+        balance = Math.round(value * 100.0) / 100.0;
+        if (value < 0) {
+            System.out.println("There was an error and you have a negative balance: " + balance + ". Reach out to your bank to resolve that!");
+        }
     }
+
 
     // METODES
     // naudas saņemšana - atgriež true/false atkarībā no tāi vai ir izdevies
     public boolean reciveMoney(double amount) {
         if (amount > 0) {
-            balance += amount;
+            SetBalance( GetBalance() + amount);
             return true;
         } else {
             return false;
@@ -40,19 +42,9 @@ class BankAccount {
             if (balance - amount < 0) {
                 return false;
             } else {
-                setBalance(GetBalance() - amount);
+                SetBalance(GetBalance() - amount);
                 return true;
             }
-        } else {
-            return false;
-        }
-    }
-
-    // pievienot naudu uzkrājumā - atgriež true/false atkarībā no tāi vai ir izdevies
-    public boolean addToSavings(double amount) {
-        if (payMoney(amount)) {
-            setSavings(getSavings() + amount);
-            return true;
         } else {
             return false;
         }
@@ -68,13 +60,5 @@ class BankAccount {
         }
     }
 
-    // nosaka, cik esošais EUR naudas daudzums būs citā lietotāja izvēlētā valūtā
-    public String changeCurrency(String toCurrency) {
-        if (currencyTypes.containsKey(toCurrency)) {
-            return getBalance() + " EUR is " + Math.round(currencyTypes.get(toCurrency) * getBalance() * 100.0) / 100.0 + " " + toCurrency;
-        } else {
-            return "Converting to this currency is not available"; // ja lietotājs ievada neeksistējošu/tādu kas nav sistēmā valūtu
-        }
-    }
 }
 

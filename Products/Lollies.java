@@ -1,3 +1,3 @@
-class Lollies extends Products{
+class Lollies extends Product{
 
 }

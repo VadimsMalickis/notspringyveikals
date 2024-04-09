@@ -1,4 +1,4 @@
-class Products{
+class Product{
     String name;
     double price; // eur for 1 paciņa
     int amountInStorage; // amount of paciņas in storage
