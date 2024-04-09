@@ -1,9 +1,19 @@
 class Product{
-    String name;
+     String name;
     double price; // eur for 1 paciņa
     int amountInStorage; // amount of paciņas in storage
     String type;
     String description;
+
+    public Product(String name, double price, int amountInStorage, String type, String description){
+        this.name = name;
+        this.price = price;
+        this.amountInStorage = amountInStorage;
+        this.type = type;
+        this.description = description;
+    }
+
+    public Product(){} //!!!!!!!!!!!!!!!
 
     public String toString(){
         return name + ", " + price+ ", " + amountInStorage + ", " + type + ", " + description;
@@ -16,6 +26,7 @@ class Product{
     public double getPrice(){
         return price;
     }
+
 
     // //so isti envajag vairak?
     // public void Display(){

@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 class FileFunc{
-    private String filePath;
+    String filePath;
+    Products productsObj;
 
     public FileFunc(String path){
         filePath = path;
@@ -36,30 +37,30 @@ class FileFunc{
             String type = rowParts[3];
 
             if(type.equals("Chocolate")){
-                object = new Chocolates();
+                object = new Chocolates(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
             }
             if(type.equals("Jelly")){
-                object = new Jellys();
+                object = new Jellys(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
             }
             if(type.equals("Lolly")){
-                object = new Lollies();
+                object = new Lollies(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
             }
 
-            //sis nevar but vnk consturcotr????
-            object.name = rowParts[0];
-            object.price = Double.parseDouble(rowParts[1]);
-            object.amountInStorage = Integer.parseInt(rowParts[2]);
-            object.type = type;
-            object.description = rowParts[4];
+            productsObj.getProducts().add(object);
 
-            
+            // //sis nevar but vnk consturcotr????
+            // object.name = rowParts[0];
+            // object.price = Double.parseDouble(rowParts[1]);
+            // object.amountInStorage = Integer.parseInt(rowParts[2]);
+            // object.type = type;
+            // object.description = rowParts[4];
         }
     }
 
     public void WriteFile(ArrayList<Product> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for(int i = 0; i < list.size(); i++){
-                    Product temp = productsObj.get(i);
+                    Product temp = productsObj.getProducts().get(i);
                     writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
                     writter.newLine();
             }
