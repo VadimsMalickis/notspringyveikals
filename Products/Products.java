@@ -1,16 +1,16 @@
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
-public class Products {
-    ArrayList<Product> productsObj;
+// public class Products {
+//     ArrayList<Product> productsObj;
 
-    public Products(){}
+//     public Products(){}
     
-    //Get set Products obj
-    public ArrayList<Product> getProducts() {
-        return productsObj;
-    }
+//     //Get set Products obj
+//     public ArrayList<Product> getProducts() {
+//         return productsObj;
+//     }
         
-    // public void setProducts(ArrayList<Product> newProductsObj) {
-    //     this.productsObj = newProductsObj;
-    // }
-}
+//     // public void setProducts(ArrayList<Product> newProductsObj) {
+//     //     this.productsObj = newProductsObj;
+//     // }
+// }
