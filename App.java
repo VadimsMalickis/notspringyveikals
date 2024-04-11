@@ -16,11 +16,10 @@ class App{
 
         //File reading test
         file.GetAll();
-        Products productsObj = new Products();
         System.out.println("Veikalā pieejamie produkti:");
         System.out.println("---------------------------------------------------");
         System.out.println("Products:");
-        for (Product s : productsObj.getProducts()) {
+        for (Product s : file.productsObj) {
             System.out.println(s);
         }
 
