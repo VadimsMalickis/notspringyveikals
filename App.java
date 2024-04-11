@@ -28,8 +28,11 @@ class App{
         Filter filter = new Filter();
 
         System.out.println("--Filtering:--");
-        ArrayList<Product> list = filter.FilterList(file.productsObj, true, true, true);
-        System.out.println(list);
+        boolean chocolateList = false;
+        boolean jellyList = true;
+        boolean lollyList = true;
+        ArrayList<Product> list = filter.FilterList(file.productsObj, chocolateList, jellyList, lollyList);
+        System.out.println("Chocolates:" + chocolateList + "\nJelly:" + jellyList + "\nLolly:" + lollyList);
 
         //File sorting test
         System.out.println("---------------------------------------------------");
