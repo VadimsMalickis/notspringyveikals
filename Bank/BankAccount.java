@@ -1,12 +1,17 @@
+import java.util.ArrayList;
+
 class BankAccount {
     private double balance;
     private String bankAccountNumber;
+
 
     
     // CONSTRUCTOR
     public BankAccount(double startBalance, double savings, String bankAccountNumber) {
         balance = startBalance;
         this.bankAccountNumber = bankAccountNumber;
+
+
     }
 
     public double GetBalance() {
