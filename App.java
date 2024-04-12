@@ -16,42 +16,44 @@ class App{
 
         //File reading test
         file.GetAll();
-        Products productsObj = new Products();
         System.out.println("Veikalā pieejamie produkti:");
         System.out.println("---------------------------------------------------");
         System.out.println("Products:");
-        for (Product s : productsObj.getProducts()) {
+        for (Product s : file.productsObj) {
             System.out.println(s);
         }
 
-        // //File filtering test
-        // System.out.println("---------------------------------------------------");
-        // Filter filter = new Filter();
+        //File filtering test
+        System.out.println("---------------------------------------------------");
+        Filter filter = new Filter();
 
-        // System.out.println("--Filtering:--");
-        // ArrayList<Products> list = filter.FilterList(file.productsObj, true, true, true);
-        
+        System.out.println("--Filtering:--");
+        boolean chocolateList = false;
+        boolean jellyList = true;
+        boolean lollyList = true;
+        ArrayList<Product> list = filter.FilterList(file.productsObj, chocolateList, jellyList, lollyList);
+        System.out.println("Chocolates:" + chocolateList + "\nJelly:" + jellyList + "\nLolly:" + lollyList);
 
-        // //File sorting test
-        // System.out.println("---------------------------------------------------");
-        // Sorter sorter = new Sorter();
+        //File sorting test
+        System.out.println("---------------------------------------------------");
+        Sorter sorter = new Sorter();
 
-        // System.out.println("--Price sorted ASCENDING list:--");
-        // sorter.SortPrice(list, false);
-        // System.out.println();
+        System.out.println("--Price sorted ASCENDING list:--");
+        sorter.SortPrice(list, false);
+        System.out.println();
 
-        // System.out.println("--Price sorte DESCENDING list:--");
-        // sorter.SortPrice(list, true);
-        // System.out.println();
+        System.out.println("--Price sorte DESCENDING list:--");
+        sorter.SortPrice(list, true);
+        System.out.println();
 
-        // System.out.println("--Name ASCENDING sorted list:--");
-        // sorter.SortName(list, false);
-        // System.out.println();
+        System.out.println("--Name ASCENDING sorted list:--");
+        sorter.SortName(list, false);
+        System.out.println();
 
-        // System.out.println("--Name DESCENDING sorted list:--");
-        // sorter.SortName(list, true);
+        System.out.println("--Name DESCENDING sorted list:--");
+        sorter.SortName(list, true);
 
-        // System.exit(0);
+        System.exit(0);
 
         // //File writing test
         // Chocolates test = new Chocolates();

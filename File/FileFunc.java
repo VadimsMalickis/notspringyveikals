@@ -10,7 +10,7 @@ import java.util.Map;
 
 class FileFunc{
     String filePath;
-    Products productsObj;
+    ArrayList<Product> productsObj = new ArrayList<>();
 
     public FileFunc(String path){
         filePath = path;
@@ -47,21 +47,14 @@ class FileFunc{
                 object = new Lollies(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
             }
 
-            productsObj.getProducts().add(object);
-
-            // //sis nevar but vnk consturcotr????
-            // object.name = rowParts[0];
-            // object.price = Double.parseDouble(rowParts[1]);
-            // object.amountInStorage = Integer.parseInt(rowParts[2]);
-            // object.type = type;
-            // object.description = rowParts[4];
+            productsObj.add(object);
         }
     }
 
     public void WriteFile(ArrayList<Product> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for(int i = 0; i < list.size(); i++){
-                    Product temp = productsObj.getProducts().get(i);
+                    Product temp = productsObj.get(i);
                     writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
                     writter.newLine();
             }
@@ -85,6 +78,3 @@ class FileFunc{
         }
     }
 }
-
-//{products: integer
-// products2 : integer}
