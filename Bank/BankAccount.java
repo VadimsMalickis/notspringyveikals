@@ -1,16 +1,12 @@
-import java.text.DecimalFormat;
-import java.util.HashMap;
-import java.util.Map;
-
 class BankAccount {
     private double balance;
-    private double savings;
+    private String bankAccountNumber;
 
     
     // CONSTRUCTOR
-    public BankAccount(double startBalance, double savings) {
+    public BankAccount(double startBalance, double savings, String bankAccountNumber) {
         balance = startBalance;
-        this.savings = savings;
+        this.bankAccountNumber = bankAccountNumber;
     }
 
     public double GetBalance() {
@@ -27,7 +23,7 @@ class BankAccount {
 
     // METODES
     // naudas saņemšana - atgriež true/false atkarībā no tāi vai ir izdevies
-    public boolean reciveMoney(double amount) {
+    public boolean ReciveMoney(double amount) {
         if (amount > 0) {
             SetBalance( GetBalance() + amount);
             return true;
@@ -37,7 +33,7 @@ class BankAccount {
     }
 
     // naudas samaksa (atņemšana) - atgriež true/false atkarībā no tāi vai ir izdevies (vai pietika naudas)
-    public boolean payMoney(double amount) {
+    public boolean PayMoney(double amount) {
         if (amount > 0) {
             if (balance - amount < 0) {
                 return false;
@@ -52,8 +48,8 @@ class BankAccount {
 
     // pārsūtīt naudu uz citu akauntu
     public boolean transaction(double amount, BankAccount bankAccount) {
-        if (payMoney(amount)) {
-            bankAccount.reciveMoney(amount);
+        if (PayMoney(amount)) {
+            bankAccount.ReciveMoney(amount);
             return true;
         } else {
             return false;

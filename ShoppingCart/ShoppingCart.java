@@ -35,9 +35,7 @@ class ShoppingCart {
 
         if (product.amountInStorage == 0){
              System.out.println("This product is out of stock! :(");
-        } else 
-        
-        if (amount <= product.amountInStorage && amount > 0){
+        } else if (amount <= product.amountInStorage && amount > 0){
                 cartProducts.put(product, amount);
         } else {
             System.out.println("Invalid amount entered");
@@ -57,12 +55,17 @@ class ShoppingCart {
 
         if (amountValue == 0){
             cartProducts.remove(product);
-        }if (amountValue <= product.amountInStorage){
+        }else if (amountValue <= product.amountInStorage){
             cartProducts.replace(product, amountValue);
         }else{
             System.out.println("Invalid amount entered");
         }
         // might have to add GetTotalPrice() so price updates
+    }
+
+
+    public void OrderCart(String adress, String owner, String bankAccountNumber, String cvv){
+
     }
 
 
