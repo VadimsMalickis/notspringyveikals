@@ -8,12 +8,16 @@ import java.util.ArrayList;
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
-        //-------FileFunc TESTING CODE------------------
+        //-------ALISES TESTING CODE------------------
+        //Registration write test timee
+        Registration reg = new Registration();
+        reg.Register("sfsfsd", "dsds", "dfd", "dsfsd", "sfsd", "null");
 
-        // FileFunc file = new FileFunc(ProductFile.PRODUCTS.getFileName());
+        // FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
 
-        // //File reading test
+        //File reading test
         // file.GetAll();
+
         // System.out.println("Veikalā pieejamie produkti:");
         // System.out.println("---------------------------------------------------");
         // System.out.println("Products:");
@@ -53,7 +57,7 @@ class App{
 
         // System.exit(0);
 
-        // //File writing test
+        //File writing test
         // Chocolates test = new Chocolates("test", 2.34, 1, "Chocolate", "Just a simple test.");
         // file.productsObj.add(test);
         // file.WriteFile(file.productsObj);
