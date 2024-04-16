@@ -1,9 +1,10 @@
-public enum ProductFile {
-    PRODUCTS("CSV/products.csv");
+public enum PathFile {
+    PRODUCTS("CSV/products.csv"),
+    REGISTERED_USERS("CSV/registeredUsers.csv");
 
     private final String fileName;
 
-    ProductFile(String fileName) {
+    PathFile(String fileName) {
         this.fileName = fileName;
     }
 
