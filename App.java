@@ -1,8 +1,5 @@
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -11,7 +8,8 @@ class App{
         //-------ALISES TESTING CODE------------------
         //Registration write test timee
         Registration reg = new Registration();
-        reg.Register("sfsfsd", "dsds", "dfd", "dsfsd", "sfsd", "null");
+        User user = new User("alisetoca", "alise.toc@kk.com", "Alise", "Toča", "Valdemāra 7", "gribumajas");
+        reg.Register(user);
 
         // FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
 
