@@ -16,7 +16,7 @@ class Product{
     public Product(){} //!!!!!!!!!!!!!!!
 
     public String toString(){
-        return name + ", " + price+ ", " + amountInStorage + ", " + type + ", " + description;
+        return name + "," + price+ "," + amountInStorage + "," + type + "," + description;
     }
 
     public String getName(){
