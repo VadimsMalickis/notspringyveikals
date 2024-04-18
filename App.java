@@ -1,15 +1,36 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //-------ALISES TESTING CODE------------------
+
+        ArrayList<Product> listTest = new ArrayList<>();
+        String keyword;
+
+        listTest.add(new Product("kika", 2, 2, "Chocolate", "..."));
+        listTest.add(new Product("kaija", 3.4, 9, "Chocolate", "..."));
+        listTest.add(new Product("lapa", 1, 3, "Jelly", "..."));
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Search:");
+        while (true) {
+            keyword = System.in.read();  // Read user input
+
+            for(Product temp : listTest) {
+                if(temp.name.contains(keyword)){
+                    System.out.println(temp);
+                }
+            }
+        }
+
         //Registration write test timee
-        Registration reg = new Registration();
-        User user = new User("alisetoca", "alise.toc@kk.com", "Alise", "Toča", "Valdemāra 7", "gribumajas");
-        reg.Register(user);
+        // Registration reg = new Registration();
+        // User user = new User("alisetoca", "alise.toc@kk.com", "Alise", "Toča", "Valdemāra 7", "gribumajas");
+        // reg.Register(user);
 
         // FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
 
