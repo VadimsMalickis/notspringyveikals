@@ -47,7 +47,7 @@ class ShoppingCart {
 
 
     public void SetAmount(Product product, int amountValue){ // gets triggered when user preses +/- or enters an amount value on ALREADY ADDED PRODUCT 
-                                                             // -> it happnes in cart window not main search/product window
+                                                            // -> it happnes in cart window not main search/product window
 
         // first it needs to get/accses the value entered in the websites field and assign it to a variable(amountValue) <- cant do that yet cuz no web
 
