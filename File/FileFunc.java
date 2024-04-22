@@ -12,6 +12,7 @@ class FileFunc{
     String filePath;
     ArrayList<Product> productsObj = new ArrayList<>();
 
+    //nevis seit iestatit bet katraa vieta kur notiek darbibas ar failiem??
     public FileFunc(String path){
         filePath = path;
     }
@@ -55,9 +56,19 @@ class FileFunc{
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for(int i = 0; i < list.size(); i++){
                     Product temp = productsObj.get(i);
-                    writter.write(temp.name + "," + temp.price + ","+ temp.amountInStorage + ","+ temp.type + ","+ temp.description);
+                    writter.write(temp.toString());
                     writter.newLine();
             }
+            writter.close(); 
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    public void WriteFile(User user){
+        try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
+            writter.write(user.toString());
+            writter.newLine();
             writter.close(); 
         }catch (Exception e) {
             e.printStackTrace();

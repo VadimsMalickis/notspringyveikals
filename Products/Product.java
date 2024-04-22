@@ -1,5 +1,5 @@
 class Product{
-     String name;
+    String name;
     double price; // eur for 1 paciņa
     int amountInStorage; // amount of paciņas in storage
     String type;
@@ -16,7 +16,7 @@ class Product{
     public Product(){} //!!!!!!!!!!!!!!!
 
     public String toString(){
-        return name + ", " + price+ ", " + amountInStorage + ", " + type + ", " + description;
+        return name + "," + price+ "," + amountInStorage + "," + type + "," + description;
     }
 
     public String getName(){

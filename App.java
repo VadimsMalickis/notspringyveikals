@@ -1,94 +1,92 @@
-
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
-        //-------FileFunc TESTING CODE------------------
+        //-------ALISES TESTING CODE------------------
 
-        // Path filePath = Paths.get();
-        // FileFunc file = new FileFunc(filePath.toString());
-        FileFunc file = new FileFunc(ProductFile.PRODUCTS.getFileName());
+        ArrayList<Product> listTest = new ArrayList<>();
+        String keyword;
 
-        //File reading test
-        file.GetAll();
-        System.out.println("Veikalā pieejamie produkti:");
-        System.out.println("---------------------------------------------------");
-        System.out.println("Products:");
-        for (Product s : file.productsObj) {
-            System.out.println(s);
+        listTest.add(new Product("kika", 2, 2, "Chocolate", "..."));
+        listTest.add(new Product("kaija", 3.4, 9, "Chocolate", "..."));
+        listTest.add(new Product("lapa", 1, 3, "Jelly", "..."));
+
+        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        System.out.println("Search:");
+        while (true) {
+            keyword = System.in.read();  // Read user input
+
+            for(Product temp : listTest) {
+                if(temp.name.contains(keyword)){
+                    System.out.println(temp);
+                }
+            }
         }
 
-        //File filtering test
-        System.out.println("---------------------------------------------------");
-        Filter filter = new Filter();
+        //Registration write test timee
+        // Registration reg = new Registration();
+        // User user = new User("alisetoca", "alise.toc@kk.com", "Alise", "Toča", "Valdemāra 7", "gribumajas");
+        // reg.Register(user);
 
-        System.out.println("--Filtering:--");
-        boolean chocolateList = false;
-        boolean jellyList = true;
-        boolean lollyList = true;
-        ArrayList<Product> list = filter.FilterList(file.productsObj, chocolateList, jellyList, lollyList);
-        System.out.println("Chocolates:" + chocolateList + "\nJelly:" + jellyList + "\nLolly:" + lollyList);
+        // FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
 
-        //File sorting test
-        System.out.println("---------------------------------------------------");
-        Sorter sorter = new Sorter();
+        //File reading test
+        // file.GetAll();
 
-        System.out.println("--Price sorted ASCENDING list:--");
-        sorter.SortPrice(list, false);
-        System.out.println();
+        // System.out.println("Veikalā pieejamie produkti:");
+        // System.out.println("---------------------------------------------------");
+        // System.out.println("Products:");
+        // for (Product s : file.productsObj) {
+        //     System.out.println(s);
+        // }
 
-        System.out.println("--Price sorte DESCENDING list:--");
-        sorter.SortPrice(list, true);
-        System.out.println();
+        // //File filtering test
+        // System.out.println("---------------------------------------------------");
+        // Filter filter = new Filter();
 
-        System.out.println("--Name ASCENDING sorted list:--");
-        sorter.SortName(list, false);
-        System.out.println();
+        // System.out.println("--Filtering:--");
+        // boolean chocolateList = false;
+        // boolean jellyList = true;
+        // boolean lollyList = true;
+        // ArrayList<Product> list = filter.FilterList(file.productsObj, chocolateList, jellyList, lollyList);
+        // System.out.println("Chocolates:" + chocolateList + "\nJelly:" + jellyList + "\nLolly:" + lollyList);
 
-        System.out.println("--Name DESCENDING sorted list:--");
-        sorter.SortName(list, true);
+        // //File sorting test
+        // System.out.println("---------------------------------------------------");
+        // Sorter sorter = new Sorter();
 
-        System.exit(0);
+        // System.out.println("--Price sorted ASCENDING list:--");
+        // sorter.SortPrice(list, false);
+        // System.out.println();
 
-        // //File writing test
-        // Chocolates test = new Chocolates();
-        // test.name = "test";
-        // test.price = 2.34;
-        // test.amountInStorage = 1;
-        // test.type = "Chocolate";
-        // test.description = "Just a simple test.";
+        // System.out.println("--Price sorte DESCENDING list:--");
+        // sorter.SortPrice(list, true);
+        // System.out.println();
 
-        // file.chocolateObj.add(test);
-        // file.WriteFile();
+        // System.out.println("--Name ASCENDING sorted list:--");
+        // sorter.SortName(list, false);
+        // System.out.println();
+
+        // System.out.println("--Name DESCENDING sorted list:--");
+        // sorter.SortName(list, true);
+
+        // System.exit(0);
+
+        //File writing test
+        // Chocolates test = new Chocolates("test", 2.34, 1, "Chocolate", "Just a simple test.");
+        // file.productsObj.add(test);
+        // file.WriteFile(file.productsObj);
 
         //------- LAKYS SHOPPING CART TEST CODE----------------
         // ArrayList<Product> smthAll = new ArrayList<Product>();
 
-        // Product testThing1 = new Chocolates();
-        // testThing1.name = "aaaa";
-        // testThing1.price = 666.666;
-        // testThing1.amountInStorage = 0;
-        // testThing1.description = "fdghjkl";
-        
-        // Product testThing2 = new Jellys();
-        // testThing2.name = "bbbbb";
-        // testThing2.price = 5.66;
-        // testThing2.amountInStorage = 2;
-        // testThing2.description = "fdghjkl";
-
-        // Product testThing3 = new Jellys();
-        // testThing3.name = "bbbbb";
-        // testThing3.price = 1;
-        // testThing3.amountInStorage = 20;
-        // testThing3.description = "fdghjkl";
-
-
-
+        // Product testThing1 = new Chocolates("test1", 66.666, 0, "Chocolate", "sdfsdsd");
+        // Product testThing2 = new Jellys("test2", 5.66, 2, "Jelly", "sdfsdsd");
+        // Product testThing3 = new Lollies("test3", 1, 20, "Lolly", "sdfsdsd");
 
         // ShoppingCart usersShoppingCart = new ShoppingCart();
         // System.out.println(usersShoppingCart.GetTotalPrice()); // 0
@@ -108,7 +106,6 @@ class App{
         // System.out.println(usersShoppingCart.GetTotalPrice()); // 0
 
         // System.out.println(usersShoppingCart.cartProducts);
-
 
         // System.out.println(usersShoppingCart.GetTotalPrice());
         // System.out.println(usersShoppingCart.cartProducts);
