@@ -9,7 +9,6 @@ class BankAccount {
         balance = startBalance;
         this.bankAccountNumber = bankAccountNumber;
 
-
     }
 
     public double GetBalance() {

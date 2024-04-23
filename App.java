@@ -8,24 +8,43 @@ class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //-------ALISES TESTING CODE------------------
 
-        ArrayList<Product> listTest = new ArrayList<>();
-        String keyword;
+        System.out.print("aaaaaaaaa");
+        // System.out.print("\033[H\033[2J");  
+        // System.out.print("\033[2J");
+        System.out.print("\033[2J\033[1;1H");
+         
+        System.out.println("teehee");
+        System.out.println("1ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        System.out.println("2ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        System.out.println("3ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        System.out.println("4ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        System.out.println("5ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+        char escCode = 0x1B;
+    int row = 3; int column = 5;
+    System.out.print(String.format("%c[%d;%df",escCode,row,column));
+    
+    System.out.print("\033[2K\033[1G");
+    System.out.flush(); 
 
-        listTest.add(new Product("kika", 2, 2, "Chocolate", "..."));
-        listTest.add(new Product("kaija", 3.4, 9, "Chocolate", "..."));
-        listTest.add(new Product("lapa", 1, 3, "Jelly", "..."));
 
-        Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-        System.out.println("Search:");
-        while (true) {
-            keyword = System.in.read();  // Read user input
+        // ArrayList<Product> listTest = new ArrayList<>();
+        // String keyword;
 
-            for(Product temp : listTest) {
-                if(temp.name.contains(keyword)){
-                    System.out.println(temp);
-                }
-            }
-        }
+        // listTest.add(new Product("kika", 2, 2, "Chocolate", "..."));
+        // listTest.add(new Product("kaija", 3.4, 9, "Chocolate", "..."));
+        // listTest.add(new Product("lapa", 1, 3, "Jelly", "..."));
+
+        // Scanner myObj = new Scanner(System.in);  // Create a Scanner object
+        // System.out.println("Search:");
+        // while (true) {
+        //     keyword = System.in.read();  // Read user input
+
+        //     for(Product temp : listTest) {
+        //         if(temp.name.contains(keyword)){
+        //             System.out.println(temp);
+        //         }
+        //     }
+        // }
 
         //Registration write test timee
         // Registration reg = new Registration();

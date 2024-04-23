@@ -11,7 +11,6 @@ class ShoppingCart {
     public ShoppingCart(HashMap<Product, Integer> cartProducts){ // constructor - when user has previously saved shopping cart
         this.cartProducts = cartProducts;
         totalPrice = GetTotalPrice();
-
     }
 
     public ShoppingCart(){ // constructor - when user has NO previously saved shopping cart

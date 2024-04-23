@@ -4,6 +4,7 @@ class Product{
     int amountInStorage; // amount of paciņas in storage
     String type;
     String description;
+    int selectedStatus;
 
     public Product(String name, double price, int amountInStorage, String type, String description){
         this.name = name;
