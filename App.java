@@ -25,6 +25,8 @@ class App{
     
     System.out.print("\033[2K\033[1G");
     System.out.flush(); 
+        // ArrayList<Product> listTest = new ArrayList<>();
+        // String keyword = "";
 
 
         // ArrayList<Product> listTest = new ArrayList<>();
@@ -45,6 +47,21 @@ class App{
         //         }
         //     }
         // }
+        Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+    
+        while (true) {
+            System.out.print("Search:");
+            System.out.print(keyword);
+            keyword = keyword + scanner.next();  // Read user input
+
+            for(Product temp : listTest) {
+                if(temp.name.contains(keyword)){
+                    System.out.println(temp);
+                }
+            }
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
 
         //Registration write test timee
         // Registration reg = new Registration();
