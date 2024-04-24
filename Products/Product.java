@@ -1,4 +1,5 @@
 class Product{
+    int ID;
     String name;
     double price; // eur for 1 paciņa
     int amountInStorage; // amount of paciņas in storage
@@ -6,7 +7,8 @@ class Product{
     String description;
     int selectedStatus;
 
-    public Product(String name, double price, int amountInStorage, String type, String description){
+    public Product(int ID, String name, double price, int amountInStorage, String type, String description){
+        this.ID = ID;
         this.name = name;
         this.price = price;
         this.amountInStorage = amountInStorage;
@@ -17,7 +19,7 @@ class Product{
     public Product(){} //!!!!!!!!!!!!!!!
 
     public String toString(){
-        return name + "," + price+ "," + amountInStorage + "," + type + "," + description;
+        return ID + "," + name + "," + price+ "," + amountInStorage + "," + type + "," + description;
     }
 
     public String getName(){

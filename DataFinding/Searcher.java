@@ -7,9 +7,9 @@ public class Searcher {
     }
 
     public void Search(){
-        listTest.add(new Product("kika", 2, 2, "Chocolate", "..."));
-        listTest.add(new Product("kaija", 3.4, 9, "Chocolate", "..."));
-        listTest.add(new Product("lapa", 1, 3, "Jelly", "..."));
+        listTest.add(new Product(1,"kika", 2, 2, "Chocolate", "..."));
+        listTest.add(new Product(2,"kaija", 3.4, 9, "Chocolate", "..."));
+        listTest.add(new Product(3, "lapa", 1, 3, "Jelly", "..."));
 
         while (true) {
             

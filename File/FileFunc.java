@@ -39,16 +39,16 @@ class FileFunc{
                 Product object = new Product();
 
                 String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz, kategorija, apraksts]
-                String type = rowParts[3];
+                String type = rowParts[4];
 
                 if(type.equals("Chocolate")){
-                    object = new Chocolates(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
+                    object = new Chocolates(Integer.parseInt(rowParts[0]), rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type, rowParts[5]);
                 }
                 if(type.equals("Jelly")){
-                    object = new Jellys(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
+                    object = new Jellys(Integer.parseInt(rowParts[0]),rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type, rowParts[5]);
                 }
                 if(type.equals("Lolly")){
-                    object = new Lollies(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
+                    object = new Lollies(Integer.parseInt(rowParts[0]),rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type, rowParts[5]);
                 }
 
                 productsObj.add(object);
