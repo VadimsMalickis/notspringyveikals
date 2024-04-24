@@ -1,12 +1,15 @@
 class Product{
+    int ID;
     String name;
     double price; // eur for 1 paciņa
     int amountInStorage; // amount of paciņas in storage
     String type;
     String description;
-    int selectedStatus;
+    boolean selectedStatus;
+    
 
-    public Product(String name, double price, int amountInStorage, String type, String description){
+    public Product(int ID, String name, double price, int amountInStorage, String type, String description){
+        this.ID = ID;
         this.name = name;
         this.price = price;
         this.amountInStorage = amountInStorage;

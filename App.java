@@ -1,5 +1,7 @@
+import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -147,6 +149,18 @@ class App{
         // System.out.println(usersShoppingCart.cartProducts);
 
         SignIn aaa = new SignIn();
-        aaa.LogIn("alise.toc@kk.com", "arprats");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        do{
+            System.out.print("Enter email: ");
+            String email = reader.readLine();
+
+            System.out.print("Enter password: ");
+            String password = reader.readLine();
+
+            aaa.LogIn(email, password);
+        } while(true);
+        
+        
+        
     }
 }
