@@ -5,7 +5,8 @@ class Product{
     int amountInStorage; // amount of paciņas in storage
     String type;
     String description;
-    int selectedStatus;
+    boolean selectedStatus;
+    
 
     public Product(int ID, String name, double price, int amountInStorage, String type, String description){
         this.ID = ID;

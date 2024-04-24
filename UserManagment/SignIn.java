@@ -12,7 +12,7 @@ public class SignIn {
         registeredUsers = file.usersObj;
     }
 
-    private User CheckUser(String email){
+    public User CheckUser(String email){
         User check = null;
         for (User user : registeredUsers){
             if (user.email.equals(email)){
@@ -27,9 +27,13 @@ public class SignIn {
         User logInUser = CheckUser(email);
         if (logInUser != null){
             while(true){
-                if(logInUser.password == password){
+                if(logInUser.password.equals(password)){
                     System.out.print("slay (user logged in sucsefuly, idk kam talak janotiek)");
-                } else{System.out.print("try again u stupid");}
+                    break;
+                } else {
+                    System.out.print("try again u stupid ");
+                    break;
+                }
             }
         } else{System.out.print("nauh");}
 
