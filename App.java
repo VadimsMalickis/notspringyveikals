@@ -8,23 +8,23 @@ class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
         //-------ALISES TESTING CODE------------------
 
-        System.out.print("aaaaaaaaa");
-        // System.out.print("\033[H\033[2J");  
-        // System.out.print("\033[2J");
-        System.out.print("\033[2J\033[1;1H");
+    //     System.out.print("aaaaaaaaa");
+    //     // System.out.print("\033[H\033[2J");  
+    //     // System.out.print("\033[2J");
+    //     System.out.print("\033[2J\033[1;1H");
          
-        System.out.println("teehee");
-        System.out.println("1ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-        System.out.println("2ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-        System.out.println("3ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-        System.out.println("4ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-        System.out.println("5ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
-        char escCode = 0x1B;
-    int row = 3; int column = 5;
-    System.out.print(String.format("%c[%d;%df",escCode,row,column));
+    //     System.out.println("teehee");
+    //     System.out.println("1ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+    //     System.out.println("2ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+    //     System.out.println("3ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+    //     System.out.println("4ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+    //     System.out.println("5ouuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuuu");
+    //     char escCode = 0x1B;
+    // int row = 3; int column = 5;
+    // System.out.print(String.format("%c[%d;%df",escCode,row,column));
     
-    System.out.print("\033[2K\033[1G");
-    System.out.flush(); 
+    // System.out.print("\033[2K\033[1G");
+    // System.out.flush(); 
         // ArrayList<Product> listTest = new ArrayList<>();
         // String keyword = "";
 
@@ -47,21 +47,21 @@ class App{
         //         }
         //     }
         // }
-        Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+        // Scanner scanner = new Scanner(System.in);  // Create a Scanner object
     
-        while (true) {
-            System.out.print("Search:");
-            System.out.print(keyword);
-            keyword = keyword + scanner.next();  // Read user input
+        // while (true) {
+        //     System.out.print("Search:");
+        //     System.out.print(keyword);
+        //     keyword = keyword + scanner.next();  // Read user input
 
-            for(Product temp : listTest) {
-                if(temp.name.contains(keyword)){
-                    System.out.println(temp);
-                }
-            }
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-        }
+        //     for(Product temp : listTest) {
+        //         if(temp.name.contains(keyword)){
+        //             System.out.println(temp);
+        //         }
+        //     }
+        //     System.out.print("\033[H\033[2J");
+        //     System.out.flush();
+        // }
 
         //Registration write test timee
         // Registration reg = new Registration();
@@ -70,7 +70,7 @@ class App{
 
         // FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
 
-        //File reading test
+        // // File reading test
         // file.GetAll();
 
         // System.out.println("Veikalā pieejamie produkti:");
@@ -112,7 +112,7 @@ class App{
 
         // System.exit(0);
 
-        //File writing test
+        // // File writing test
         // Chocolates test = new Chocolates("test", 2.34, 1, "Chocolate", "Just a simple test.");
         // file.productsObj.add(test);
         // file.WriteFile(file.productsObj);
@@ -145,5 +145,8 @@ class App{
 
         // System.out.println(usersShoppingCart.GetTotalPrice());
         // System.out.println(usersShoppingCart.cartProducts);
+
+        SignIn aaa = new SignIn();
+        aaa.LogIn("alise.toc@kk.com", "arprats");
     }
 }

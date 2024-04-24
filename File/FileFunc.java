@@ -11,13 +11,14 @@ import java.util.Map;
 class FileFunc{
     String filePath;
     ArrayList<Product> productsObj = new ArrayList<>();
+    ArrayList<User> usersObj = new ArrayList<>();
 
     //nevis seit iestatit bet katraa vieta kur notiek darbibas ar failiem??
     public FileFunc(String path){
         filePath = path;
     }
     
-    private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
+    public ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
             ArrayList<String> records = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 String line;
@@ -33,24 +34,37 @@ class FileFunc{
         CSVrows = ReadFile(); //[row1, row2]
         
         for (String CSVrow : CSVrows){
-            Product object = new Product();
 
-            String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz, kategorija, apraksts]
-            String type = rowParts[3];
+            if (filePath.equals(PathFile.PRODUCTS.getFileName())){
+                Product object = new Product();
 
-            if(type.equals("Chocolate")){
-                object = new Chocolates(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
-            }
-            if(type.equals("Jelly")){
-                object = new Jellys(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
-            }
-            if(type.equals("Lolly")){
-                object = new Lollies(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
+                String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz, kategorija, apraksts]
+                String type = rowParts[3];
+
+                if(type.equals("Chocolate")){
+                    object = new Chocolates(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
+                }
+                if(type.equals("Jelly")){
+                    object = new Jellys(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
+                }
+                if(type.equals("Lolly")){
+                    object = new Lollies(rowParts[0], Double.parseDouble(rowParts[1]), Integer.parseInt(rowParts[2]), type, rowParts[4]);
+                }
+
+                productsObj.add(object);
+
             }
 
-            productsObj.add(object);
+            if (filePath.equals(PathFile.REGISTERED_USERS.getFileName())){
+
+                String[] rowParts = CSVrow.split(","); //[username, email, name, surname, adress, password]
+                User object = new User(rowParts[0], rowParts[1], rowParts[2], rowParts[3], rowParts[4], rowParts[5]);
+        
+                usersObj.add(object);
+            }
         }
     }
+
 
     public void WriteFile(ArrayList<Product> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
