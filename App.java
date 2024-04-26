@@ -29,38 +29,38 @@ class App{
     // System.out.print("\033[2K\033[1G");
     // System.out.flush(); 
 
-    ArrayList<Product> listTest = new ArrayList<>();
+    // ArrayList<Product> listTest = new ArrayList<>();
 
-    String keyword, input, ID;
+    // String keyword, input, ID;
 
-    listTest.add(new Product(1, "kika", 2, 2, "Chocolate", "..."));
-    listTest.add(new Product(2, "kaija", 3.4, 9, "Chocolate", "..."));
-    listTest.add(new Product(3, "lapa", 1, 3, "Jelly", "..."));
+    // listTest.add(new Product(1, "kika", 2, 2, "Chocolate", "..."));
+    // listTest.add(new Product(2, "kaija", 3.4, 9, "Chocolate", "..."));
+    // listTest.add(new Product(3, "lapa", 1, 3, "Jelly", "..."));
 
-    Searcher searcher = new Searcher();
+    // Searcher searcher = new Searcher();
 
-    Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-    while (true) {
-        System.out.print("Search:");
-        keyword = scanner.nextLine();  // Read user input
+    // Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+    // while (true) {
+    //     System.out.print("Search:");
+    //     keyword = scanner.nextLine();  // Read user input
 
-        searcher.Search(listTest, keyword);
+    //     searcher.Search(listTest, keyword);
 
-        System.out.println();
-        System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}?");
-        input = scanner.nextLine();
-        switch(input){
-            case "P":
-                System.out.println("Enter product ID");
-                ID = scanner.nextLine();
-                break;
-            case "S":
-                continue;
-            case "Q":
-                break;
-        }
-        break;
-    }
+    //     System.out.println();
+    //     System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}?");
+    //     input = scanner.nextLine();
+    //     switch(input){
+    //         case "P":
+    //             System.out.println("Enter product ID");
+    //             ID = scanner.nextLine();
+    //             break;
+    //         case "S":
+    //             continue;
+    //         case "Q":
+    //             break;
+    //     }
+    //     break;
+    // }
     //------------------------------------------
     //  Scanner scanner = new Scanner(System.in);  // Create a Scanner object
     
@@ -161,17 +161,16 @@ class App{
         // System.out.println(usersShoppingCart.GetTotalPrice());
         // System.out.println(usersShoppingCart.cartProducts);
 
-        // SignIn aaa = new SignIn();
-        // BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        // do{
-        //     System.out.print("Enter email: ");
-        //     String email = reader.readLine();
+        SignIn aaa = new SignIn();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.print("Enter email: ");
+        String email = reader.readLine();
+        do{
+            System.out.print("Enter password: ");
+            String password = reader.readLine();
 
-        //     System.out.print("Enter password: ");
-        //     String password = reader.readLine();
-
-        //     aaa.LogIn(email, password);
-        // } while(true);
+            aaa.LogIn(email, password);
+        } while(true);
         
         
         
