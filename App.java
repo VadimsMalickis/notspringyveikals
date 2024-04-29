@@ -68,16 +68,14 @@ class App{
 
     //     searcher.Search(listTest, keyword);
 
-    //     System.out.println( );
+    //     System.out.println();
     //     System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}?");
     //     input = scanner.nextLine();
     //     switch(input){
-    //         //FIND A WAY TO ADD PRODUCT TO SHOPPING CART
     //         case "P":
     //             System.out.println("Enter product ID");
     //             ID = scanner.nextLine();
     //             break;
-    //             //DELETE LINES
     //         case "S":
     //             continue;
     //         case "Q":
@@ -187,10 +185,9 @@ class App{
 
         // SignIn aaa = new SignIn();
         // BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        // System.out.print("Enter email: ");
+        // String email = reader.readLine();
         // do{
-        //     System.out.print("Enter email: ");
-        //     String email = reader.readLine();
-
         //     System.out.print("Enter password: ");
         //     String password = reader.readLine();
 
