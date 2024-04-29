@@ -31,8 +31,6 @@ class Product{
         return price;
     }
 
-
-    // //so isti envajag vairak?
     // public void Display(){
     //     System.out.println("Nosaukums: " + name);
     //     System.out.println("Cena: " + price);

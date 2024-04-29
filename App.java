@@ -8,6 +8,28 @@ import java.util.Scanner;
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
+        System.out.println("""
+              _____                _        _____ _                 
+             / ____|              | |      / ____| |                
+             | |    __ _ _ __   __| |_   _| (___ | |__   ___  _ __ 
+             | |    / _` | \'_ \\ / _` | | | |\\___ \\| \'_ \\ / _ \\| \'_ \\ 
+             | |___| (_| | | | | (_| | |_| |____) | | | | (_) | |_) |
+              \\_____\\__,_|_| |_|\\__,_|\\__, |_____/|_| |_|\\___/| .__/ 
+                                      __/ |                  | |
+                                     |___/                   |_|       
+                """);
+        System.out.println("MAIN/PRODUCT");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("FILTER {F}    \t\t SORT {SO}");
+        System.out.println("[ ] Chocolates\t\t [ ] Name A-Z");
+        System.out.println("[ ] Jellies   \t\t [ ] Name Z-A");
+        System.out.println("[ ] Lollies   \t\t [ ] Price >");
+        System.out.println("              \t\t [ ] Price <");
+        System.out.println("SEARCH {S}:");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("Enter your choice:");
+        
+        
         //-------ALISES TESTING CODE------------------
 
     //     System.out.print("aaaaaaaaa");
@@ -29,38 +51,40 @@ class App{
     // System.out.print("\033[2K\033[1G");
     // System.out.flush(); 
 
-    ArrayList<Product> listTest = new ArrayList<>();
+    // ArrayList<Product> listTest = new ArrayList<>();
 
-    String keyword, input, ID;
+    // String keyword, input, ID;
 
-    listTest.add(new Product(1, "kika", 2, 2, "Chocolate", "..."));
-    listTest.add(new Product(2, "kaija", 3.4, 9, "Chocolate", "..."));
-    listTest.add(new Product(3, "lapa", 1, 3, "Jelly", "..."));
+    // listTest.add(new Product(1, "kika", 2, 2, "Chocolate", "..."));
+    // listTest.add(new Product(2, "kaija", 3.4, 9, "Chocolate", "..."));
+    // listTest.add(new Product(3, "lapa", 1, 3, "Jelly", "..."));
 
-    Searcher searcher = new Searcher();
+    // Searcher searcher = new Searcher();
 
-    Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-    while (true) {
-        System.out.print("Search:");
-        keyword = scanner.nextLine();  // Read user input
+    // Scanner scanner = new Scanner(System.in);  // Create a Scanner object
+    // while (true) {
+    //     System.out.print("Search:");
+    //     keyword = scanner.nextLine();  // Read user input
 
-        searcher.Search(listTest, keyword);
+    //     searcher.Search(listTest, keyword);
 
-        System.out.println();
-        System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}?");
-        input = scanner.nextLine();
-        switch(input){
-            case "P":
-                System.out.println("Enter product ID");
-                ID = scanner.nextLine();
-                break;
-            case "S":
-                continue;
-            case "Q":
-                break;
-        }
-        break;
-    }
+    //     System.out.println( );
+    //     System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}?");
+    //     input = scanner.nextLine();
+    //     switch(input){
+    //         //FIND A WAY TO ADD PRODUCT TO SHOPPING CART
+    //         case "P":
+    //             System.out.println("Enter product ID");
+    //             ID = scanner.nextLine();
+    //             break;
+    //             //DELETE LINES
+    //         case "S":
+    //             continue;
+    //         case "Q":
+    //             break;
+    //     }
+    //     break;
+    // }
     //------------------------------------------
     //  Scanner scanner = new Scanner(System.in);  // Create a Scanner object
     
