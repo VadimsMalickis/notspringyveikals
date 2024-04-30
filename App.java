@@ -115,14 +115,10 @@ class App{
                         MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
                         System.out.println("Search:" + keyword);
-                        System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}:");
+                        System.out.println("Search agn{S}, exit search{Q}:");
                         String searchInput = scanner.nextLine();
 
                         switch(searchInput){
-                            case "P":
-                                System.out.println("Enter product ID");
-                                String ID = scanner.nextLine();
-                                break;
                             case "S":
                                 continue;
                             case "Q":
@@ -330,7 +326,7 @@ class App{
                 """);
         System.out.println("MAIN/PRODUCT");
         System.out.println("----------------------------------------------------------------------------------------------------");
-        System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}");
+        System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t SHOPPING CART{SC}");
         System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
         System.out.println("["+ jellies +"] Jellies   \t\t ["+ nameD +"] Name Z-A");
         System.out.println("["+ lollies +"] Lollies   \t\t ["+ priceA +"] Price <");

@@ -42,13 +42,13 @@ class FileFunc{
                 String type = rowParts[4];
 
                 if(type.equals("Chocolate")){
-                    object = new Chocolates(Integer.parseInt(rowParts[0]), rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type, rowParts[5]);
+                    object = new Chocolates(Integer.parseInt(rowParts[0]), rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type);
                 }
                 if(type.equals("Jelly")){
-                    object = new Jellys(Integer.parseInt(rowParts[0]),rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type, rowParts[5]);
+                    object = new Jellys(Integer.parseInt(rowParts[0]),rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type);
                 }
                 if(type.equals("Lolly")){
-                    object = new Lollies(Integer.parseInt(rowParts[0]),rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type, rowParts[5]);
+                    object = new Lollies(Integer.parseInt(rowParts[0]),rowParts[1], Double.parseDouble(rowParts[2]), Integer.parseInt(rowParts[3]), type);
                 }
 
                 productsObj.add(object);
@@ -70,7 +70,7 @@ class FileFunc{
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for(int i = 0; i < list.size(); i++){
                     Product temp = productsObj.get(i);
-                    writter.write(temp.toString());
+                    writter.write(temp.toCSV());
                     writter.newLine();
             }
             writter.close(); 

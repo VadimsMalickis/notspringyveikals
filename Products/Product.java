@@ -4,23 +4,25 @@ class Product{
     double price; // eur for 1 paciņa
     int amountInStorage; // amount of paciņas in storage
     String type;
-    String description;
     boolean selectedStatus;
     
 
-    public Product(int ID, String name, double price, int amountInStorage, String type, String description){
+    public Product(int ID, String name, double price, int amountInStorage, String type){
         this.ID = ID;
         this.name = name;
         this.price = price;
         this.amountInStorage = amountInStorage;
         this.type = type;
-        this.description = description;
     }
 
     public Product(){} //!!!!!!!!!!!!!!!
 
     public String toString(){
-        return ID + "," + name + "," + price+ "," + amountInStorage + "," + type + "," + description;
+        return String.format("%4s", ID) + "|" +  String.format("%20s", name) + "|" + String.format("%7.2f", price);
+    }
+
+    public String toCSV(){
+        return ID + "," + name + "," + price+ "," + amountInStorage + "," + type;
     }
 
     public String getName(){
