@@ -8,10 +8,12 @@ import java.util.Scanner;
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
+        //Get products from CSV
         FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
         file.GetAll();
         ArrayList<Product> list = file.productsObj;
 
+        //Set default values
         boolean filterChocolate = true;
         boolean filterJelly = true;
         boolean filterLolly = true;
@@ -20,19 +22,22 @@ class App{
         boolean sortNameD = false;
         boolean sortPriceA = false;
         boolean sortPriceD = false;
+
         while(true){
+            //Clear terminal
             System.out.print("\033[H\033[2J");
             System.out.flush();
 
+            //Re-print terminal
             MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
-            System.out.println("----------------------------------------------------------------------------------------------------");
+            //Read input
             System.out.print("Enter your choice:");
-            
             Scanner scanner = new Scanner(System.in);
             String input = scanner.nextLine();
             
             switch(input){
+                //Filter UI
                 case "F":
                     System.out.print("Filter chocolates {C}, jellies {J}, lollies {L}:");
                     String filterInput = scanner.nextLine();
@@ -53,13 +58,14 @@ class App{
                     }
                     
                     list = filter.FilterList(file.productsObj, filterChocolate, filterJelly, filterLolly);
-                    break;
+                    continue;
+                //Sorter UI
                 case "SO":
                     sortNameA = false;
                     sortNameD = false;
                     sortPriceA = false;
                     sortPriceD = false;
-                    
+
                     System.out.print("Sort by name A-Z {NA}, name Z-A {ND}, price < {PA}, price > {PD}:");
                     String sortInput = scanner.nextLine();
 
@@ -83,14 +89,54 @@ class App{
                             sortPriceD = true;
                             break;
                     }
-
+                    continue;
+                //Search UI
                 case "S":
+                    Searcher searcher = new Searcher();
+
+                    while (true) {
+                        //Clear terminal
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+ 
+                        //Re-print terminal
+                        MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+
+                        System.out.print("Search:");
+                        String keyword = scanner.nextLine();  // Read user input
+
+                        list = searcher.Search(file.productsObj, keyword);
+
+                        //Clear terminal
+                        System.out.print("\033[H\033[2J");
+                        System.out.flush();
+
+                        //Re-print terminal
+                        MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+
+                        System.out.println("Search:" + keyword);
+                        System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}:");
+                        String searchInput = scanner.nextLine();
+
+                        switch(searchInput){
+                            case "P":
+                                System.out.println("Enter product ID");
+                                String ID = scanner.nextLine();
+                                break;
+                            case "S":
+                                continue;
+                            case "Q":
+                                break;
+                        }
+                        continue;
+                    }
                 case "SC":
                     System.out.println("Shopping cart");
-                    break;
+                    continue;
                 case "E":
                     break;
-            }    
+            }
+            break;    
         }
 
         
@@ -279,23 +325,22 @@ class App{
              | |    / _` | \'_ \\ / _` | | | |\\___ \\| \'_ \\ / _ \\| \'_ \\ 
              | |___| (_| | | | | (_| | |_| |____) | | | | (_) | |_) |
               \\_____\\__,_|_| |_|\\__,_|\\__, |_____/|_| |_|\\___/| .__/ 
-                                      __/ |                  | |
-                                     |___/                   |_|       
+                                       __/ |                  | |
+                                      |___/                   |_|       
                 """);
         System.out.println("MAIN/PRODUCT");
         System.out.println("----------------------------------------------------------------------------------------------------");
-        System.out.println("FILTER {F}    \t\t SORT {SO}");
+        System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}");
         System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
         System.out.println("["+ jellies +"] Jellies   \t\t ["+ nameD +"] Name Z-A");
         System.out.println("["+ lollies +"] Lollies   \t\t ["+ priceA +"] Price <");
         System.out.println("              \t\t ["+ priceD +"] Price >");
-        System.out.println("SEARCH {S}:");
         System.out.println("----------------------------------------------------------------------------------------------------");
 
         System.out.println("Products:");
         for (Product temp : list) {
             System.out.println(temp);
         }
-
+        System.out.println("----------------------------------------------------------------------------------------------------");
     }
 }

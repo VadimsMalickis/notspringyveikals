@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 
 public class Searcher {
-    public void Search(ArrayList<Product> list, String keyword){
+    ArrayList<Product> searchedList = new ArrayList<>();
+
+    public ArrayList<Product> Search(ArrayList<Product> list, String keyword){
         for(Product temp : list) {
             if(temp.name.contains(keyword)){
-                System.out.println(temp);
+                searchedList.add(temp);
             }
         }
+        return searchedList;
     }
 }
