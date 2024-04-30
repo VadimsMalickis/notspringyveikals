@@ -92,16 +92,8 @@ class App{
                     continue;
                 //Search UI
                 case "S":
-                    Searcher searcher = new Searcher();
-
                     while (true) {
-                        //Clear terminal
-                        System.out.print("\033[H\033[2J");
-                        System.out.flush();
- 
-                        //Re-print terminal
-                        MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
-
+                        Searcher searcher = new Searcher();
                         System.out.print("Search:");
                         String keyword = scanner.nextLine();  // Read user input
 
@@ -115,17 +107,24 @@ class App{
                         MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
                         System.out.println("Search:" + keyword);
-                        System.out.println("Search agn{S}, exit search{Q}:");
+                        System.out.println("Search again{A}, exit search{Q}:");
                         String searchInput = scanner.nextLine();
 
                         switch(searchInput){
-                            case "S":
+                            case "A":
+                                //Clear terminal
+                                System.out.print("\033[H\033[2J");
+                                System.out.flush();
+
+                                //Re-print terminal
+                                MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
                                 continue;
                             case "Q":
                                 break;
                         }
-                        continue;
+                        break;
                     }
+                    continue;
                 case "SC":
                     System.out.println("Shopping cart");
                     continue;
@@ -325,18 +324,20 @@ class App{
                                       |___/                   |_|       
                 """);
         System.out.println("MAIN/PRODUCT");
-        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t SHOPPING CART{SC}");
         System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
         System.out.println("["+ jellies +"] Jellies   \t\t ["+ nameD +"] Name Z-A");
         System.out.println("["+ lollies +"] Lollies   \t\t ["+ priceA +"] Price <");
         System.out.println("              \t\t ["+ priceD +"] Price >");
-        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-        System.out.println("Products:");
+        System.out.println("PRODUCTS");
+        System.out.println(String.format("%4s", "ID") + "|" +  String.format("%20s", "Name") + "|" + String.format("%11s", "Type") + "|" + String.format("%7s", "Price"));
+        System.out.println("----------------------------------------------");
         for (Product temp : list) {
             System.out.println(temp);
         }
-        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 }
