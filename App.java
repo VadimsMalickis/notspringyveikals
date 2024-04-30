@@ -12,15 +12,19 @@ class App{
         file.GetAll();
         ArrayList<Product> list = file.productsObj;
 
-        boolean chocolateList = true;
-        boolean jellyList = true;
-        boolean lollyList = true;
+        boolean filterChocolate = true;
+        boolean filterJelly = true;
+        boolean filterLolly = true;
 
+        boolean sortNameA = false;
+        boolean sortNameD = false;
+        boolean sortPriceA = false;
+        boolean sortPriceD = false;
         while(true){
             System.out.print("\033[H\033[2J");
             System.out.flush();
 
-            MainScreen(list, chocolateList, jellyList, lollyList);
+            MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
             System.out.println("----------------------------------------------------------------------------------------------------");
             System.out.print("Enter your choice:");
@@ -38,19 +42,48 @@ class App{
 
                     switch(filterInput){
                         case "C":
-                            chocolateList = !chocolateList;
+                            filterChocolate = !filterChocolate;
                             break;
                         case "J":
-                            jellyList = !jellyList;
+                            filterJelly = !filterJelly;
                             break;
                         case "L":
-                            lollyList = !lollyList;
+                            filterLolly = !filterLolly;
                             break;
                     }
                     
-                    list = filter.FilterList(file.productsObj, chocolateList, jellyList, lollyList);
+                    list = filter.FilterList(file.productsObj, filterChocolate, filterJelly, filterLolly);
                     break;
                 case "SO":
+                    sortNameA = false;
+                    sortNameD = false;
+                    sortPriceA = false;
+                    sortPriceD = false;
+                    
+                    System.out.print("Sort by name A-Z {NA}, name Z-A {ND}, price < {PA}, price > {PD}:");
+                    String sortInput = scanner.nextLine();
+
+                    Sorter sorter = new Sorter();
+
+                    switch(sortInput){
+                        case "NA":
+                            list = sorter.SortName(list, false);
+                            sortNameA = true;
+                            break;
+                        case "ND":
+                            list = sorter.SortName(list, true);
+                            sortNameD = true;
+                            break;
+                        case "PA":
+                            list = sorter.SortPrice(list, false);
+                            sortPriceA = true;
+                            break;
+                        case "PD":
+                            list = sorter.SortPrice(list, true);
+                            sortPriceD = true;
+                            break;
+                    }
+
                 case "S":
                 case "SC":
                     System.out.println("Shopping cart");
@@ -229,10 +262,15 @@ class App{
         
     }
 
-    public static void MainScreen(ArrayList<Product> list, boolean chocolateList, boolean jellyList, boolean lollyList){
-        String chocolates = (chocolateList)? "X" : " ";
-        String jellies = (jellyList)? "X" : " ";
-        String lollies = (lollyList)? "X" : " ";
+    public static void MainScreen(ArrayList<Product> list, boolean filterChocolate, boolean filterJelly, boolean filterLolly, boolean sortNameA, boolean sortNameD, boolean sortPriceA, boolean sortPriceD){
+        String chocolates = (filterChocolate)? "X" : " ";
+        String jellies = (filterJelly)? "X" : " ";
+        String lollies = (filterLolly)? "X" : " ";
+
+        String nameA = (sortNameA)? "X" : " ";
+        String nameD = (sortNameD)? "X" : " ";
+        String priceA = (sortPriceA)? "X" : " ";
+        String priceD = (sortPriceD)? "X" : " ";
 
         System.out.println("""
               _____                _        _____ _                 
@@ -247,10 +285,10 @@ class App{
         System.out.println("MAIN/PRODUCT");
         System.out.println("----------------------------------------------------------------------------------------------------");
         System.out.println("FILTER {F}    \t\t SORT {SO}");
-        System.out.println("["+ chocolates +"] Chocolates\t\t [ ] Name A-Z");
-        System.out.println("["+ jellies +"] Jellies   \t\t [ ] Name Z-A");
-        System.out.println("["+ lollies +"] Lollies   \t\t [ ] Price >");
-        System.out.println("              \t\t [ ] Price <");
+        System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
+        System.out.println("["+ jellies +"] Jellies   \t\t ["+ nameD +"] Name Z-A");
+        System.out.println("["+ lollies +"] Lollies   \t\t ["+ priceA +"] Price <");
+        System.out.println("              \t\t ["+ priceD +"] Price >");
         System.out.println("SEARCH {S}:");
         System.out.println("----------------------------------------------------------------------------------------------------");
 
