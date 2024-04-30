@@ -8,27 +8,58 @@ import java.util.Scanner;
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
-        System.out.println("""
-              _____                _        _____ _                 
-             / ____|              | |      / ____| |                
-             | |    __ _ _ __   __| |_   _| (___ | |__   ___  _ __ 
-             | |    / _` | \'_ \\ / _` | | | |\\___ \\| \'_ \\ / _ \\| \'_ \\ 
-             | |___| (_| | | | | (_| | |_| |____) | | | | (_) | |_) |
-              \\_____\\__,_|_| |_|\\__,_|\\__, |_____/|_| |_|\\___/| .__/ 
-                                      __/ |                  | |
-                                     |___/                   |_|       
-                """);
-        System.out.println("MAIN/PRODUCT");
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        System.out.println("FILTER {F}    \t\t SORT {SO}");
-        System.out.println("[ ] Chocolates\t\t [ ] Name A-Z");
-        System.out.println("[ ] Jellies   \t\t [ ] Name Z-A");
-        System.out.println("[ ] Lollies   \t\t [ ] Price >");
-        System.out.println("              \t\t [ ] Price <");
-        System.out.println("SEARCH {S}:");
-        System.out.println("----------------------------------------------------------------------------------------------------");
-        System.out.println("Enter your choice:");
-        
+        FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
+        file.GetAll();
+        ArrayList<Product> list = file.productsObj;
+
+        boolean chocolateList = true;
+        boolean jellyList = true;
+        boolean lollyList = true;
+
+        while(true){
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+
+            MainScreen(list, chocolateList, jellyList, lollyList);
+
+            System.out.println("----------------------------------------------------------------------------------------------------");
+            System.out.print("Enter your choice:");
+            
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
+            
+            switch(input){
+                case "F":
+                    System.out.print("Filter chocolates {C}, jellies {J}, lollies {L}:");
+                    String filterInput = scanner.nextLine();
+                    
+                    Filter filter = new Filter();
+                   
+
+                    switch(filterInput){
+                        case "C":
+                            chocolateList = !chocolateList;
+                            break;
+                        case "J":
+                            jellyList = !jellyList;
+                            break;
+                        case "L":
+                            lollyList = !lollyList;
+                            break;
+                    }
+                    
+                    list = filter.FilterList(file.productsObj, chocolateList, jellyList, lollyList);
+                    break;
+                case "SO":
+                case "S":
+                case "SC":
+                    System.out.println("Shopping cart");
+                    break;
+                case "E":
+                    break;
+            }    
+        }
+
         
         //-------ALISES TESTING CODE------------------
 
@@ -196,5 +227,37 @@ class App{
         
         
         
+    }
+
+    public static void MainScreen(ArrayList<Product> list, boolean chocolateList, boolean jellyList, boolean lollyList){
+        String chocolates = (chocolateList)? "X" : " ";
+        String jellies = (jellyList)? "X" : " ";
+        String lollies = (lollyList)? "X" : " ";
+
+        System.out.println("""
+              _____                _        _____ _                 
+             / ____|              | |      / ____| |                
+             | |    __ _ _ __   __| |_   _| (___ | |__   ___  _ __ 
+             | |    / _` | \'_ \\ / _` | | | |\\___ \\| \'_ \\ / _ \\| \'_ \\ 
+             | |___| (_| | | | | (_| | |_| |____) | | | | (_) | |_) |
+              \\_____\\__,_|_| |_|\\__,_|\\__, |_____/|_| |_|\\___/| .__/ 
+                                      __/ |                  | |
+                                     |___/                   |_|       
+                """);
+        System.out.println("MAIN/PRODUCT");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+        System.out.println("FILTER {F}    \t\t SORT {SO}");
+        System.out.println("["+ chocolates +"] Chocolates\t\t [ ] Name A-Z");
+        System.out.println("["+ jellies +"] Jellies   \t\t [ ] Name Z-A");
+        System.out.println("["+ lollies +"] Lollies   \t\t [ ] Price >");
+        System.out.println("              \t\t [ ] Price <");
+        System.out.println("SEARCH {S}:");
+        System.out.println("----------------------------------------------------------------------------------------------------");
+
+        System.out.println("Products:");
+        for (Product temp : list) {
+            System.out.println(temp);
+        }
+
     }
 }
