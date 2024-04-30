@@ -354,7 +354,7 @@ class App{
                                        __/ |                  | |
                                       |___/                   |_|       
                 """);
-        System.out.println("MAIN/PRODUCT");
+        System.out.println("MAIN/PRODUCTS");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t VIEW SHOPPING CART{SC}");
         System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
