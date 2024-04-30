@@ -182,108 +182,11 @@ class App{
     //     char escCode = 0x1B;
     // int row = 3; int column = 5;
     // System.out.print(String.format("%c[%d;%df",escCode,row,column));
-    
-    //-------------SEARCHER TEST------------------
-    // System.out.print("\033[2K\033[1G");
-    // System.out.flush(); 
-
-    // ArrayList<Product> listTest = new ArrayList<>();
-
-    // String keyword, input, ID;
-
-    // listTest.add(new Product(1, "kika", 2, 2, "Chocolate", "..."));
-    // listTest.add(new Product(2, "kaija", 3.4, 9, "Chocolate", "..."));
-    // listTest.add(new Product(3, "lapa", 1, 3, "Jelly", "..."));
-
-    // Searcher searcher = new Searcher();
-
-    // Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-    // while (true) {
-    //     System.out.print("Search:");
-    //     keyword = scanner.nextLine();  // Read user input
-
-    //     searcher.Search(listTest, keyword);
-
-    //     System.out.println();
-    //     System.out.println("Choose product {P, ID}, search agn{S}, exit search{Q}?");
-    //     input = scanner.nextLine();
-    //     switch(input){
-    //         case "P":
-    //             System.out.println("Enter product ID");
-    //             ID = scanner.nextLine();
-    //             break;
-    //         case "S":
-    //             continue;
-    //         case "Q":
-    //             break;
-    //     }
-    //     break;
-    // }
-    //------------------------------------------
-    //  Scanner scanner = new Scanner(System.in);  // Create a Scanner object
-    
-        // while (true) {
-        //     System.out.print("Search:");
-        //     System.out.print(keyword);
-        //     keyword = keyword + scanner.next();  // Read user input
-
-        //     for(Product temp : listTest) {
-        //         if(temp.name.contains(keyword)){
-        //             System.out.println(temp);
-        //         }
-        //     }
-        //     System.out.print("\033[H\033[2J");
-        //     System.out.flush();
-        // }
 
         //Registration write test timee
         // Registration reg = new Registration();
         // User user = new User("alisetoca", "alise.toc@kk.com", "Alise", "Toča", "Valdemāra 7", "gribumajas");
         // reg.Register(user);
-
-        // FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
-
-        // // File reading test
-        // file.GetAll();
-
-        // System.out.println("Veikalā pieejamie produkti:");
-        // System.out.println("---------------------------------------------------");
-        // System.out.println("Products:");
-        // for (Product s : file.productsObj) {
-        //     System.out.println(s);
-        // }
-
-        // //File filtering test
-        // System.out.println("---------------------------------------------------");
-        // Filter filter = new Filter();
-
-        // System.out.println("--Filtering:--");
-        // boolean chocolateList = false;
-        // boolean jellyList = true;
-        // boolean lollyList = true;
-        // ArrayList<Product> list = filter.FilterList(file.productsObj, chocolateList, jellyList, lollyList);
-        // System.out.println("Chocolates:" + chocolateList + "\nJelly:" + jellyList + "\nLolly:" + lollyList);
-
-        // //File sorting test
-        // System.out.println("---------------------------------------------------");
-        // Sorter sorter = new Sorter();
-
-        // System.out.println("--Price sorted ASCENDING list:--");
-        // sorter.SortPrice(list, false);
-        // System.out.println();
-
-        // System.out.println("--Price sorte DESCENDING list:--");
-        // sorter.SortPrice(list, true);
-        // System.out.println();
-
-        // System.out.println("--Name ASCENDING sorted list:--");
-        // sorter.SortName(list, false);
-        // System.out.println();
-
-        // System.out.println("--Name DESCENDING sorted list:--");
-        // sorter.SortName(list, true);
-
-        // System.exit(0);
 
         // // File writing test
         // Chocolates test = new Chocolates("test", 2.34, 1, "Chocolate", "Just a simple test.");
