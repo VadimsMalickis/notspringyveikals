@@ -11,7 +11,12 @@ class App{
         //Get products from CSV
         FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
         file.GetAll();
+
+        //Save all products from CSV
         ArrayList<Product> list = file.productsObj;
+
+        //Create shopping cart
+        ShoppingCart cart = new ShoppingCart();
 
         //Set default values
         boolean filterChocolate = true;
@@ -125,8 +130,34 @@ class App{
                         break;
                     }
                     continue;
+                //Shopping cart UI
                 case "SC":
                     System.out.println("Shopping cart");
+                    continue;
+                //Product UI
+                case "P":
+                    //ADD REGEX
+                    // String regex = "^[0-9]";
+                    // System.out.println(data.matches(regex));
+
+                    scanner.useDelimiter("[,\\s+]"); //Delimeter comma either space
+
+                    System.out.print("Input product {ID, amount}:");
+                    int ID = scanner.nextInt();
+                    int amount = scanner.nextInt();
+
+
+                    for (Product temp : file.productsObj) {
+                        if(temp.ID == ID){
+                            System.out.println("test");
+                            temp.selectedStatus = !temp.selectedStatus;
+                            if(temp.selectedStatus){
+                                cart.AddTo(temp, amount);
+                            }else{
+                                //RaWR ;)
+                            }
+                        }
+                    }
                     continue;
                 case "E":
                     break;
@@ -325,14 +356,14 @@ class App{
                 """);
         System.out.println("MAIN/PRODUCT");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t SHOPPING CART{SC}");
+        System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t VIEW SHOPPING CART{SC}");
         System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
         System.out.println("["+ jellies +"] Jellies   \t\t ["+ nameD +"] Name Z-A");
         System.out.println("["+ lollies +"] Lollies   \t\t ["+ priceA +"] Price <");
         System.out.println("              \t\t ["+ priceD +"] Price >");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
 
-        System.out.println("PRODUCTS");
+        System.out.println("ADD PRODUCT TO SHOPPING CART{P}");
         System.out.println(String.format("%4s", "ID") + "|" +  String.format("%20s", "Name") + "|" + String.format("%11s", "Type") + "|" + String.format("%7s", "Price"));
         System.out.println("----------------------------------------------");
         for (Product temp : list) {

@@ -18,7 +18,8 @@ class Product{
     public Product(){} //!!!!!!!!!!!!!!!
 
     public String toString(){
-        return String.format("%4s", ID) + "|" +  String.format("%20s", name) + "|" + String.format("%11s", type) + "|" + String.format("%7.2f", price);
+        String selected = (selectedStatus)? "X" : " ";
+        return String.format("%4s", ID) + "|" +  String.format("%20s", name) + "|" + String.format("%11s", type) + "|" + String.format("%7.2f", price) + "   [" + selected +"]";
     }
 
     public String toCSV(){
