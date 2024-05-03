@@ -9,8 +9,6 @@ public class ConsoleController {
         System.out.flush(); 
     }
 
-    // CHECK IF U CAN HAVE COLLUMNS 
-
     public void MoveCursor(int row, int column){
         System.out.print(String.format("%c[%d;%df", escCode, row, column));
     }

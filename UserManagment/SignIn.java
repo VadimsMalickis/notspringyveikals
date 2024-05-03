@@ -3,6 +3,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class SignIn {
     
@@ -25,38 +28,12 @@ public class SignIn {
         return check;
     }
 
+    
+       
+
+
     public void LogIn(){
 
-        
-        System.out.print("Enter email: ");
-        String email = reader.readLine();
-
-        User logInUser = CheckUser(email);
-        if (logInUser != null){
-            
-            if(logInUser.password.equals(password)){
-                System.out.print("user logged in sucsefuly, should have a wait time and then switch to main screen)");
-                break;
-            } else {
-                System.out.print("incorect password");
-                break;
-            }
-        } else {
-            System.out.println("there is no such email in the system");
-            while(true){
-            System.out.println("Try again{T} or registre{R}?: ");
-            String answerTorR = reader.readLine();
-                if(answerTorR == "T"){
-                    break;
-                    LogIn();
-                } else if(answerTorR == "R"){
-                    break;
-                    // Register();
-                } else{System.out.print("Wrong input");}
-            }
-        }
-
-        
     }
 
 
