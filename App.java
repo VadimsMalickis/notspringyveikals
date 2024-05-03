@@ -232,15 +232,17 @@ class App{
 
                 switch (signInUserChoice) {
                     case "LI":
+
+                        
                         System.out.print("login"); 
-                        //signIn.LogIn();
+                        signIn.LogIn();
 
                         signInActive = false;
                         break;
     
                     case "R":
-                        System.out.print("register");
-                        //signIn.Register();
+                        
+                        signIn.Register();
                     
                         signInActive = false;
                         break;
