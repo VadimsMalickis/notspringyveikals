@@ -5,14 +5,11 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
 
-import Console.ConsoleController;
-
 public class SignIn {
 
     ConsoleController console = new ConsoleController();
     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     ArrayList<User> registeredUsers;
-
     User loggedinUser;
 
     public SignIn() throws FileNotFoundException, IOException{
@@ -36,36 +33,36 @@ public class SignIn {
 
     public void LogIn() throws IOException{
         console.clearAll();
+        console.SignInScreen();
         System.out.print("\nEmail/Username: ");
         System.out.print("\nPassword: ");
 
-        console.MoveCursor(2, "Email/Username: ".length()+1);
+        console.MoveCursor(12, "Email/Username: ".length()+1);
         String email = reader.readLine();
 
         User user = Check(email);
         if(user != null){
             while(true){
-                console.clearOneLine(3);
+                console.clearOneLine(13);
                 System.out.print("Password: ");
-                console.MoveCursor(3, 11);
+                console.MoveCursor(13, "Password: ".length()+1);
 
                 String password = reader.readLine();
 
                 if (password.equals(user.password)){
-                    System.out.print("\nyipee u pass");
                     loggedinUser = user;
                     break;
                 } else {
-                    System.out.print("\nincorect password");
+                    System.out.print("\nIncorect password, try again!");
                     continue;
                 }
             }
         } else{ // if such user doesn't exist
             
             while(true){
-                console.clearOneLine(5);
+                console.clearOneLine(15);
                 System.out.print("Such email does not exist, do you wan to try again[T] or register[R]?: ");
-                console.MoveCursor(5, "Such email does not exist, do you wan to try again[T] or register[R]?: ".length()+1);
+                console.MoveCursor(15, "Such email does not exist, do you wan to try again[T] or register[R]?: ".length()+1);
                 String userinputTorR = reader.readLine();
                 if(userinputTorR.equals("T")){
                     LogIn();
@@ -85,6 +82,7 @@ public class SignIn {
 
     public void Register() throws IOException{
         console.clearAll();
+        console.SignInScreen();
         System.out.print("\nEmail: ");
         System.out.print("\nUsername: ");
         System.out.print("\nName: ");
@@ -92,12 +90,12 @@ public class SignIn {
         System.out.print("\nAdress: ");
         System.out.print("\nPassword: ");
 
-        String email = InfomrmationFillIn("Email", 2, "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", "Please enter an e-mail!", "Such email is already registered in our system, do you wan to try again[T] or log in[LI]?: ");
-        String username = InfomrmationFillIn("Username", 3, "^[A-Za-z]\\w{4,20}$", "Username should be 5 to 20 charaters long, must have letters, can contain numbers and special charater '_'", "Such username already is registered in our system, do you wan to try again[T] or log in[LI]?: ");
-        String name = InfomrmationFillIn("Name", 4, "[A-ZĀ-Ž][a-za-ž]*", "Please enter your name starting with capital letter", "-");
-        String surname = InfomrmationFillIn("Surname", 5, "[A-ZĀ-Ž][a-za-ž]*", "Please enter your surname starting with capital letter", "-");
-        String adress = InfomrmationFillIn("Adress", 6, "^[A-ZĀ-Ža-zā-ž0-9 _]*[A-ZĀ-Ža-zā-ž0-9][A-ZĀ-Ža-zā-ž0-9 _]*$", "Please enter valid adress", "-");
-        String password = InfomrmationFillIn("Password", 7, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()-[{}]:;',?/*~$^+=<>]).{8,20}$", "Your password should be 8 to 20 charaters long, have atlest one lower and upper case letter, number and special symbol", "-");
+        String email = InfomrmationFillIn("Email", 12, "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", "Please enter an e-mail!", "Such email is already registered in our system, do you wan to try again[T] or log in[L]?: ");
+        String username = InfomrmationFillIn("Username", 13, "^[A-Za-z]\\w{4,20}$", "Username should be 5 to 20 charaters long, must have letters, can contain numbers and special charater '_'", "Such username already is registered in our system, do you wan to try again[T] or log in[L]?: ");
+        String name = InfomrmationFillIn("Name", 14, "[A-ZĀ-Ž][a-za-ž]*", "Please enter your name starting with capital letter", "-");
+        String surname = InfomrmationFillIn("Surname", 15, "[A-ZĀ-Ž][a-za-ž]*", "Please enter your surname starting with capital letter", "-");
+        String adress = InfomrmationFillIn("Adress", 16, "^[A-ZĀ-Ža-zā-ž0-9 _]*[A-ZĀ-Ža-zā-ž0-9][A-ZĀ-Ža-zā-ž0-9 _]*$", "Please enter valid adress", "-");
+        String password = InfomrmationFillIn("Password", 17, "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()-[{}]:;',?/*~$^+=<>]).{8,20}$", "Your password should be 8 to 20 charaters long, have atlest one lower and upper case letter, number and special symbol", "-");
 
         User newUser = new User(username, email, name, surname, adress, password);
         loggedinUser = newUser;
@@ -120,7 +118,7 @@ public class SignIn {
             System.out.print(field + ": ");
             console.MoveCursor(row, field.length()+3);
             String userInput = reader.readLine();
-            console.clearOneLine(9);
+            console.clearOneLine(19);
 
             Pattern pattern = Pattern.compile(regex);
             if(pattern.matcher(userInput).matches()){
@@ -131,14 +129,14 @@ public class SignIn {
                         return userInput;
                     } else{
                         while(true) {
-                            console.clearOneLine(9);
+                            console.clearOneLine(19);
                             System.out.print(duplicateErrorMesage);
-                            console.MoveCursor(9, duplicateErrorMesage.length()+1);
+                            console.MoveCursor(19, duplicateErrorMesage.length()+1);
                             String userinputTorLI = reader.readLine();
                             if(userinputTorLI.equals("T")){
                                 userInput = InfomrmationFillIn(field, row, regex, regexErrorMessage, duplicateErrorMesage);
                                 break;
-                            }else if(userinputTorLI.equals("LI")){
+                            }else if(userinputTorLI.equals("L")){
                                 LogIn();
                                 break;
                             }else{
@@ -152,7 +150,7 @@ public class SignIn {
                 }
 
             } else{
-                console.MoveCursor(9, 0);
+                console.MoveCursor(19, 0);
                 System.out.print(regexErrorMessage);
                 continue;
             }

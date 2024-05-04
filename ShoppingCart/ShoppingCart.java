@@ -6,6 +6,7 @@ import java.util.Map;
 class ShoppingCart {
     HashMap<Product, Integer> cartProducts;
     private double totalPrice;
+    private BankAccount SHOPS_BANK_ACCOUNT = new BankAccount(0, "12345678", "214");
 
     public ShoppingCart(){ // constructor - when user has NO previously saved shopping cart
         cartProducts = new HashMap<Product, Integer>();
@@ -26,7 +27,7 @@ class ShoppingCart {
     public boolean AddTo(Product product){ // you can add the product only if its not in the cart, otherways u have to increase/decrease the value 
 
         if (product.amountInStorage == 0){
-            return false; //("This product is out of stock! :(");
+            return false; 
         } else {
 
             cartProducts.put(product, 1);
@@ -43,13 +44,23 @@ class ShoppingCart {
 
     public void SetAmount(Product product, int amountValue){ // gets triggered when user chooses the product ID and enters an amount value on ALREADY ADDED PRODUCT 
                                                             // -> it happnes in cart window not main window
-        cartProducts.put(product, amountValue);
+        if(amountValue <=0){
+            RemoveFrom(product);
+        }else{
+            cartProducts.put(product, amountValue);
+        }
         totalPrice = GetTotalPrice();
     }
 
 
-    public void OrderCart(String adress, String bankAccountNumber, String cvv){ // adress - gets form logged in user, owner, accnumber, cvv - user input
-        
+    public boolean OrderCart(User user, BankAccount usersBankAccount){ // adress - gets form logged in user, accnumber, cvv - user input
+        if(usersBankAccount.Transaction(totalPrice, SHOPS_BANK_ACCOUNT)){
+            FileFunc usersCheckfile = new FileFunc("Checks/" + user.username + ".csv");
+            usersCheckfile.WriteFile(cartProducts, totalPrice, user);
+            return true;
+        } else {
+            return false;
+        }
     }
 
 

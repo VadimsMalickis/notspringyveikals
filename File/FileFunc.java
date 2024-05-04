@@ -90,14 +90,24 @@ class FileFunc{
         
     }
 
-    public void WriteFile(HashMap<Product, Integer> list){
+    public void WriteFile(HashMap<Product, Integer> list, double finalAmount, User user){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
 
-            writter.write("----------Check----------");
+            writter.write("----------CHECK----------");
+            writter.newLine();
             for(Map.Entry m : list.entrySet()){    
                 Product temp = (Product) m.getKey();
-                writter.write(temp.name + "\n\t" + temp.price + " x " + m.getValue());
+                writter.write(String.format("%20s", temp.name) + "\n.........." + String.format("%5s", temp.price) + " x " + String.format("%3s", m.getValue()));
+                writter.newLine();
             } 
+            writter.write("-----------------------------------------");
+            writter.newLine();
+            writter.write("Total price: " + String.format("%5s", finalAmount));
+            writter.newLine();
+            writter.write("-----------------------------------------");
+            writter.newLine();
+            writter.write("Shipped to: " + user.adress + "\n" + "For: " + user.name + " " + user.surname);
+            writter.newLine();
             writter.close(); 
         }catch (Exception e) {
             e.printStackTrace();

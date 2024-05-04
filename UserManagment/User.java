@@ -1,11 +1,9 @@
 public class User {
     String username;
     String email;
-
     String name;
     String surname;
     String adress;
-
     String password;
 
     public User(String username, String email, String name, String surname, String adress, String password){
