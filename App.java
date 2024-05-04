@@ -5,165 +5,166 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import Console.ConsoleController;
+
 
 class App{
     public static void main(String[] args) throws FileNotFoundException, IOException{
-        // //Get products from CSV
-        // FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
-        // file.GetAll();
+        ConsoleController console = new ConsoleController();
 
-        // //Save all products from CSV
-        // ArrayList<Product> list = file.productsObj;
+        //Get products from CSV
+        FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
+        file.GetAll();
 
-        // //Create shopping cart
-        // ShoppingCart cart = new ShoppingCart();
+        //Save all products from CSV
+        ArrayList<Product> list = file.productsObj;
 
-        // //Set default values
-        // boolean filterChocolate = true;
-        // boolean filterJelly = true;
-        // boolean filterLolly = true;
+        //Create shopping cart
+        ShoppingCart cart = new ShoppingCart();
 
-        // boolean sortNameA = false;
-        // boolean sortNameD = false;
-        // boolean sortPriceA = false;
-        // boolean sortPriceD = false;
+        //Set default values
+        boolean filterChocolate = false;
+        boolean filterJelly = false;
+        boolean filterLolly = false;
 
-        // while(true){
-        //     //Clear terminal
-        //     System.out.print("\033[H\033[2J");
-        //     System.out.flush();
+        boolean sortNameA = false;
+        boolean sortNameD = false;
+        boolean sortPriceA = false;
+        boolean sortPriceD = false;
 
-        //     //Re-print terminal
-        //     MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+        while(true){
+            //Clear terminal
+            console.clearAll();
 
-        //     //Read input
-        //     System.out.print("Enter your choice:");
-        //     Scanner scanner = new Scanner(System.in);
-        //     String input = scanner.nextLine();
+            //Re-print terminal
+            MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+
+            //Read input
+            System.out.print("Enter your choice:");
+            Scanner scanner = new Scanner(System.in);
+            String input = scanner.nextLine();
             
-        //     switch(input){
-        //         //Filter UI
-        //         case "F":
-        //             System.out.print("Filter chocolates {C}, jellies {J}, lollies {L}:");
-        //             String filterInput = scanner.nextLine();
+            switch(input){
+                //Filter UI
+                case "F":
+                    System.out.print("Filter chocolates {C}, jellies {J}, lollies {L}:");
+                    String filterInput = scanner.nextLine();
                     
-        //             Filter filter = new Filter();
+                    Filter filter = new Filter();
                    
 
-        //             switch(filterInput){
-        //                 case "C":
-        //                     filterChocolate = !filterChocolate;
-        //                     break;
-        //                 case "J":
-        //                     filterJelly = !filterJelly;
-        //                     break;
-        //                 case "L":
-        //                     filterLolly = !filterLolly;
-        //                     break;
-        //             }
+                    switch(filterInput){
+                        case "C":
+                            filterChocolate = !filterChocolate;
+                            break;
+                        case "J":
+                            filterJelly = !filterJelly;
+                            break;
+                        case "L":
+                            filterLolly = !filterLolly;
+                            break;
+                    }
                     
-        //             list = filter.FilterList(file.productsObj, filterChocolate, filterJelly, filterLolly);
-        //             continue;
-        //         //Sorter UI
-        //         case "SO":
-        //             sortNameA = false;
-        //             sortNameD = false;
-        //             sortPriceA = false;
-        //             sortPriceD = false;
+                    list = filter.FilterList(file.productsObj, filterChocolate, filterJelly, filterLolly);
+                    continue;
+                //Sorter UI
+                case "SO":
+                    sortNameA = false;
+                    sortNameD = false;
+                    sortPriceA = false;
+                    sortPriceD = false;
 
-        //             System.out.print("Sort by name A-Z {NA}, name Z-A {ND}, price < {PA}, price > {PD}:");
-        //             String sortInput = scanner.nextLine();
+                    System.out.print("Sort by name A-Z {NA}, name Z-A {ND}, price < {PA}, price > {PD}:");
+                    String sortInput = scanner.nextLine();
 
-        //             Sorter sorter = new Sorter();
+                    Sorter sorter = new Sorter();
 
-        //             switch(sortInput){
-        //                 case "NA":
-        //                     list = sorter.SortName(list, false);
-        //                     sortNameA = true;
-        //                     break;
-        //                 case "ND":
-        //                     list = sorter.SortName(list, true);
-        //                     sortNameD = true;
-        //                     break;
-        //                 case "PA":
-        //                     list = sorter.SortPrice(list, false);
-        //                     sortPriceA = true;
-        //                     break;
-        //                 case "PD":
-        //                     list = sorter.SortPrice(list, true);
-        //                     sortPriceD = true;
-        //                     break;
-        //             }
-        //             continue;
-        //         //Search UI
-        //         case "S":
-        //             while (true) {
-        //                 Searcher searcher = new Searcher();
-        //                 System.out.print("Search:");
-        //                 String keyword = scanner.nextLine();  // Read user input
+                    switch(sortInput){
+                        case "NA":
+                            list = sorter.SortName(list, false);
+                            sortNameA = true;
+                            break;
+                        case "ND":
+                            list = sorter.SortName(list, true);
+                            sortNameD = true;
+                            break;
+                        case "PA":
+                            list = sorter.SortPrice(list, false);
+                            sortPriceA = true;
+                            break;
+                        case "PD":
+                            list = sorter.SortPrice(list, true);
+                            sortPriceD = true;
+                            break;
+                    }
+                    continue;
+                //Search UI
+                case "S":
+                    while (true) {
+                        Searcher searcher = new Searcher();
+                        System.out.print("Search:");
+                        String keyword = scanner.nextLine();  // Read user input
+                        
+                        list = searcher.Search(file.productsObj, keyword);
 
-        //                 list = searcher.Search(file.productsObj, keyword);
+                        //Clear terminal
+                        console.clearAll();
 
-        //                 //Clear terminal
-        //                 System.out.print("\033[H\033[2J");
-        //                 System.out.flush();
+                        //Re-print terminal
+                        MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
-        //                 //Re-print terminal
-        //                 MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+                        System.out.println("Search:" + keyword);
+                        System.out.print("Search again{A}, quit searching{Q}:");
+                        String searchInput = scanner.nextLine();
 
-        //                 System.out.println("Search:" + keyword);
-        //                 System.out.println("Search again{A}, exit search{Q}:");
-        //                 String searchInput = scanner.nextLine();
+                        switch(searchInput){
+                            case "A":
+                                //Clear terminal
+                                console.clearAll();
 
-        //                 switch(searchInput){
-        //                     case "A":
-        //                         //Clear terminal
-        //                         System.out.print("\033[H\033[2J");
-        //                         System.out.flush();
+                                //Re-print terminal
+                                MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+                                continue;
+                            case "Q":
+                                break;
+                        }
+                        break; //whiel break
+                    }
+                    continue; //continue code
+                //Shopping cart UI
+                case "SC":
+                    System.out.println("Shopping cart");
+                    continue;
+                //Product UI
+                case "P":
+                    while(true){
+                        scanner.useDelimiter("[,\\s+]"); //Delimeter comma either space
 
-        //                         //Re-print terminal
-        //                         MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
-        //                         continue;
-        //                     case "Q":
-        //                         break;
-        //                 }
-        //                 break;
-        //             }
-        //             continue;
-        //         //Shopping cart UI
-        //         case "SC":
-        //             System.out.println("Shopping cart");
-        //             continue;
-        //         //Product UI
-        //         case "P":
-        //             //ADD REGEX
-        //             // String regex = "^[0-9]";
-        //             // System.out.println(data.matches(regex));
-
-        //             scanner.useDelimiter("[,\\s+]"); //Delimeter comma either space
-
-        //             System.out.print("Input product {ID, amount}:");
-        //             int ID = scanner.nextInt();
-        //             int amount = scanner.nextInt();
-
-
-        //             for (Product temp : file.productsObj) {
-        //                 if(temp.ID == ID){
-        //                     System.out.println("test");
-        //                     temp.selectedStatus = !temp.selectedStatus;
-        //                     if(temp.selectedStatus){
-        //                         cart.AddTo(temp, amount);
-        //                     }else{
-        //                         //RaWR ;)
-        //                     }
-        //                 }
-        //             }
-        //             continue;
-        //         case "E":
-        //             break;
-        //     }
-        //     break;    
-        // }
+                        System.out.print("Input product {ID, amount}:");
+                        int ID = scanner.nextInt();
+                        int amount = scanner.nextInt();
+    
+                        for (Product temp : file.productsObj) {
+                            if(temp.ID == ID){
+                                System.out.println("test");
+                                temp.selectedStatus = !temp.selectedStatus;
+    
+                                if(temp.selectedStatus){
+                                    cart.AddTo(temp, amount);
+                                }else{
+                                    //Remove from shopping cart
+                                }
+                                break;
+                            }
+                        }
+                        break;
+                    }
+                    continue;
+                case "E":
+                    break;
+            }
+            break;    
+        }
 
         
         //-------ALISES TESTING CODE------------------
@@ -222,36 +223,36 @@ class App{
         // System.out.println(usersShoppingCart.GetTotalPrice());
         // System.out.println(usersShoppingCart.cartProducts);
 
-            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            SignIn signIn = new SignIn();
+            // BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            // SignIn signIn = new SignIn();
 
-            boolean signInActive = true;
-            do{
-                System.out.print("\nYour choice: ");
-                String signInUserChoice = reader.readLine();
+            // boolean signInActive = true;
+            // do{
+            //     System.out.print("\nYour choice: ");
+            //     String signInUserChoice = reader.readLine();
 
-                switch (signInUserChoice) {
-                    case "LI":
+            //     switch (signInUserChoice) {
+            //         case "LI":
 
                         
-                        System.out.print("login"); 
-                        signIn.LogIn();
+            //             System.out.print("login"); 
+            //             signIn.LogIn();
 
-                        signInActive = false;
-                        break;
+            //             signInActive = false;
+            //             break;
     
-                    case "R":
+            //         case "R":
                         
-                        signIn.Register();
+            //             signIn.Register();
                     
-                        signInActive = false;
-                        break;
+            //             signInActive = false;
+            //             break;
                 
-                    default:
-                        System.out.print("Invalid input, try again");
-                        break;
-                }
-            } while(signInActive);
+            //         default:
+            //             System.out.print("Invalid input, try again");
+            //             break;
+            //     }
+            // } while(signInActive);
             
 
 
@@ -286,16 +287,16 @@ class App{
         String priceD = (sortPriceD)? "X" : " ";
 
         // doenst work???
-        // System.out.println("""
-        //       _____                _        _____ _                 
-        //      / ____|              | |      / ____| |                
-        //      | |    __ _ _ __   __| |_   _| (___ | |__   ___  _ __ 
-        //      | |    / _` | \'_ \\ / _` | | | |\\___ \\| \'_ \\ / _ \\| \'_ \\ 
-        //      | |___| (_| | | | | (_| | |_| |____) | | | | (_) | |_) |
-        //       \\_____\\__,_|_| |_|\\__,_|\\__, |_____/|_| |_|\\___/| .__/ 
-        //                                __/ |                  | |
-        //                               |___/                   |_|       
-        //         """);
+        System.out.println("""
+              _____                _        _____ _                 
+             / ____|              | |      / ____| |                
+             | |    __ _ _ __   __| |_   _| (___ | |__   ___  _ __ 
+             | |    / _` | \'_ \\ / _` | | | |\\___ \\| \'_ \\ / _ \\| \'_ \\ 
+             | |___| (_| | | | | (_| | |_| |____) | | | | (_) | |_) |
+              \\_____\\__,_|_| |_|\\__,_|\\__, |_____/|_| |_|\\___/| .__/ 
+                                       __/ |                  | |
+                                      |___/                   |_|       
+                """);
         System.out.println("MAIN/PRODUCTS                                                                           EXIT APP {E}");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t VIEW SHOPPING CART{SC}");

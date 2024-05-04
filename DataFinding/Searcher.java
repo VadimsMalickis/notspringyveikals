@@ -5,7 +5,7 @@ public class Searcher {
 
     public ArrayList<Product> Search(ArrayList<Product> list, String keyword){
         for(Product temp : list) {
-            if(temp.name.contains(keyword)){
+            if(temp.name.toLowerCase().contains(keyword.toLowerCase())){
                 searchedList.add(temp);
             }
         }
