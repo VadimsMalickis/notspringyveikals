@@ -80,13 +80,14 @@ class FileFunc{
     }
     
     public void WriteFile(User user){
-        try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
+        try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath, true))) {
             writter.write(user.toString());
             writter.newLine();
             writter.close(); 
         }catch (Exception e) {
             e.printStackTrace();
         }
+        
     }
 
     public void WriteFile(HashMap<Product, Integer> list){

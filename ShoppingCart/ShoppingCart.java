@@ -4,66 +4,52 @@ import java.util.HashMap;
 import java.util.Map;
 
 class ShoppingCart {
-    Map<Product, Integer> cartProducts;
+    HashMap<Product, Integer> cartProducts;
     private double totalPrice;
 
-
-    public ShoppingCart(HashMap<Product, Integer> cartProducts){ // constructor - when user has previously saved shopping cart
-        this.cartProducts = cartProducts;
-        totalPrice = GetTotalPrice();
-    }
-
     public ShoppingCart(){ // constructor - when user has NO previously saved shopping cart
-        this(new HashMap<Product, Integer>());
-        totalPrice = 0;
+        cartProducts = new HashMap<Product, Integer>();
+        totalPrice = 0;        
     }
 
 
     public double GetTotalPrice() { // updtaes and fixes the price
         totalPrice = 0;
-        for (Map.Entry<Product, Integer> addedProduct : cartProducts.entrySet()){
-            totalPrice += addedProduct.getKey().price * addedProduct.getValue();
+        for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){
+            totalPrice += product.getKey().price * product.getValue();
         }
         totalPrice = Double.parseDouble(new DecimalFormat("##.##").format(totalPrice));
         return totalPrice;
     }
 
 
-    public void AddTo(Product product, int amount){ // you can add the product only if its not in the cart, otherways u have to increase/decrease the value 
+    public boolean AddTo(Product product){ // you can add the product only if its not in the cart, otherways u have to increase/decrease the value 
 
         if (product.amountInStorage == 0){
-             System.out.println("This product is out of stock! :(");
-        } else if (amount <= product.amountInStorage && amount > 0){
-                cartProducts.put(product, amount);
+            return false; //("This product is out of stock! :(");
         } else {
-            System.out.println("Invalid amount entered");
-        }
 
-        // might have to add GetTotalPrice() so price updates
+            cartProducts.put(product, 1);
+
+            totalPrice = GetTotalPrice(); // price updates
+            return true; // added succesfully            
+        }
+    }
+
+    public void RemoveFrom(Product product){
+        cartProducts.remove(product);
+        totalPrice = GetTotalPrice(); // price updates
+    }
+
+    public void SetAmount(Product product, int amountValue){ // gets triggered when user chooses the product ID and enters an amount value on ALREADY ADDED PRODUCT 
+                                                            // -> it happnes in cart window not main window
+        cartProducts.put(product, amountValue);
+        totalPrice = GetTotalPrice();
     }
 
 
-
-    public void SetAmount(Product product, int amountValue){ // gets triggered when user preses +/- or enters an amount value on ALREADY ADDED PRODUCT 
-                                                            // -> it happnes in cart window not main search/product window
-
-        // first it needs to get/accses the value entered in the websites field and assign it to a variable(amountValue) <- cant do that yet cuz no web
-
-        // then it just sets the specifics products(hashmap key) amount in cart(hasmap value) to that acsesed number(amountValue)
-
-        if (amountValue == 0){
-            cartProducts.remove(product);
-        }else if (amountValue <= product.amountInStorage){
-            cartProducts.replace(product, amountValue);
-        }else{
-            System.out.println("Invalid amount entered");
-        }
-        // might have to add GetTotalPrice() so price updates
-    }
-
-
-    public void OrderCart(String adress, String owner, String bankAccountNumber, String cvv){
-
+    public void OrderCart(String adress, String bankAccountNumber, String cvv){ // adress - gets form logged in user, owner, accnumber, cvv - user input
+        
     }
 
 
