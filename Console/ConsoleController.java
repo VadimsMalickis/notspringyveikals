@@ -69,16 +69,17 @@ public class ConsoleController {
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 
-    public void ShoppingCartScreen(HashMap<Product, Integer> cart){
+    public void ShoppingCartScreen(ShoppingCart cart){
 
+        HashMap<Product, Integer> cartProducts = cart.cartProducts;
         Title();
 
-        System.out.println("YOUR SHOPPING CART                                                                      EXIT APP {E}");
+        System.out.println("YOUR SHOPPING CART                                       GO TO MAIN PAGE {M}            EXIT APP {E}");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("EDIT PRODUCTS{P}                                                                      PAY & ORDER{O}");
+        System.out.println("EDIT PRODUCTS {P}                                             TOTAL PRICE: " + String.format("%4s", cart.GetTotalPrice())  + "           PAY & ORDER {O}");
         System.out.println(String.format("%4s", "ID") + "|" +  String.format("%20s", "Name") + "|" + String.format("%11s", "Type") + "|" + String.format("%7s", "Price") + "|" + String.format("%17s", "Amount in cart") + "|");
         System.out.println("------------------------------------------------------------------");
-        for (Map.Entry<Product, Integer> product : cart.entrySet()){
+        for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){
             System.out.print(product.getKey());
             System.out.println(String.format("%12s", product.getValue()) + "|");
         }

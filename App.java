@@ -5,20 +5,76 @@ import java.util.Scanner;
 
 public class App {
 
-    // Bank Account creation
-    BankAccount annasBank = new BankAccount(1000, "31010912", "106");
+    //Bank accounts
+    BankAccount annasBank;
+    BankAccount alisesBank;
+    BankAccount janisBank;
+    ArrayList<BankAccount> allBankAccounts;
 
-    ConsoleController console = new ConsoleController();
-    Scanner scanner1 = new Scanner(System.in);
+    // Clases
+    ConsoleController console;
+    Scanner scanner1;
+    ShoppingCart cart;
+    FileFunc file;
+    SignIn signIn;
+
+    // User
     User loggedInUser;
+    
+    // List of all products in store
+    ArrayList<Product> list;
+    
+    // Filter
+    boolean filterChocolate;
+    boolean filterJelly;
+    boolean filterLolly;
 
-    ShoppingCart cart = new ShoppingCart();
-    FileFunc file = new FileFunc(PathFile.PRODUCTS.getFileName());
+    // Sort
+    boolean sortNameA;
+    boolean sortNameD;
+    boolean sortPriceA;
+    boolean sortPriceD;
 
+    // Constructor -> sets up everything for work
+    public App() throws FileNotFoundException, IOException{
+
+        // Bank Account creation
+        annasBank = new BankAccount(1000, "ANNA", "31010912", "106");
+        alisesBank = new BankAccount(300, "ALISE", "13030720", "231");
+        janisBank = new BankAccount(5, "JANIS", "18208970", "543");
+        allBankAccounts = new ArrayList<BankAccount>();
+
+        // Adds bank accounts to list
+        allBankAccounts.add(annasBank);
+        allBankAccounts.add(alisesBank);
+        allBankAccounts.add(janisBank);
+
+        console = new ConsoleController();
+        scanner1 = new Scanner(System.in);
+        cart = new ShoppingCart(); //Create shopping cart
+        file = new FileFunc(PathFile.PRODUCTS.getFileName());
+        signIn = new SignIn();
+
+        //Save all products from CSV
+        list = new ArrayList<Product>();
+        list = file.productsObj;
+
+        //Set default values for filter and sorter
+        filterChocolate = true;
+        filterJelly = true;
+        filterLolly = true;
+    
+        sortNameA = false;
+        sortNameD = false;
+        sortPriceA = false;
+        sortPriceD = false;
+
+        //Get products from CSV
+        file.GetAll();
+    }
+
+    // works the LogIn page
     public void LogInCode() throws FileNotFoundException, IOException{
-        
-        SignIn signIn = new SignIn();
-
         
         while(true){
             console.clearAll();
@@ -48,26 +104,8 @@ public class App {
         }
     }
 
+    // works the Main page
     public void MainCode() throws FileNotFoundException, IOException{
-        //Get products from CSV
-        
-        file.GetAll();
-
-        //Save all products from CSV
-        ArrayList<Product> list = file.productsObj;
-
-        //Create shopping cart
-        
-
-        //Set default values
-        boolean filterChocolate = true;
-        boolean filterJelly = true;
-        boolean filterLolly = true;
-
-        boolean sortNameA = false;
-        boolean sortNameD = false;
-        boolean sortPriceA = false;
-        boolean sortPriceD = false;
 
         while(true){
             //Clear terminal
@@ -210,16 +248,14 @@ public class App {
         }
     }
 
-
-
-
-    public void ShoppingCartCode(){
+    // works the Shopping Cart page
+    public void ShoppingCartCode() throws FileNotFoundException, IOException{
         
         // Shopping cart
         boolean firstWhileloop = true;
         while(firstWhileloop){
             console.clearAll();
-            console.ShoppingCartScreen(cart.cartProducts);
+            console.ShoppingCartScreen(cart);
             
             System.out.print("Your choice: ");
             String SCUserChoice = scanner1.next();
@@ -227,6 +263,10 @@ public class App {
             switch (SCUserChoice) {
                 case "E": 
                     System.exit(0);
+                    break;
+
+                case "M":
+                    MainCode();
                     break;
 
                 case "P":
@@ -244,20 +284,27 @@ public class App {
 
                     boolean thirdWhileLoop = true;
                     while(thirdWhileLoop){
+                        console.clearOneLine(16 + cart.cartProducts.size());
                         System.out.print("REMOVE {R} this product or CHANGE AMOUNT {CA}: ");
                         String userRorCA = scanner1.next();
 
                         switch (userRorCA) {
                             case "R":
                                 cart.RemoveFrom(product);
+                                product.selectedStatus = false;
                                 thirdWhileLoop = false;
                                 break;
                         
                             case "CA":
-                            console.clearOneLine(17 + cart.cartProducts.size());
+                                console.clearOneLine(17 + cart.cartProducts.size());
                                 System.out.print("Enter the new amount: ");
                                 int amount = scanner1.nextInt();
-                                cart.SetAmount(product, amount);
+                                
+                                if (!cart.SetAmount(product, amount)){
+                                    scanner1.useDelimiter("[,\\s+]");
+                                    System.out.print("Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]"); 
+                                    scanner1.next();
+                                }
                                 thirdWhileLoop = false;
                                 break;
                             default:
@@ -268,6 +315,86 @@ public class App {
                     break;
 
                 case "O":
+
+                    if (cart.cartProducts.size() == 0){
+                        System.out.print("\nYour cart is empty {Press Enter to continue}");
+                        scanner1.useDelimiter("[,\\s+]");
+                        scanner1.next();
+                        // ShoppingCartCode();
+                        break;
+                    }
+
+                    BankAccount bankAcc = null;
+
+                    while(bankAcc == null){
+                        console.clearAll();
+                        console.ShoppingCartScreen(cart);
+
+                        System.out.println("Please enter your information");
+                        System.out.println("-----------------------------");
+                        System.out.println("Bank account number: ");
+                        System.out.println("Bank/Cards owner's name (IN CAPS): ");
+                        System.out.println("CVV: ");
+
+                        console.clearOneLine(17 + cart.cartProducts.size());
+                        System.out.print("Bank account number: ");
+                        String userBankAccNumber = scanner1.next();
+
+                        console.clearOneLine(18 + cart.cartProducts.size());
+                        System.out.print("Bank/Cards owner's name (IN CAPS): ");
+                        String userOwner = scanner1.next();
+
+                        console.clearOneLine(19 + cart.cartProducts.size());
+                        System.out.print("CVV: ");
+                        String userCVV = scanner1.next();
+
+                        for (BankAccount tempBankAcc : allBankAccounts){
+                            if (userBankAccNumber.equals(tempBankAcc.GetBankAccNumber()) && userOwner.equals(tempBankAcc.GetOwner()) && userCVV.equals(tempBankAcc.GetCVV())){
+                                bankAcc = tempBankAcc;
+                                if (cart.OrderCart(loggedInUser, bankAcc, list)){
+                                    System.out.print("\nThank you for shopping with us! Your order has been placed and you can view your check. :)");
+                                    System.exit(0);
+                                } else {
+                                    scanner1.useDelimiter("[,\\s+]");
+                                    System.out.print("\nSomething went wrong in the transaction, please try again! [Press Enter to continue]");
+                                    scanner1.next();
+                                    ShoppingCartCode();
+                                }   
+                            }
+                        }
+
+                        boolean whileLoop = true;
+                        while(whileLoop){
+
+                            console.clearOneLine(20 + cart.cartProducts.size());
+                            System.out.print("There is a mistake in your information. Do you want to Try again {T}, Continue shopping {C} or Exit the shop {E}: ");
+                            String userTorCorE = scanner1.next();
+
+                            switch (userTorCorE) {
+                                case "T":
+                                    whileLoop = false;
+                                    break;
+
+                                case "C":
+                                    whileLoop = false;
+                                    ShoppingCartCode();
+                                    break;
+
+                                case "E":
+                                    whileLoop = false;
+                                    System.out.print("\nThank you for shopping with us!");
+                                    System.exit(0);                                    
+                                    break;
+                            
+                                default:
+                                    break;
+                            }
+                        }
+
+                    }
+
+
+                    
 
                     
                     

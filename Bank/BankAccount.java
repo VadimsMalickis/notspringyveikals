@@ -2,15 +2,29 @@ import java.util.ArrayList;
 
 class BankAccount {
     private double balance;
+    private String owner;
     private String bankAccountNumber;
     private String cvv;
     
     // CONSTRUCTOR
-    public BankAccount(double startBalance, String bankAccountNumber, String cvv) {
+    public BankAccount(double startBalance, String owner, String bankAccountNumber, String cvv) {
         balance = startBalance;
+        this.owner = owner;
         this.bankAccountNumber = bankAccountNumber;
         this.cvv = cvv;
 
+    }
+
+    public String GetOwner(){
+        return owner;
+    }
+
+    public String GetBankAccNumber(){
+        return bankAccountNumber;
+    }
+
+    public String GetCVV(){
+        return cvv;
     }
 
     public double GetBalance() {

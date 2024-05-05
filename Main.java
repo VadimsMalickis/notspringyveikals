@@ -15,8 +15,6 @@ class Main{
 
         appCode.LogInCode();
 
-        appCode.MainCode();
-
         
         
 

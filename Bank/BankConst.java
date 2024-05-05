@@ -1,6 +1,6 @@
 public enum BankConst {
     
-    SHOPS_BANK_ACCOUNT(new BankAccount(0, "13033101", "600")),
+    SHOPS_BANK_ACCOUNT(new BankAccount(0, "CANDYSHOP", "13033101", "606"));
 
     private final BankAccount bankAcc;
 
@@ -8,7 +8,7 @@ public enum BankConst {
         this.bankAcc = bankAcc;
     }
 
-    public BankAccount getFileName() {
+    public BankAccount GetBankAccount() {
         return this.bankAcc;
     }
 }

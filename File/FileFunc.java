@@ -68,11 +68,10 @@ class FileFunc{
 
     public void WriteFile(ArrayList<Product> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
-            for(int i = 0; i < list.size(); i++){
-                    Product temp = productsObj.get(i);
-                    writter.write(temp.toCSV());
-                    writter.newLine();
-            }
+            for (Product temp : list){
+                writter.write(temp.toCSV());
+                writter.newLine();
+            }            
             writter.close(); 
         }catch (Exception e) {
             e.printStackTrace();
