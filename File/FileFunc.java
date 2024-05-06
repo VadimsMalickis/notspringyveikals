@@ -13,13 +13,13 @@ class FileFunc{
     ArrayList<Product> productsObj = new ArrayList<>();
     ArrayList<User> usersObj = new ArrayList<>();
 
-    //nevis seit iestatit bet katraa vieta kur notiek darbibas ar failiem?? ????????? @22DP1AToca
+    // CONSTRUCTOR -> sets up the filepath
     public FileFunc(String path){
         filePath = path;
     }
     
-    // Coment this @22DP1AToca
-    public ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
+    // reads all info from files and puts it in ArrayList
+    private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
             ArrayList<String> records = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 String line;
@@ -30,14 +30,14 @@ class FileFunc{
         return records;
     }
 
-    // Gets all users/products form file and saves them in an ArrayList
+    // Gets all users/products form file, makes object with the info (seperates the fields) (from the file) and adds it to an Arraylist
     public void GetAll() throws FileNotFoundException, IOException{
         ArrayList<String> CSVrows = new ArrayList<String>();
         CSVrows = ReadFile(); //[row1, row2]
         
         for (String CSVrow : CSVrows){
 
-            if (filePath.equals(PathFile.PRODUCTS.getFileName())){ // Uproducts
+            if (filePath.equals(PathFile.PRODUCTS.getFileName())){ // Products
                 Product object = new Product();
 
                 String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz, kategorija, apraksts]
