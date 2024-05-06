@@ -32,10 +32,12 @@ class Product{
         return ID + "," + name + "," + price+ "," + amountInStorage + "," + type;
     }
 
+    //return name for Sort class
     public String getName(){
         return name;
     }
     
+    //return price for Sort class
     public double getPrice(){
         return price;
     }
