@@ -22,21 +22,21 @@ public class ConsoleController {
     }
 
     public void Title(){ 
-        System.out.println(" _____                 _         _____ _                       ");
-        System.out.println("/  __ \\               | |       /  ___| |                    ___      .-\"\"-.      ___");
-        System.out.println("| /  \\/ __ _ _ __   __| |_   _  \\ `--.| |__   ___  _ __      \\  \"-.  /      \\  .-\"  /");
-        System.out.println("| |    / _` | '_ \\ / _` | | | |  `--. \\ '_ \\ / _ \\| '_ \\      > -=.\\/        \\/.=- <");
-        System.out.println("| \\__/\\ (_| | | | | (_| | |_| | /\\__/ / | | | (_) | |_) |     > -='/\\        /\\'=- <");
-        System.out.println(" \\____/\\__,_|_| |_|\\__,_|\\__, | \\____/|_| |_|\\___/| .__/     /__.-'  \\      /  '-.__\\");
-        System.out.println("                          __/ |                   | |                 '-..-'");
-        System.out.println("                         |___/                    |_|          ");
+        System.out.println(" _____                 _         _____ _                       " + TextColour.ANSI_RESET.getColour());
+        System.out.println("/  __ \\               | |       /  ___| |       " + TextColour.PURPLE.getColour() + "              ___      .-\"\"-.      ___" + TextColour.ANSI_RESET.getColour());
+        System.out.println("| /  \\/ __ _ _ __   __| |_   _  \\ `--.| |__   ___  _ __     " + TextColour.PURPLE.getColour() + "  \\  \"-.  /      \\  .-\"  /" + TextColour.ANSI_RESET.getColour());
+        System.out.println("| |    / _` | '_ \\ / _` | | | |  `--. \\ '_ \\ / _ \\| '_ \\  " + TextColour.PURPLE.getColour() + "     > -=.\\/        \\/.=- <"+ TextColour.ANSI_RESET.getColour());
+        System.out.println("| \\__/\\ (_| | | | | (_| | |_| | /\\__/ / | | | (_) | |_) |  " + TextColour.PURPLE.getColour() + "    > -='/\\        /\\'=- <"+ TextColour.ANSI_RESET.getColour());
+        System.out.println( " \\____/\\__,_|_| |_|\\__,_|\\__, | \\____/|_| |_|\\___/| .__/  " + TextColour.PURPLE.getColour() + "    /__.-'  \\      /  '-.__\\"+ TextColour.ANSI_RESET.getColour());
+        System.out.println("                          __/ |                   | |            " + TextColour.PURPLE.getColour() + "      '-..-'" + TextColour.ANSI_RESET.getColour());
+        System.out.println("                         |___/                    |_|          " + TextColour.ANSI_RESET.getColour());
     }
 
     // Prints out nessesary things for signin screen
     public void SignInScreen(){
         Title();
-        System.out.println("SIGN IN");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println( "SIGN IN");
+        System.out.println(TextColour.PURPLE.getColour() + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + TextColour.ANSI_RESET.getColour());
 
     }
 
@@ -55,13 +55,13 @@ public class ConsoleController {
         Title();
 
         System.out.println("MAIN/PRODUCTS                         You are logged in as: " + String.format("%-20s", user.username)  + "        EXIT APP {E}");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(TextColour.PURPLE.getColour() + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + TextColour.ANSI_RESET.getColour());
         System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t VIEW SHOPPING CART{SC}");
         System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
         System.out.println("["+ jellies +"] Jellies   \t\t ["+ nameD +"] Name Z-A");
         System.out.println("["+ lollies +"] Lollies   \t\t ["+ priceA +"] Price <");
         System.out.println("              \t\t ["+ priceD +"] Price >");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(TextColour.PURPLE.getColour() + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + TextColour.ANSI_RESET.getColour());
 
         System.out.println("ADD PRODUCT TO SHOPPING CART{P}");
         System.out.println(String.format("%4s", "ID") + "|" +  String.format("%20s", "Name") + "|" + String.format("%11s", "Type") + "|" + String.format("%7s", "Price"));
@@ -69,7 +69,7 @@ public class ConsoleController {
         for (Product temp : list) { // Prints out all items available in shop + [ ] if they are in the shopping cart
             System.out.println(temp);
         }
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(TextColour.PURPLE.getColour() + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + TextColour.ANSI_RESET.getColour());
     }
 
     // Prints out nessesary things for Shopping Cart screen
@@ -79,7 +79,7 @@ public class ConsoleController {
         Title();
 
         System.out.println("YOUR SHOPPING CART                                       GO TO MAIN PAGE {M}            EXIT APP {E}");
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(TextColour.PURPLE.getColour() +"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + TextColour.ANSI_RESET.getColour());
         System.out.println("EDIT PRODUCTS {P}                                          TOTAL PRICE: " + String.format("%4s", cart.GetTotalPrice())  + "        PAY & ORDER {O}");
         System.out.println(String.format("%4s", "ID") + "|" +  String.format("%20s", "Name") + "|" + String.format("%11s", "Type") + "|" + String.format("%7s", "Price") + "|" + String.format("%17s", "Amount in cart") + "|");
         System.out.println("------------------------------------------------------------------");
@@ -88,7 +88,7 @@ public class ConsoleController {
             System.out.println(String.format("%12s", product.getValue()) + "|");
         }
         
-        System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        System.out.println(TextColour.PURPLE.getColour() +"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"+ TextColour.ANSI_RESET.getColour());
     }
 
 }
