@@ -24,6 +24,7 @@ public class App {
     
     // List of all products in store
     ArrayList<Product> list;
+    ArrayList<Product> searchedList;
     
     // Filter
     boolean filterChocolate;
@@ -59,6 +60,9 @@ public class App {
         //Save all products from CSV
         list = new ArrayList<Product>();
         list = file.productsObj;
+
+        //Create list for Search UI
+        searchedList = new ArrayList<Product>();
 
         //Set default values for filter and sorter
         filterChocolate = true;
@@ -98,7 +102,7 @@ public class App {
                     break;
 
                 default:
-                    System.out.print("Invalid input, try again");
+                    //Invalid input
                     break;
             }
             
@@ -181,13 +185,13 @@ public class App {
                         System.out.print("Search:");
                         String keyword = scanner.next();  // Read user input
                         
-                        list = searcher.Search(file.productsObj, keyword);
+                        searchedList = searcher.Search(file.productsObj, keyword);
 
                         //Clear terminal
                         console.clearAll();
 
                         //Re-print terminal
-                        console.MainScreen(loggedInUser, list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+                        console.MainScreen(loggedInUser, searchedList, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
                         System.out.println("Search:" + keyword);
                         System.out.print("Search again{A}, quit searching{Q}:");
@@ -202,6 +206,7 @@ public class App {
                                 console.MainScreen(loggedInUser, list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
                                 continue;
                             case "Q":
+                                list = searchedList;
                                 break;
                         }
                         break; //while break
@@ -227,7 +232,7 @@ public class App {
                                     temp.selectedStatus = !temp.selectedStatus;    
                                     if(temp.selectedStatus){
                                         if (!cart.AddTo(temp)){
-                                            System.out.print("Sorry, this item is out of stock [Press Enter to continue]"); 
+                                            System.out.print(TextColour.RED.getColour() + "Sorry, this item is out of stock [Press Enter to continue]" + TextColour.ANSI_RESET.getColour()); 
                                             scanner.next();
                                             temp.selectedStatus = false;
                                         } 
@@ -324,7 +329,7 @@ public class App {
                                     
                                         if (!cart.SetAmount(product, amount)){ // checks if setting the amount is posible, if true - sets amount to input
                                             scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
-                                            System.out.print("Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]"); 
+                                            System.out.print(TextColour.RED.getColour() + "Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]" + TextColour.ANSI_RESET.getColour()); 
                                             scanner1.next();
                                         }
                                         forthWhileLoop = false;
@@ -384,12 +389,12 @@ public class App {
                             if (userBankAccNumber.equals(tempBankAcc.GetBankAccNumber()) && userOwner.equals(tempBankAcc.GetOwner()) && userCVV.equals(tempBankAcc.GetCVV())){
                                 bankAcc = tempBankAcc;
                                 if (cart.OrderCart(loggedInUser, bankAcc, list)){ // Orders cart (if transation is successful)
-                                    System.out.print("\nThank you for shopping with us! Your order has been placed and you can view your check. :)");
+                                    System.out.print(TextColour.PURPLE.getColour() + "\nThank you for shopping with us! Your order has been placed and you can view your check. :)" + TextColour.ANSI_RESET.getColour());
                                     System.exit(0);// Exists the shop
 
                                 } else { // Error -> if transation wasnt successful
                                     scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
-                                    System.out.print("\nSomething went wrong in the transaction, please try again! [Press Enter to continue]");
+                                    System.out.print(TextColour.RED.getColour() + "\nSomething went wrong in the transaction, please try again! [Press Enter to continue]" + TextColour.ANSI_RESET.getColour());
                                     scanner1.next();
                                     ShoppingCartCode();
                                 }   
@@ -400,7 +405,7 @@ public class App {
                         while(whileLoop){ // makes sure user enters a valid input
 
                             console.clearOneLine(20 + cart.cartProducts.size());
-                            System.out.print("There is a mistake in your information. Do you want to Try again {T}, Continue shopping {C} or Exit the shop {E}: ");
+                            System.out.print(TextColour.RED.getColour() + "There is a mistake in your information. Do you want to Try again {T}, Continue shopping {C} or Exit the shop {E}: " + TextColour.ANSI_RESET.getColour());
                             String userTorCorE = scanner1.next();
 
                             switch (userTorCorE) {
@@ -415,7 +420,7 @@ public class App {
 
                                 case "E":
                                     whileLoop = false;
-                                    System.out.print("\nThank you for shopping with us!");
+                                    System.out.print(TextColour.PURPLE.getColour() + "\nThank you for shopping with us!" + TextColour.ANSI_RESET.getColour());
                                     System.exit(0);                                    
                                     break;
                             
@@ -427,8 +432,8 @@ public class App {
                     break;
 
                 default:
-                    System.out.print("Invalid input, try again");
-                    break;
+                   //INVALID INPUT TRY AGAIN
+                   break;
             }
         }
     }

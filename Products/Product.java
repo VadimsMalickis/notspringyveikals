@@ -24,7 +24,7 @@ class Product{
         String selected = (selectedStatus)? "X" : " ";
         String outOfStock = (amountInStorage <= 0)? "Out of stock" : "";
 
-        return String.format("%4s", ID) + "|" +  String.format("%20s", name) + "|" + String.format("%11s", type) + "|" + String.format("%7.2f", price) + "   [" + selected +"] " + outOfStock;
+        return String.format("%4s", ID) + "|" +  String.format("%20s", name) + "|" + String.format("%11s", type) + "|" + String.format("%7.2f", price) + "   [" + selected +"] " + TextColour.RED.getColour() +  outOfStock + TextColour.ANSI_RESET.getColour();
     }
 
     //Formatt product to be written in CSV
