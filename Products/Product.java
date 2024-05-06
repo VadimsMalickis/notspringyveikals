@@ -7,6 +7,7 @@ class Product{
     String type;
     boolean selectedStatus;    
 
+    //CONSTRUCTOR
     public Product(int ID, String name, double price, int amountInStorage, String type){
         this.ID = ID;
         this.name = name;
@@ -15,13 +16,18 @@ class Product{
         this.type = type;
     }
 
-    public Product(){} //!!!!!!!!!!!!!!! @22DP1AToca ??
+    //CONSTRUCTOR
+    public Product(){}  
 
+    //Automatic output format
     public String toString(){
         String selected = (selectedStatus)? "X" : " ";
-        return String.format("%4s", ID) + "|" +  String.format("%20s", name) + "|" + String.format("%11s", type) + "|" + String.format("%7.2f", price) + "   [" + selected +"]";
+        String outOfStock = (amountInStorage <= 0)? "Out of stock" : "";
+
+        return String.format("%4s", ID) + "|" +  String.format("%20s", name) + "|" + String.format("%11s", type) + "|" + String.format("%7.2f", price) + "   [" + selected +"] " + outOfStock;
     }
 
+    //Formatt product to be written in CSV
     public String toCSV(){
         return ID + "," + name + "," + price+ "," + amountInStorage + "," + type;
     }
@@ -33,13 +39,4 @@ class Product{
     public double getPrice(){
         return price;
     }
-
-    // public void Display(){ // so vajag? @22DP1AToca
-    //     System.out.println("Nosaukums: " + name);
-    //     System.out.println("Cena: " + price);
-    //     System.out.println("Daudzums noliktavā: " + amountInStorage);
-    //     System.out.println("Kategorija: " + type);
-    //     System.out.println("Apraksts: " +  description);
-    //     System.out.println();
-    // }
 }
