@@ -388,6 +388,9 @@ public class App {
                         for (BankAccount tempBankAcc : allBankAccounts){ // Cheks if bankAcc with this infomation exists -> if exists, sets it as the one in use
                             if (userBankAccNumber.equals(tempBankAcc.GetBankAccNumber()) && userOwner.equals(tempBankAcc.GetOwner()) && userCVV.equals(tempBankAcc.GetCVV())){
                                 bankAcc = tempBankAcc;
+                                Filter filter = new Filter();
+                                list = filter.FilterList(file.productsObj, true, true, true);
+                                
                                 if (cart.OrderCart(loggedInUser, bankAcc, list)){ // Orders cart (if transation is successful)
                                     System.out.print(TextColour.PURPLE.getColour() + "\nThank you for shopping with us! Your order has been placed and you can view your check. :)" + TextColour.ANSI_RESET.getColour());
                                     System.exit(0);// Exists the shop
