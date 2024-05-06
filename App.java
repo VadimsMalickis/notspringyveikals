@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
+    // Class with all the main screen functions -> input, input checking and error message output is here
 
     //Bank accounts
     BankAccount annasBank;
@@ -81,9 +82,9 @@ public class App {
             console.SignInScreen();
             System.out.println("LOG IN {L} or REGISTER {R}");
             System.out.print("\nYour choice: ");
-            String signInUserChoice = scanner1.nextLine();
+            String signInUserChoice = scanner1.next();
 
-            switch (signInUserChoice) {
+            switch (signInUserChoice) { // makes sure user enters a valid input
                 case "L": 
                     signIn.LogIn();
                     loggedInUser = signIn.loggedinUser;
@@ -105,7 +106,7 @@ public class App {
     }
 
     // works the Main page
-    public void MainCode() throws FileNotFoundException, IOException{
+    private void MainCode() throws FileNotFoundException, IOException{
 
         while(true){
             //Clear terminal
@@ -117,13 +118,13 @@ public class App {
             //Read input
             System.out.print("Enter your choice:");
             Scanner scanner = new Scanner(System.in);
-            String input = scanner.nextLine();
+            String input = scanner.next();
             
             switch(input){
                 //Filter UI
                 case "F":
                     System.out.print("Filter chocolates {C}, jellies {J}, lollies {L}:");
-                    String filterInput = scanner.nextLine();
+                    String filterInput = scanner.next();
                     
                     Filter filter = new Filter();
                    
@@ -150,7 +151,7 @@ public class App {
                     sortPriceD = false;
 
                     System.out.print("Sort by name A-Z {NA}, name Z-A {ND}, price < {PA}, price > {PD}:");
-                    String sortInput = scanner.nextLine();
+                    String sortInput = scanner.next();
 
                     Sorter sorter = new Sorter();
 
@@ -178,7 +179,7 @@ public class App {
                     while (true) {
                         Searcher searcher = new Searcher();
                         System.out.print("Search:");
-                        String keyword = scanner.nextLine();  // Read user input
+                        String keyword = scanner.next();  // Read user input
                         
                         list = searcher.Search(file.productsObj, keyword);
 
@@ -190,7 +191,7 @@ public class App {
 
                         System.out.println("Search:" + keyword);
                         System.out.print("Search again{A}, quit searching{Q}:");
-                        String searchInput = scanner.nextLine();
+                        String searchInput = scanner.next();
 
                         switch(searchInput){
                             case "A":
@@ -203,7 +204,7 @@ public class App {
                             case "Q":
                                 break;
                         }
-                        break; //whiel break
+                        break; //while break
                     }
                     continue; //continue code
                 //Shopping cart UI
@@ -214,26 +215,34 @@ public class App {
                 case "P":
                     boolean whileLoop = true;
                     while(whileLoop){
-                        scanner.useDelimiter("[,\\s+]"); //Delimeter comma either space
+                        scanner.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
                         System.out.print("Input product {ID}:");
-                        int ID = scanner.nextInt();
-    
-                        for (Product temp : list) {
-                            if(temp.ID == ID){
-                                whileLoop = false;
-                                temp.selectedStatus = !temp.selectedStatus;    
-                                if(temp.selectedStatus){
-                                    if (!cart.AddTo(temp)){
-                                        System.out.print("Sorry, this item is out of stock [Press Enter to continue]"); 
-                                        scanner.next();
-                                        temp.selectedStatus = false;
-                                    } 
-                                }else{
-                                    cart.RemoveFrom(temp);
-                                }                                
+
+                        if (scanner.hasNextInt()){
+
+                            int ID = scanner.nextInt();
+                            for (Product temp : list) {
+                                if(temp.ID == ID){
+                                    whileLoop = false;
+                                    temp.selectedStatus = !temp.selectedStatus;    
+                                    if(temp.selectedStatus){
+                                        if (!cart.AddTo(temp)){
+                                            System.out.print("Sorry, this item is out of stock [Press Enter to continue]"); 
+                                            scanner.next();
+                                            temp.selectedStatus = false;
+                                        } 
+                                    }else{
+                                        cart.RemoveFrom(temp);
+                                    }                                
+                                }
                             }
-                        }
-                        console.clearOneLine(22 + list.size());                        
+                            console.clearOneLine(22 + list.size());
+
+                        } else {
+                            scanner.next();
+                            console.clearOneLine(22 + list.size());
+                            continue;
+                        }                       
                     }
                     continue;
                 case "E":
@@ -243,13 +252,12 @@ public class App {
                 default:
                     // Wrong input;
                     break;
-            }
-                
+            }                
         }
     }
 
     // works the Shopping Cart page
-    public void ShoppingCartCode() throws FileNotFoundException, IOException{
+    private void ShoppingCartCode() throws FileNotFoundException, IOException{
         
         // Shopping cart
         boolean firstWhileloop = true;
@@ -260,53 +268,75 @@ public class App {
             System.out.print("Your choice: ");
             String SCUserChoice = scanner1.next();
 
-            switch (SCUserChoice) {
-                case "E": 
+            switch (SCUserChoice) { // makes sure user enters a valid input
+                case "E":  //Exit program
                     System.exit(0);
                     break;
 
-                case "M":
+                case "M": // Gose back to main page
                     MainCode();
                     break;
 
+                //Product UI
                 case "P":
                     Product product = null;
-                    while(product == null){
+                    while(product == null){ // makes sure user enters a an existing products ID
                         System.out.print("Input the product you wan to edit {ID}:");
-                        int ID = scanner1.nextInt();
-                        for (Product temp : cart.cartProducts.keySet()) {
-                            if(temp.ID == ID){
-                                product = temp;
-                            }          
+                        if (scanner1.hasNextInt()){ // makes sure user enters a valid integer input
+                            int ID = scanner1.nextInt();
+                            for (Product temp : cart.cartProducts.keySet()) {
+                                if(temp.ID == ID){
+                                    product = temp;
+                                }          
+                            }
+                            console.clearOneLine(16 + cart.cartProducts.size());
+                        } else{
+                            scanner1.next();
+                            console.clearOneLine(16 + cart.cartProducts.size());
+                            continue;
                         }
-                        console.clearOneLine(16 + cart.cartProducts.size());
+                        
                     }
 
                     boolean thirdWhileLoop = true;
-                    while(thirdWhileLoop){
+                    while(thirdWhileLoop){ // makes sure user enters a valid input
                         console.clearOneLine(16 + cart.cartProducts.size());
                         System.out.print("REMOVE {R} this product or CHANGE AMOUNT {CA}: ");
                         String userRorCA = scanner1.next();
 
                         switch (userRorCA) {
+                            //remove product UI
                             case "R":
                                 cart.RemoveFrom(product);
-                                product.selectedStatus = false;
+                                product.selectedStatus = false; // de-selects the product
                                 thirdWhileLoop = false;
                                 break;
                         
+                            //Change product amount UI
                             case "CA":
-                                console.clearOneLine(17 + cart.cartProducts.size());
-                                System.out.print("Enter the new amount: ");
-                                int amount = scanner1.nextInt();
-                                
-                                if (!cart.SetAmount(product, amount)){
-                                    scanner1.useDelimiter("[,\\s+]");
-                                    System.out.print("Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]"); 
-                                    scanner1.next();
+                                boolean forthWhileLoop = true;
+                                while(forthWhileLoop){ // makes sure user enters a valid input
+                                    console.clearOneLine(17 + cart.cartProducts.size());
+                                    System.out.print("Enter the new amount: ");
+
+                                    if (scanner1.hasNextInt()){ // makes sure user enters a valid integer input
+                                        int amount = scanner1.nextInt();
+                                    
+                                        if (!cart.SetAmount(product, amount)){ // checks if setting the amount is posible, if true - sets amount to input
+                                            scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
+                                            System.out.print("Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]"); 
+                                            scanner1.next();
+                                        }
+                                        forthWhileLoop = false;
+                                        break;
+                                    } else {
+                                        scanner1.next();
+                                        console.clearOneLine(17 + cart.cartProducts.size());
+                                        continue;
+                                    }
                                 }
                                 thirdWhileLoop = false;
-                                break;
+
                             default:
                                 //Wrong input
                                 break;
@@ -314,11 +344,12 @@ public class App {
                     }
                     break;
 
-                case "O":
+                //Order UI
+                case "O": 
 
                     if (cart.cartProducts.size() == 0){
                         System.out.print("\nYour cart is empty {Press Enter to continue}");
-                        scanner1.useDelimiter("[,\\s+]");
+                        scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
                         scanner1.next();
                         // ShoppingCartCode();
                         break;
@@ -326,7 +357,8 @@ public class App {
 
                     BankAccount bankAcc = null;
 
-                    while(bankAcc == null){
+                    //Bank account information fill in UI
+                    while(bankAcc == null){ // repeats till user fills in all of the fiels correctly or till exists this UI
                         console.clearAll();
                         console.ShoppingCartScreen(cart);
 
@@ -348,14 +380,15 @@ public class App {
                         System.out.print("CVV: ");
                         String userCVV = scanner1.next();
 
-                        for (BankAccount tempBankAcc : allBankAccounts){
+                        for (BankAccount tempBankAcc : allBankAccounts){ // Cheks if bankAcc with this infomation exists -> if exists, sets it as the one in use
                             if (userBankAccNumber.equals(tempBankAcc.GetBankAccNumber()) && userOwner.equals(tempBankAcc.GetOwner()) && userCVV.equals(tempBankAcc.GetCVV())){
                                 bankAcc = tempBankAcc;
-                                if (cart.OrderCart(loggedInUser, bankAcc, list)){
+                                if (cart.OrderCart(loggedInUser, bankAcc, list)){ // Orders cart (if transation is successful)
                                     System.out.print("\nThank you for shopping with us! Your order has been placed and you can view your check. :)");
-                                    System.exit(0);
-                                } else {
-                                    scanner1.useDelimiter("[,\\s+]");
+                                    System.exit(0);// Exists the shop
+
+                                } else { // Error -> if transation wasnt successful
+                                    scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
                                     System.out.print("\nSomething went wrong in the transaction, please try again! [Press Enter to continue]");
                                     scanner1.next();
                                     ShoppingCartCode();
@@ -364,7 +397,7 @@ public class App {
                         }
 
                         boolean whileLoop = true;
-                        while(whileLoop){
+                        while(whileLoop){ // makes sure user enters a valid input
 
                             console.clearOneLine(20 + cart.cartProducts.size());
                             System.out.print("There is a mistake in your information. Do you want to Try again {T}, Continue shopping {C} or Exit the shop {E}: ");
@@ -390,22 +423,13 @@ public class App {
                                     break;
                             }
                         }
-
-                    }
-
-
-                    
-
-                    
-                    
+                    }                   
                     break;
+
                 default:
                     System.out.print("Invalid input, try again");
                     break;
             }
         }
     }
-
-
-
 }

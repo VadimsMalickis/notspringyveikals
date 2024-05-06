@@ -57,21 +57,20 @@ class ShoppingCart {
         
     }
 
-    public boolean OrderCart(User user, BankAccount usersBankAccount, ArrayList<Product> list){ // adress - gets form logged in user, accnumber, cvv - user input
-        if(usersBankAccount.Transaction(totalPrice, BankConst.SHOPS_BANK_ACCOUNT.GetBankAccount())){
-            FileFunc usersCheckfile = new FileFunc("Checks/" + user.username + ".csv");
-            usersCheckfile.WriteFile(cartProducts, totalPrice, user);
+    // Oredrs evrything in the cart -> returns tre/false if ordering was successful (had enough money, right bank accounts ect)
+    public boolean OrderCart(User user, BankAccount usersBankAccount, ArrayList<Product> list){ 
+        if(usersBankAccount.Transaction(totalPrice, BankConst.SHOPS_BANK_ACCOUNT.GetBankAccount())){ // checks if transation was successful
+            FileFunc usersCheckfile = new FileFunc("Checks/" + user.username + ".csv"); // Creates a new check file with the users username
+            usersCheckfile.WriteFile(cartProducts, totalPrice, user); // Writes the check file
 
-            for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){
-                product.getKey().amountInStorage -= product.getValue();
+            for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){ // updates every products amountInStorage
+                product.getKey().amountInStorage -= product.getValue(); 
             }
-            file.WriteFile(list);
+
+            file.WriteFile(list); // updates the product csv file with the new amounts in storage
             return true;
-        } else {
+        } else { // if the transation fails
             return false;
         }
     }
-
-
-
-} // end of class
+} 

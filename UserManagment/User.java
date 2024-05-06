@@ -1,4 +1,6 @@
 public class User {
+
+    //User atributes
     String username;
     String email;
     String name;
@@ -6,7 +8,7 @@ public class User {
     String adress;
     String password;
 
-    public User(String username, String email, String name, String surname, String adress, String password){
+    public User(String username, String email, String name, String surname, String adress, String password){ // creates a new user
         this.username = username;
         this.email = email;
         this.name = name;

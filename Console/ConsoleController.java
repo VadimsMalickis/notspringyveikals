@@ -32,6 +32,7 @@ public class ConsoleController {
         System.out.println("                         |___/                    |_|          ");
     }
 
+    // Prints out nessesary things for signin screen
     public void SignInScreen(){
         Title();
         System.out.println("SIGN IN");
