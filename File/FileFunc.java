@@ -13,29 +13,31 @@ class FileFunc{
     ArrayList<Product> productsObj = new ArrayList<>();
     ArrayList<User> usersObj = new ArrayList<>();
 
-    //nevis seit iestatit bet katraa vieta kur notiek darbibas ar failiem??
+    //nevis seit iestatit bet katraa vieta kur notiek darbibas ar failiem?? ????????? @22DP1AToca
     public FileFunc(String path){
         filePath = path;
     }
     
+    // Coment this @22DP1AToca
     public ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
             ArrayList<String> records = new ArrayList<>();
             try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 String line;
-            while ((line = br.readLine()) != null) {
-               records.add(line);
-            }}
+                while ((line = br.readLine()) != null) {
+                    records.add(line);
+                }
+            }
         return records;
     }
 
+    // Gets all users/products form file and saves them in an ArrayList
     public void GetAll() throws FileNotFoundException, IOException{
         ArrayList<String> CSVrows = new ArrayList<String>();
-
         CSVrows = ReadFile(); //[row1, row2]
         
         for (String CSVrow : CSVrows){
 
-            if (filePath.equals(PathFile.PRODUCTS.getFileName())){
+            if (filePath.equals(PathFile.PRODUCTS.getFileName())){ // Uproducts
                 Product object = new Product();
 
                 String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz, kategorija, apraksts]
@@ -52,10 +54,9 @@ class FileFunc{
                 }
 
                 productsObj.add(object);
-
             }
 
-            if (filePath.equals(PathFile.REGISTERED_USERS.getFileName())){
+            if (filePath.equals(PathFile.REGISTERED_USERS.getFileName())){ // Users
 
                 String[] rowParts = CSVrow.split(","); //[username, email, name, surname, adress, password]
                 User object = new User(rowParts[0], rowParts[1], rowParts[2], rowParts[3], rowParts[4], rowParts[5]);
@@ -65,7 +66,7 @@ class FileFunc{
         }
     }
 
-
+    // Updates/Writes the file with products
     public void WriteFile(ArrayList<Product> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for (Product temp : list){
@@ -78,6 +79,7 @@ class FileFunc{
         }
     }
     
+    // Updates/Writes the file with registered users
     public void WriteFile(User user){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath, true))) {
             writter.write(user.toString());
@@ -89,23 +91,24 @@ class FileFunc{
         
     }
 
+    // Writes the check for the user
     public void WriteFile(HashMap<Product, Integer> list, double finalAmount, User user){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
 
             writter.write("----------CHECK----------");
             writter.newLine();
-            for(Map.Entry m : list.entrySet()){    
+            for(Map.Entry m : list.entrySet()){  // Writes all the purchased items
                 Product temp = (Product) m.getKey();
                 writter.write(String.format("%20s", temp.name) + "\n.........." + String.format("%5s", temp.price) + " x " + String.format("%3s", m.getValue()));
                 writter.newLine();
             } 
             writter.write("-----------------------------------------");
             writter.newLine();
-            writter.write("Total price: " + String.format("%5s", finalAmount));
+            writter.write("Total price: " + String.format("%5s", finalAmount)); // The final price
             writter.newLine();
             writter.write("-----------------------------------------");
             writter.newLine();
-            writter.write("Shipped to: " + user.adress + "\n" + "For: " + user.name + " " + user.surname);
+            writter.write("Shipped to: " + user.adress + "\n" + "For: " + user.name + " " + user.surname); // Uers infomation -> Name and adress
             writter.newLine();
             writter.close(); 
         }catch (Exception e) {

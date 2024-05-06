@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 class BankAccount {
     private double balance;
     private String owner;
@@ -14,6 +12,8 @@ class BankAccount {
         this.cvv = cvv;
 
     }
+
+    // GET METHODES -> to access private variables
 
     public String GetOwner(){
         return owner;
@@ -31,7 +31,7 @@ class BankAccount {
         return SetBalance(balance);
     }
 
-    public double SetBalance(double value) {
+    public double SetBalance(double value) { // Checks, fixes and updates the total price
         if (value < 0) {
             System.out.println("There was an error and you have a negative balance: " + balance + ". Reach out to your bank to resolve that!");
         }
@@ -39,8 +39,8 @@ class BankAccount {
     }
 
 
-    // METODES
-    // naudas saņemšana - atgriež true/false atkarībā no tā vai ir izdevies
+    // METODES/METHODES
+    // naudas saņemšana -> atgriež true/false atkarībā no tā vai ir izdevies
     public boolean ReciveMoney(double amount) {
         if (amount > 0) {
             SetBalance( GetBalance() + amount);
@@ -50,7 +50,7 @@ class BankAccount {
         }
     }
 
-    // naudas samaksa (atņemšana) - atgriež true/false atkarībā no tā vai ir izdevies (vai pietika naudas)
+    // naudas samaksa (atņemšana) -> atgriež true/false atkarībā no tā vai ir izdevies (vai pietika naudas)
     public boolean PayMoney(double amount) {
         if (amount > 0) {
             if (balance - amount < 0) {
@@ -64,7 +64,7 @@ class BankAccount {
         }
     }
 
-    // pārsūtīt naudu uz citu akauntu
+    // pārsūtīt naudu uz citu akauntu -> atgriež true/false atkarībā no tā vai ir izdevies
     public boolean Transaction(double amount, BankAccount recivingBankAccount) {
         if (PayMoney(amount)) {
             recivingBankAccount.ReciveMoney(amount);

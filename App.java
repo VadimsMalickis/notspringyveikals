@@ -112,7 +112,7 @@ public class App {
             console.clearAll();
 
             //Re-print terminal
-            console.MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+            console.MainScreen(loggedInUser, list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
             //Read input
             System.out.print("Enter your choice:");
@@ -186,7 +186,7 @@ public class App {
                         console.clearAll();
 
                         //Re-print terminal
-                        console.MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+                        console.MainScreen(loggedInUser, list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
                         System.out.println("Search:" + keyword);
                         System.out.print("Search again{A}, quit searching{Q}:");
@@ -198,7 +198,7 @@ public class App {
                                 console.clearAll();
 
                                 //Re-print terminal
-                                console.MainScreen(list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
+                                console.MainScreen(loggedInUser, list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
                                 continue;
                             case "Q":
                                 break;

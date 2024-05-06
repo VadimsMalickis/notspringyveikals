@@ -3,25 +3,25 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ConsoleController {
-    
-    char escCode = 0x1B; 
+    // Class with methodes for proper console output
 
-    public void clearAll(){
+    public void clearAll(){ // clears the whole console
         System.out.print("\033[H\033[2J");
         System.out.flush(); 
     }
 
-    public void MoveCursor(int row, int column){
+    public void MoveCursor(int row, int column){ // Moves cursor to requested line/row and column
+        char escCode = 0x1B;
         System.out.print(String.format("%c[%d;%df", escCode, row, column));
     }
 
-    public void clearOneLine(int row){
+    public void clearOneLine(int row){ // Clears only the requested line/row
         MoveCursor(row, 0);
         System.out.print("\033[2K\033[1G");
         System.out.flush(); 
     }
 
-    public void Title(){
+    public void Title(){ 
         System.out.println(" _____                 _         _____ _                       ");
         System.out.println("/  __ \\               | |       /  ___| |                    ___      .-\"\"-.      ___");
         System.out.println("| /  \\/ __ _ _ __   __| |_   _  \\ `--.| |__   ___  _ __      \\  \"-.  /      \\  .-\"  /");
@@ -39,7 +39,9 @@ public class ConsoleController {
 
     }
 
-    public void MainScreen(ArrayList<Product> list, boolean filterChocolate, boolean filterJelly, boolean filterLolly, boolean sortNameA, boolean sortNameD, boolean sortPriceA, boolean sortPriceD){
+    // Prints out nessesary things for main screen
+    public void MainScreen(User user, ArrayList<Product> list, boolean filterChocolate, boolean filterJelly, boolean filterLolly, boolean sortNameA, boolean sortNameD, boolean sortPriceA, boolean sortPriceD){
+        // Sets the values to checked or not checked
         String chocolates = (filterChocolate)? "X" : " ";
         String jellies = (filterJelly)? "X" : " ";
         String lollies = (filterLolly)? "X" : " ";
@@ -51,7 +53,7 @@ public class ConsoleController {
         
         Title();
 
-        System.out.println("MAIN/PRODUCTS                                                                           EXIT APP {E}");
+        System.out.println("MAIN/PRODUCTS                         You are logged in as: " + String.format("%-20s", user.username)  + "        EXIT APP {E}");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
         System.out.println("FILTER {F}    \t\t SORT {SO}    \t\t SEARCH {S}    \t\t VIEW SHOPPING CART{SC}");
         System.out.println("["+ chocolates +"] Chocolates\t\t ["+ nameA +"] Name A-Z");
@@ -63,12 +65,13 @@ public class ConsoleController {
         System.out.println("ADD PRODUCT TO SHOPPING CART{P}");
         System.out.println(String.format("%4s", "ID") + "|" +  String.format("%20s", "Name") + "|" + String.format("%11s", "Type") + "|" + String.format("%7s", "Price"));
         System.out.println("----------------------------------------------");
-        for (Product temp : list) {
+        for (Product temp : list) { // Prints out all items available in shop + [ ] if they are in the shopping cart
             System.out.println(temp);
         }
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
     }
 
+    // Prints out nessesary things for Shopping Cart screen
     public void ShoppingCartScreen(ShoppingCart cart){
 
         HashMap<Product, Integer> cartProducts = cart.cartProducts;
@@ -76,10 +79,10 @@ public class ConsoleController {
 
         System.out.println("YOUR SHOPPING CART                                       GO TO MAIN PAGE {M}            EXIT APP {E}");
         System.out.println("++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++");
-        System.out.println("EDIT PRODUCTS {P}                                             TOTAL PRICE: " + String.format("%4s", cart.GetTotalPrice())  + "           PAY & ORDER {O}");
+        System.out.println("EDIT PRODUCTS {P}                                          TOTAL PRICE: " + String.format("%4s", cart.GetTotalPrice())  + "        PAY & ORDER {O}");
         System.out.println(String.format("%4s", "ID") + "|" +  String.format("%20s", "Name") + "|" + String.format("%11s", "Type") + "|" + String.format("%7s", "Price") + "|" + String.format("%17s", "Amount in cart") + "|");
         System.out.println("------------------------------------------------------------------");
-        for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){
+        for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){ // Prints out all items in shopping cart + amount of them
             System.out.print(product.getKey());
             System.out.println(String.format("%12s", product.getValue()) + "|");
         }

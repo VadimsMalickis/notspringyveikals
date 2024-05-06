@@ -1,4 +1,6 @@
 public enum PathFile {
+    // Enum class with constant filepath variables
+    
     PRODUCTS("CSV/products.csv"),
     REGISTERED_USERS("CSV/registeredUsers.csv");
 

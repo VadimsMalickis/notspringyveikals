@@ -8,13 +8,13 @@ class ShoppingCart {
     HashMap<Product, Integer> cartProducts;
     private double totalPrice;
 
-    public ShoppingCart(){ // constructor
+    public ShoppingCart(){ // CONSTRUCTOR
         file = new FileFunc(PathFile.PRODUCTS.getFileName());
         cartProducts = new HashMap<Product, Integer>();
         totalPrice = 0;        
     }
 
-    public double GetTotalPrice() { // updtaes and fixes the price
+    public double GetTotalPrice() { // updtaes and fixes the price, used to access the totalPrice
         totalPrice = 0;
         for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){
             totalPrice += product.getKey().price * product.getValue();
@@ -23,35 +23,35 @@ class ShoppingCart {
         return totalPrice;
     }
 
-    public boolean AddTo(Product product){ // you can add the product only if its not in the cart, otherways u have to increase/decrease the value 
-
-        if (product.amountInStorage == 0){
+    // Adds the product to cart -> returns true/false if addition was successful
+    public boolean AddTo(Product product){ // called only if the product is NOT in the cart (otherways use SetAmount methode)
+        if (product.amountInStorage == 0){ // Checks if there is any product available in storage
             return false; 
         } else {
-
             cartProducts.put(product, 1);
-
             totalPrice = GetTotalPrice(); // price updates
-            return true; // added succesfully            
+            return true; // added successfully            
         }
     }
 
+    // Removes product from the cart
     public void RemoveFrom(Product product){
         cartProducts.remove(product);
         totalPrice = GetTotalPrice(); // price updates
     }
 
-    public boolean SetAmount(Product product, int amountValue){ // gets triggered when user chooses the product ID and enters an amount value on ALREADY ADDED PRODUCT 
-                                                            // -> it happnes in cart window not main window
-        if(amountValue <=0){
+    // Sets new amount to the product -> returns true/false if addition was successful
+    public boolean SetAmount(Product product, int amountValue){ // gets triggered when user chooses the product ID and enters an amount value on ALREADY ADDED PRODUCT
+                                                            // -> it happnes in cart window (not main window)
+        if(amountValue <=0){ // Automaticaly removes product if the amount entered is 0 or below
             RemoveFrom(product);
-            totalPrice = GetTotalPrice();
+            totalPrice = GetTotalPrice(); // price updates
             return true;
-        }else if (product.amountInStorage < amountValue){
+        }else if (product.amountInStorage < amountValue){ // Checks if enough of this product is available in the storage
             return false;
         } else {
             cartProducts.put(product, amountValue);
-            totalPrice = GetTotalPrice();
+            totalPrice = GetTotalPrice(); // price updates
             return true;
         }
         

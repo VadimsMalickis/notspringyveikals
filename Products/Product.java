@@ -1,11 +1,11 @@
 class Product{
+    // Parent class of all products
     int ID;
     String name;
-    double price; // eur for 1 paciņa
+    double price; // Price for 1 paciņa
     int amountInStorage; // amount of paciņas in storage
     String type;
-    boolean selectedStatus;
-    
+    boolean selectedStatus;    
 
     public Product(int ID, String name, double price, int amountInStorage, String type){
         this.ID = ID;
@@ -15,7 +15,7 @@ class Product{
         this.type = type;
     }
 
-    public Product(){} //!!!!!!!!!!!!!!!
+    public Product(){} //!!!!!!!!!!!!!!! @22DP1AToca ??
 
     public String toString(){
         String selected = (selectedStatus)? "X" : " ";
@@ -34,7 +34,7 @@ class Product{
         return price;
     }
 
-    // public void Display(){
+    // public void Display(){ // so vajag? @22DP1AToca
     //     System.out.println("Nosaukums: " + name);
     //     System.out.println("Cena: " + price);
     //     System.out.println("Daudzums noliktavā: " + amountInStorage);
