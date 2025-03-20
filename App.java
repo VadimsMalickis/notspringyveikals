@@ -82,7 +82,7 @@ public class App {
     // works the LogIn page
     public void start() throws FileNotFoundException, IOException{
         
-        while(true){
+        while (true) {
             console.clearAll();
             console.SignInScreen();
             System.out.println("LOG IN {L} or REGISTER {R}");
@@ -233,7 +233,7 @@ public class App {
                                     temp.selectedStatus = !temp.selectedStatus;    
                                     if(temp.selectedStatus){
                                         if (!cart.AddTo(temp)){
-                                            System.out.print(TextColour.RED.getColour() + "Sorry, this item is out of stock [Press Enter to continue]" + TextColour.ANSI_RESET.getColour()); 
+                                            System.out.print(TextColor.RED.getValue() + "Sorry, this item is out of stock [Press Enter to continue]" + TextColor.ANSI_RESET.getValue()); 
                                             scanner.next();
                                             temp.selectedStatus = false;
                                         } 
@@ -330,7 +330,7 @@ public class App {
                                     
                                         if (!cart.SetAmount(product, amount)){ // checks if setting the amount is posible, if true - sets amount to input
                                             scanner.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
-                                            System.out.print(TextColour.RED.getColour() + "Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]" + TextColour.ANSI_RESET.getColour()); 
+                                            System.out.print(TextColor.RED.getValue() + "Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]" + TextColor.ANSI_RESET.getValue()); 
                                             scanner.next();
                                         }
                                         forthWhileLoop = false;
@@ -393,12 +393,12 @@ public class App {
                                 list = filter.FilterList(file.productsObj, true, true, true);
                                 
                                 if (cart.OrderCart(loggedInUser, bankAcc, list)){ // Orders cart (if transation is successful)
-                                    System.out.print(TextColour.PURPLE.getColour() + "\nThank you for shopping with us! Your order has been placed and you can view your check. :)" + TextColour.ANSI_RESET.getColour());
+                                    System.out.print(TextColor.PURPLE.getValue() + "\nThank you for shopping with us! Your order has been placed and you can view your check. :)" + TextColor.ANSI_RESET.getValue());
                                     System.exit(0);// Exists the shop
 
                                 } else { // Error -> if transation wasnt successful
                                     scanner.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
-                                    System.out.print(TextColour.RED.getColour() + "\nSomething went wrong in the transaction, please try again! [Press Enter to continue]" + TextColour.ANSI_RESET.getColour());
+                                    System.out.print(TextColor.RED.getValue() + "\nSomething went wrong in the transaction, please try again! [Press Enter to continue]" + TextColor.ANSI_RESET.getValue());
                                     scanner.next();
                                     ShoppingCartCode();
                                 }   
@@ -409,7 +409,7 @@ public class App {
                         while(whileLoop){ // makes sure user enters a valid input
 
                             console.clearOneLine(20 + cart.cartProducts.size());
-                            System.out.print(TextColour.RED.getColour() + "There is a mistake in your information. Do you want to Try again {T}, Continue shopping {C} or Exit the shop {E}: " + TextColour.ANSI_RESET.getColour());
+                            System.out.print(TextColor.RED.getValue() + "There is a mistake in your information. Do you want to Try again {T}, Continue shopping {C} or Exit the shop {E}: " + TextColor.ANSI_RESET.getValue());
                             String userTorCorE = scanner.next();
 
                             switch (userTorCorE) {
@@ -424,7 +424,7 @@ public class App {
 
                                 case "E":
                                     whileLoop = false;
-                                    System.out.print(TextColour.PURPLE.getColour() + "\nThank you for shopping with us!" + TextColour.ANSI_RESET.getColour());
+                                    System.out.print(TextColor.PURPLE.getValue() + "\nThank you for shopping with us!" + TextColor.ANSI_RESET.getValue());
                                     System.exit(0);                                    
                                     break;
                             

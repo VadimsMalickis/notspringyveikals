@@ -1,4 +1,4 @@
-public enum TextColour {
+public enum TextColor {
     RED("\u001B[31m"),
     GREEN("\u001B[32m"),
     YELLOW("\u001B[33m"),
@@ -7,11 +7,11 @@ public enum TextColour {
     
     private final String colour;
     
-    TextColour(String colour) {
+    TextColor(String colour) {
         this.colour = colour;
     }
     
-    public String getColour() {
+    public String getValue() {
         return this.colour;
     }
 }
