@@ -1,6 +1,7 @@
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class ShoppingCart {
@@ -58,7 +59,7 @@ class ShoppingCart {
     }
 
     // Oredrs evrything in the cart -> returns tre/false if ordering was successful (had enough money, right bank accounts ect)
-    public boolean OrderCart(User user, BankAccount usersBankAccount, ArrayList<Product> list){ 
+    public boolean OrderCart(User user, BankAccount usersBankAccount, List<Product> list){ 
         if(usersBankAccount.Transaction(totalPrice, BankConst.SHOPS_BANK_ACCOUNT.GetBankAccount())){ // checks if transation was successful
             FileFunc usersCheckfile = new FileFunc("Checks/" + user.username + ".txt"); // Creates a new check file with the users username
             usersCheckfile.WriteFile(cartProducts, totalPrice, user); // Writes the check file

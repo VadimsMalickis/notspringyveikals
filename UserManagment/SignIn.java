@@ -115,7 +115,6 @@ public class SignIn {
         registerFile.WriteFile(user);
     }
 
-    // used to fill in all fields [emai, username, name, surname, adress, password] in registartion, check the input and give error messages as neccessary -> returns users entered info
     private String InfomrmationFillIn(String field, int row, String regex, String regexErrorMessage, String duplicateErrorMesage) throws IOException{
 
         while(true){ // loops till everything is filled in correctly

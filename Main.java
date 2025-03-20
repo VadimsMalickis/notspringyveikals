@@ -1,11 +1,9 @@
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
-class Main{
-    public static void main(String[] args) throws FileNotFoundException, IOException{
+
+public class Main{
+    public static void main(String[] args) throws Exception{
         
-        App appCode = new App(); // Class for code
-
-        appCode.LogInCode(); // Starts the code
+        App app = new App();
+        app.start();
     }
 }

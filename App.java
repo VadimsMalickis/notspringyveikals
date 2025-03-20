@@ -1,6 +1,7 @@
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class App {
@@ -10,21 +11,21 @@ public class App {
     BankAccount annasBank;
     BankAccount alisesBank;
     BankAccount janisBank;
-    ArrayList<BankAccount> allBankAccounts;
+    List<BankAccount> allBankAccounts;
 
     // Clases
     ConsoleController console;
-    Scanner scanner1;
+    Scanner scanner;
     ShoppingCart cart;
     FileFunc file;
-    SignIn signIn;
+    SignIn signInService;
 
     // User
     User loggedInUser;
     
     // List of all products in store
-    ArrayList<Product> list;
-    ArrayList<Product> searchedList;
+    List<Product> list;
+    List<Product> searchedList;
     
     // Filter
     boolean filterChocolate;
@@ -38,7 +39,7 @@ public class App {
     boolean sortPriceD;
 
     // Constructor -> sets up everything for work
-    public App() throws FileNotFoundException, IOException{
+    public App() throws Exception {
 
         // Bank Account creation
         annasBank = new BankAccount(1000, "ANNA", "31010912", "106");
@@ -52,10 +53,10 @@ public class App {
         allBankAccounts.add(janisBank);
 
         console = new ConsoleController();
-        scanner1 = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         cart = new ShoppingCart(); //Create shopping cart
         file = new FileFunc(PathFile.PRODUCTS.getFileName());
-        signIn = new SignIn();
+        signInService = new SignIn();
 
         //Save all products from CSV
         list = new ArrayList<Product>();
@@ -79,25 +80,25 @@ public class App {
     }
 
     // works the LogIn page
-    public void LogInCode() throws FileNotFoundException, IOException{
+    public void start() throws FileNotFoundException, IOException{
         
         while(true){
             console.clearAll();
             console.SignInScreen();
             System.out.println("LOG IN {L} or REGISTER {R}");
             System.out.print("\nYour choice: ");
-            String signInUserChoice = scanner1.next();
+            String signInUserChoice = scanner.next();
 
             switch (signInUserChoice) { // makes sure user enters a valid input
                 case "L": 
-                    signIn.LogIn();
-                    loggedInUser = signIn.loggedinUser;
+                    signInService.LogIn();
+                    loggedInUser = signInService.loggedinUser;
                     MainCode();
                     break;
 
                 case "R":
-                    signIn.Register();
-                    loggedInUser = signIn.loggedinUser;
+                    signInService.Register();
+                    loggedInUser = signInService.loggedinUser;
                     MainCode();
                     break;
 
@@ -271,7 +272,7 @@ public class App {
             console.ShoppingCartScreen(cart);
             
             System.out.print("Your choice: ");
-            String SCUserChoice = scanner1.next();
+            String SCUserChoice = scanner.next();
 
             switch (SCUserChoice) { // makes sure user enters a valid input
                 case "E":  //Exit program
@@ -287,8 +288,8 @@ public class App {
                     Product product = null;
                     while(product == null){ // makes sure user enters a an existing products ID
                         System.out.print("Input the product you wan to edit {ID}:");
-                        if (scanner1.hasNextInt()){ // makes sure user enters a valid integer input
-                            int ID = scanner1.nextInt();
+                        if (scanner.hasNextInt()){ // makes sure user enters a valid integer input
+                            int ID = scanner.nextInt();
                             for (Product temp : cart.cartProducts.keySet()) {
                                 if(temp.ID == ID){
                                     product = temp;
@@ -296,7 +297,7 @@ public class App {
                             }
                             console.clearOneLine(16 + cart.cartProducts.size());
                         } else{
-                            scanner1.next();
+                            scanner.next();
                             console.clearOneLine(16 + cart.cartProducts.size());
                             continue;
                         }
@@ -307,7 +308,7 @@ public class App {
                     while(thirdWhileLoop){ // makes sure user enters a valid input
                         console.clearOneLine(16 + cart.cartProducts.size());
                         System.out.print("REMOVE {R} this product or CHANGE AMOUNT {CA}: ");
-                        String userRorCA = scanner1.next();
+                        String userRorCA = scanner.next();
 
                         switch (userRorCA) {
                             //remove product UI
@@ -324,18 +325,18 @@ public class App {
                                     console.clearOneLine(17 + cart.cartProducts.size());
                                     System.out.print("Enter the new amount: ");
 
-                                    if (scanner1.hasNextInt()){ // makes sure user enters a valid integer input
-                                        int amount = scanner1.nextInt();
+                                    if (scanner.hasNextInt()){ // makes sure user enters a valid integer input
+                                        int amount = scanner.nextInt();
                                     
                                         if (!cart.SetAmount(product, amount)){ // checks if setting the amount is posible, if true - sets amount to input
-                                            scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
+                                            scanner.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
                                             System.out.print(TextColour.RED.getColour() + "Sorry, there isn't enough of this producs in the storage, try smaller amount [Press Enter to continue]" + TextColour.ANSI_RESET.getColour()); 
-                                            scanner1.next();
+                                            scanner.next();
                                         }
                                         forthWhileLoop = false;
                                         break;
                                     } else {
-                                        scanner1.next();
+                                        scanner.next();
                                         console.clearOneLine(17 + cart.cartProducts.size());
                                         continue;
                                     }
@@ -354,8 +355,8 @@ public class App {
 
                     if (cart.cartProducts.size() == 0){
                         System.out.print("\nYour cart is empty {Press Enter to continue}");
-                        scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
-                        scanner1.next();
+                        scanner.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
+                        scanner.next();
                         // ShoppingCartCode();
                         break;
                     }
@@ -375,15 +376,15 @@ public class App {
 
                         console.clearOneLine(17 + cart.cartProducts.size());
                         System.out.print("Bank account number: ");
-                        String userBankAccNumber = scanner1.next();
+                        String userBankAccNumber = scanner.next();
 
                         console.clearOneLine(18 + cart.cartProducts.size());
                         System.out.print("Bank/Cards owner's name (IN CAPS): ");
-                        String userOwner = scanner1.next();
+                        String userOwner = scanner.next();
 
                         console.clearOneLine(19 + cart.cartProducts.size());
                         System.out.print("CVV: ");
-                        String userCVV = scanner1.next();
+                        String userCVV = scanner.next();
 
                         for (BankAccount tempBankAcc : allBankAccounts){ // Cheks if bankAcc with this infomation exists -> if exists, sets it as the one in use
                             if (userBankAccNumber.equals(tempBankAcc.GetBankAccNumber()) && userOwner.equals(tempBankAcc.GetOwner()) && userCVV.equals(tempBankAcc.GetCVV())){
@@ -396,9 +397,9 @@ public class App {
                                     System.exit(0);// Exists the shop
 
                                 } else { // Error -> if transation wasnt successful
-                                    scanner1.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
+                                    scanner.useDelimiter("[,\\s+]"); // Used to make [Press Enter to continue] possible
                                     System.out.print(TextColour.RED.getColour() + "\nSomething went wrong in the transaction, please try again! [Press Enter to continue]" + TextColour.ANSI_RESET.getColour());
-                                    scanner1.next();
+                                    scanner.next();
                                     ShoppingCartCode();
                                 }   
                             }
@@ -409,7 +410,7 @@ public class App {
 
                             console.clearOneLine(20 + cart.cartProducts.size());
                             System.out.print(TextColour.RED.getColour() + "There is a mistake in your information. Do you want to Try again {T}, Continue shopping {C} or Exit the shop {E}: " + TextColour.ANSI_RESET.getColour());
-                            String userTorCorE = scanner1.next();
+                            String userTorCorE = scanner.next();
 
                             switch (userTorCorE) {
                                 case "T":

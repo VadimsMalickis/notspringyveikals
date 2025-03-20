@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class ConsoleController {
@@ -41,7 +41,7 @@ public class ConsoleController {
     }
 
     // Prints out nessesary things for main screen
-    public void MainScreen(User user, ArrayList<Product> list, boolean filterChocolate, boolean filterJelly, boolean filterLolly, boolean sortNameA, boolean sortNameD, boolean sortPriceA, boolean sortPriceD){
+    public void MainScreen(User user, List<Product> list, boolean filterChocolate, boolean filterJelly, boolean filterLolly, boolean sortNameA, boolean sortNameD, boolean sortPriceA, boolean sortPriceD){
         // Sets the values to checked or not checked
         String chocolates = (filterChocolate)? "X" : " ";
         String jellies = (filterJelly)? "X" : " ";

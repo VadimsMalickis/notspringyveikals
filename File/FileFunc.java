@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class FileFunc{
@@ -67,7 +68,7 @@ class FileFunc{
     }
 
     // Updates/Writes the file with products
-    public void WriteFile(ArrayList<Product> list){
+    public void WriteFile(List<Product> list){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
             for (Product temp : list){
                 writter.write(temp.toCSV());
