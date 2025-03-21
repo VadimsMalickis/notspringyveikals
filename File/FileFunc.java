@@ -4,8 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -93,12 +93,12 @@ class FileFunc{
     }
 
     // Writes the check for the user
-    public void WriteFile(HashMap<Product, Integer> list, double finalAmount, User user){
+    public void WriteFile(Map<Product, Integer> list, BigDecimal finalAmount, User user){
         try (BufferedWriter writter = new BufferedWriter(new FileWriter(filePath))) {
 
             writter.write("----------CHECK----------");
             writter.newLine();
-            for(Map.Entry m : list.entrySet()){  // Writes all the purchased items
+            for(Map.Entry<Product, Integer> m : list.entrySet()){  // Writes all the purchased items
                 Product temp = (Product) m.getKey();
                 writter.write(String.format("%20s", temp.name) + "\n.........." + String.format("%5s", temp.price) + " x " + String.format("%3s", m.getValue()));
                 writter.newLine();

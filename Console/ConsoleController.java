@@ -74,7 +74,7 @@ public class ConsoleController {
     // Prints out nessesary things for Shopping Cart screen
     public void ShoppingCartScreen(ShoppingCart cart){
 
-        HashMap<Product, Integer> cartProducts = cart.cartProducts;
+        Map<Product, Integer> cartProducts = cart.cartProducts;
         Title();
 
         System.out.println("YOUR SHOPPING CART                                       GO TO MAIN PAGE {M}            EXIT APP {E}");

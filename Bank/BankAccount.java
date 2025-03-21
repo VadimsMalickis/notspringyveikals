@@ -1,3 +1,5 @@
+import java.math.BigDecimal;
+
 class BankAccount {
     private double balance;
     private String owner;
@@ -51,12 +53,12 @@ class BankAccount {
     }
 
     // naudas samaksa (atņemšana) -> atgriež true/false atkarībā no tā vai ir izdevies (vai pietika naudas)
-    public boolean PayMoney(double amount) {
-        if (amount > 0) {
-            if (balance - amount < 0) {
+    public boolean PayMoney(BigDecimal amount) {
+        if (amount.doubleValue() > 0) {
+            if (balance - amount.doubleValue() < 0) {
                 return false;
             } else {
-                SetBalance(GetBalance() - amount);
+                SetBalance(GetBalance() - amount.doubleValue());
                 return true;
             }
         } else {
@@ -65,9 +67,9 @@ class BankAccount {
     }
 
     // pārsūtīt naudu uz citu akauntu -> atgriež true/false atkarībā no tā vai ir izdevies
-    public boolean Transaction(double amount, BankAccount recivingBankAccount) {
+    public boolean Transaction(BigDecimal amount, BankAccount recivingBankAccount) {
         if (PayMoney(amount)) {
-            recivingBankAccount.ReciveMoney(amount);
+            recivingBankAccount.ReciveMoney(amount.doubleValue());
             return true;
         } else {
             return false;

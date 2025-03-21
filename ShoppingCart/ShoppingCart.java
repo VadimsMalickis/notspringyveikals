@@ -1,26 +1,23 @@
-import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 class ShoppingCart {
     FileFunc file;
-    HashMap<Product, Integer> cartProducts;
-    private double totalPrice;
+    Map<Product, Integer> cartProducts;
+    private BigDecimal totalPrice;
 
     public ShoppingCart(){ // CONSTRUCTOR
         file = new FileFunc(PathFile.PRODUCTS.getFileName());
         cartProducts = new HashMap<Product, Integer>();
-        totalPrice = 0;        
+        totalPrice =new BigDecimal(0);        
     }
 
-    public double GetTotalPrice() { // updtaes and fixes the price, used to access the totalPrice
-        totalPrice = 0;
+    public BigDecimal GetTotalPrice() { // updtaes and fixes the price, used to access the totalPrice
         for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){
-            totalPrice += product.getKey().price * product.getValue();
+            totalPrice.add(new BigDecimal(product.getKey().price * product.getValue()));
         }
-        totalPrice = Double.parseDouble(new DecimalFormat("##.##").format(totalPrice));
         return totalPrice;
     }
 
