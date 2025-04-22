@@ -25,7 +25,7 @@ public class SignIn {
         reader = new BufferedReader(new InputStreamReader(System.in));
         registeredUsers = new ArrayList<User>();
 
-        FileFunc file = new FileFunc(PathFile.REGISTERED_USERS.getFileName());
+        FileManager file = new FileManager(PathFile.REGISTERED_USERS.getFileName());
         file.GetAll();
         registeredUsers = file.usersObj;        
     }
@@ -117,7 +117,7 @@ public class SignIn {
 
     // adds a user to the registered user file
     public void RegisterInFile(User user){
-        FileFunc registerFile = new FileFunc(PathFile.REGISTERED_USERS.getFileName());
+        FileManager registerFile = new FileManager(PathFile.REGISTERED_USERS.getFileName());
         registerFile.WriteFile(user);
     }
 

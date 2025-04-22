@@ -5,57 +5,38 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
-    // Class with all the main screen functions -> input, input checking and error message output is here
-
-    //Bank accounts
-    BankAccount annasBank;
-    BankAccount alisesBank;
-    BankAccount janisBank;
-    List<BankAccount> allBankAccounts;
-
-    // Clases
     ConsoleController console;
+    List<BankAccount> bankAccounts;
     Scanner scanner;
     ShoppingCart cart;
-    FileFunc file;
+    FileManager file;
     SignIn signInService;
 
-    // User
     User loggedInUser;
     
-    // List of all products in store
     List<Product> list;
     List<Product> searchedList;
     
-    // Filter
     boolean filterChocolate;
     boolean filterJelly;
     boolean filterLolly;
 
-    // Sort
     boolean sortNameA;
     boolean sortNameD;
     boolean sortPriceA;
     boolean sortPriceD;
 
     // Constructor -> sets up everything for work
-    public App() throws Exception {
-
-        // Bank Account creation
-        annasBank = new BankAccount(1000, "ANNA", "31010912", "106");
-        alisesBank = new BankAccount(300, "ALISE", "13030720", "231");
-        janisBank = new BankAccount(5, "JANIS", "18208970", "543");
-        allBankAccounts = new ArrayList<BankAccount>();
-
-        // Adds bank accounts to list
-        allBankAccounts.add(annasBank);
-        allBankAccounts.add(alisesBank);
-        allBankAccounts.add(janisBank);
+    public App() throws Exception {   
+        bankAccounts = new ArrayList<BankAccount>();
+        bankAccounts.add(new BankAccount(1000, "ANNA", "31010912", "106"));
+        bankAccounts.add(new BankAccount(300, "ALISE", "13030720", "231"));
+        bankAccounts.add(new BankAccount(5, "JANIS", "18208970", "543");
 
         console = new ConsoleController();
         scanner = new Scanner(System.in);
         cart = new ShoppingCart(); //Create shopping cart
-        file = new FileFunc(PathFile.PRODUCTS.getFileName());
+        file = new FileManager(PathFile.PRODUCTS.getFileName());
         signInService = new SignIn();
 
         //Save all products from CSV
@@ -80,7 +61,7 @@ public class App {
     }
 
     // works the LogIn page
-    public void start() throws FileNotFoundException, IOException{
+    public void start() throws Exception {
         
         while (true) {
             console.clearAll();
@@ -113,27 +94,20 @@ public class App {
     // works the Main page
     private void MainCode() throws FileNotFoundException, IOException{
 
-        while(true){
-            //Clear terminal
+        while(true) {
             console.clearAll();
-
-            //Re-print terminal
             console.MainScreen(loggedInUser, list, filterChocolate, filterJelly, filterLolly, sortNameA, sortNameD, sortPriceA, sortPriceD);
 
-            //Read input
             System.out.print("Enter your choice:");
-            Scanner scanner = new Scanner(System.in);
             String input = scanner.next();
             
-            switch(input){
-                //Filter UI
+            switch(input) {
                 case "F":
                     System.out.print("Filter chocolates {C}, jellies {J}, lollies {L}:");
                     String filterInput = scanner.next();
                     
                     Filter filter = new Filter();
                    
-
                     switch(filterInput){
                         case "C":
                             filterChocolate = !filterChocolate;
@@ -148,7 +122,6 @@ public class App {
                     
                     list = filter.FilterList(file.productsObj, filterChocolate, filterJelly, filterLolly);
                     continue;
-                //Sorter UI
                 case "SO":
                     sortNameA = false;
                     sortNameD = false;
@@ -179,12 +152,11 @@ public class App {
                             break;
                     }
                     continue;
-                //Search UI
                 case "S":
                     while (true) {
                         Searcher searcher = new Searcher();
                         System.out.print("Search:");
-                        String keyword = scanner.next();  // Read user input
+                        String keyword = scanner.next();
                         
                         searchedList = searcher.Search(file.productsObj, keyword);
 
@@ -213,7 +185,7 @@ public class App {
                         break; //while break
                     }
                     continue; //continue code
-                //Shopping cart UI
+             
                 case "SC":
                     ShoppingCartCode();
                     break;
@@ -258,14 +230,13 @@ public class App {
                 default:
                     // Wrong input;
                     break;
-            }                
+            }
+            scanner.close();             
         }
     }
 
-    // works the Shopping Cart page
     private void ShoppingCartCode() throws FileNotFoundException, IOException{
         
-        // Shopping cart
         boolean firstWhileloop = true;
         while(firstWhileloop){
             console.clearAll();
@@ -386,7 +357,7 @@ public class App {
                         System.out.print("CVV: ");
                         String userCVV = scanner.next();
 
-                        for (BankAccount tempBankAcc : allBankAccounts){ // Cheks if bankAcc with this infomation exists -> if exists, sets it as the one in use
+                        for (BankAccount tempBankAcc : bankAccounts){ // Cheks if bankAcc with this infomation exists -> if exists, sets it as the one in use
                             if (userBankAccNumber.equals(tempBankAcc.GetBankAccNumber()) && userOwner.equals(tempBankAcc.GetOwner()) && userCVV.equals(tempBankAcc.GetCVV())){
                                 bankAcc = tempBankAcc;
                                 Filter filter = new Filter();
@@ -436,7 +407,6 @@ public class App {
                     break;
 
                 default:
-                   //INVALID INPUT TRY AGAIN
                    break;
             }
         }

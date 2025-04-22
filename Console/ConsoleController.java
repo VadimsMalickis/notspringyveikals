@@ -35,7 +35,7 @@ public class ConsoleController {
     public void SignInScreen(){
         Title();
         System.out.println( "SIGN IN");
-        System.out.println(TextColor.PURPLE.getValue() + "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" + TextColor.ANSI_RESET.getValue());
+        System.out.println(TextColor.PURPLE.getValue() + "+".repeat(100) + TextColor.ANSI_RESET.getValue());
 
     }
 

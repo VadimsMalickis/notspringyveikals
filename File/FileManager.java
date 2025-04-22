@@ -9,39 +9,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-class FileFunc{
+class FileManager {
     String filePath;
-    ArrayList<Product> productsObj = new ArrayList<>();
-    ArrayList<User> usersObj = new ArrayList<>();
+    ArrayList<Product> productsObj;
+    ArrayList<User> usersObj;
 
-    // CONSTRUCTOR -> sets up the filepath
-    public FileFunc(String path){
+    public FileManager(String path) {
         filePath = path;
+        productsObj = new ArrayList<>();
+        usersObj = new ArrayList<>();
     }
     
-    // reads all info from files and puts it in ArrayList
-    private ArrayList<String> ReadFile() throws FileNotFoundException, IOException{
-            ArrayList<String> records = new ArrayList<>();
-            try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-                String line;
-                while ((line = br.readLine()) != null) {
-                    records.add(line);
-                }
-            }
-        return records;
-    }
-
-    // Gets all users/products form file, makes object with the info (seperates the fields) (from the file) and adds it to an Arraylist
     public void GetAll() throws FileNotFoundException, IOException{
-        ArrayList<String> CSVrows = new ArrayList<String>();
-        CSVrows = ReadFile(); //[row1, row2]
+        ArrayList<String> csvRows = new ArrayList<String>();
+        csvRows = readFile();
         
-        for (String CSVrow : CSVrows){
+        for (String CSVrow : csvRows){
 
-            if (filePath.equals(PathFile.PRODUCTS.getFileName())){ // Products
+            if (filePath.equals(PathFile.PRODUCTS.getFileName())) {
                 Product object = new Product();
-
-                String[] rowParts = CSVrow.split(","); //[nosaukums, cena, daudz, kategorija, apraksts]
+                String[] rowParts = CSVrow.split(",");
                 String type = rowParts[4];
 
                 if(type.equals("Chocolate")){
@@ -59,7 +46,7 @@ class FileFunc{
 
             if (filePath.equals(PathFile.REGISTERED_USERS.getFileName())){ // Users
 
-                String[] rowParts = CSVrow.split(","); //[username, email, name, surname, adress, password]
+                String[] rowParts = CSVrow.split(",");
                 User object = new User(rowParts[0], rowParts[1], rowParts[2], rowParts[3], rowParts[4], rowParts[5]);
         
                 usersObj.add(object);
@@ -115,5 +102,17 @@ class FileFunc{
         }catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private ArrayList<String> readFile() throws FileNotFoundException, IOException{
+        ArrayList<String> records = new ArrayList<>();
+        BufferedReader br = new BufferedReader(new FileReader(filePath));
+        String line;
+        while ((line = br.readLine()) != null) {
+            records.add(line);
+        }
+        br.close();
+           
+        return records;
     }
 }

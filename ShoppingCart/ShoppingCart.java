@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 class ShoppingCart {
-    FileFunc file;
+    FileManager file;
     Map<Product, Integer> cartProducts;
     private BigDecimal totalPrice;
 
     public ShoppingCart(){ // CONSTRUCTOR
-        file = new FileFunc(PathFile.PRODUCTS.getFileName());
+        file = new FileManager(PathFile.PRODUCTS.getFileName());
         cartProducts = new HashMap<Product, Integer>();
         totalPrice =new BigDecimal(0);        
     }
@@ -58,7 +58,7 @@ class ShoppingCart {
     // Oredrs evrything in the cart -> returns tre/false if ordering was successful (had enough money, right bank accounts ect)
     public boolean OrderCart(User user, BankAccount usersBankAccount, List<Product> list){ 
         if(usersBankAccount.Transaction(totalPrice, BankConst.SHOPS_BANK_ACCOUNT.GetBankAccount())){ // checks if transation was successful
-            FileFunc usersCheckfile = new FileFunc("Checks/" + user.username + ".txt"); // Creates a new check file with the users username
+            FileManager usersCheckfile = new FileManager("Checks/" + user.username + ".txt"); // Creates a new check file with the users username
             usersCheckfile.WriteFile(cartProducts, totalPrice, user); // Writes the check file
 
             for (Map.Entry<Product, Integer> product : cartProducts.entrySet()){ // updates every products amountInStorage

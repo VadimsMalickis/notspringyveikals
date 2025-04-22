@@ -15,33 +15,30 @@ class BankAccount {
 
     }
 
-    // GET METHODES -> to access private variables
-
     public String GetOwner(){
-        return owner;
+        return this.owner;
     }
 
     public String GetBankAccNumber(){
-        return bankAccountNumber;
+        return this.bankAccountNumber;
     }
 
     public String GetCVV(){
-        return cvv;
+        return this.cvv;
     }
 
     public double GetBalance() {
-        return SetBalance(balance);
+        return this.SetBalance(balance);
     }
 
-    public double SetBalance(double value) { // Checks, fixes and updates the total price
+    public double SetBalance(double value) {
         if (value < 0) {
-            System.out.println("There was an error and you have a negative balance: " + balance + ". Reach out to your bank to resolve that!");
+            throw new IllegalArgumentException("There was an error and you have a negative balance: " + this.balance + ". Reach out to your bank to resolve that!");
         }
         return Math.round(value * 100.0) / 100.0;
     }
 
 
-    // METODES/METHODES
     // naudas saņemšana -> atgriež true/false atkarībā no tā vai ir izdevies
     public boolean ReciveMoney(double amount) {
         if (amount > 0) {
