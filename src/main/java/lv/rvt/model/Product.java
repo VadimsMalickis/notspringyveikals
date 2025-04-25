@@ -1,3 +1,4 @@
+package src.main.java.lv.rvt.model;
 class Product{
     // Parent class of all products
     int ID;

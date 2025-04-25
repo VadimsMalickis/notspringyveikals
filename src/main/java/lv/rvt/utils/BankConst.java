@@ -1,3 +1,6 @@
+package src.main.java.lv.rvt.utils;
+import src.main.java.lv.rvt.model.BankAccount;
+
 public enum BankConst {
     // Enum class with constant Bank variables/fields
     

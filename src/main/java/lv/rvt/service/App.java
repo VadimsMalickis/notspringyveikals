@@ -1,8 +1,12 @@
+package src.main.java.lv.rvt.service;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import src.main.java.lv.rvt.model.BankAccount;
+import src.main.java.lv.rvt.model.User;
 
 public class App {
     ConsoleController console;

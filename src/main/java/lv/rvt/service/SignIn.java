@@ -1,9 +1,12 @@
+package src.main.java.lv.rvt.service;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.regex.Pattern;
+
+import src.main.java.lv.rvt.model.User;
 
 public class SignIn {
     // Works all SignIn functions and checks all the input

@@ -1,3 +1,4 @@
+package src.main.java.lv.rvt.model;
 public class User {
 
     //User atributes

@@ -1,3 +1,4 @@
+package src.main.java.lv.rvt.model;
 import java.math.BigDecimal;
 
 class BankAccount {

@@ -1,6 +1,10 @@
+package src.main.java.lv.rvt.ui;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import src.main.java.lv.rvt.service.ShoppingCart;
+import src.main.java.lv.rvt.utils.TextColor;
 
 public class ConsoleController {
     // Class with methodes for proper console output
