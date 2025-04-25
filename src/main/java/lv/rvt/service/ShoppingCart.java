@@ -1,4 +1,5 @@
-package src.main.java.lv.rvt.service;
+package lv.rvt.service;
+
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;

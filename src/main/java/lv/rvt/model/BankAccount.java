@@ -1,7 +1,8 @@
-package src.main.java.lv.rvt.model;
+package lv.rvt.model;
+
 import java.math.BigDecimal;
 
-class BankAccount {
+public class BankAccount {
     private double balance;
     private String owner;
     private String bankAccountNumber;

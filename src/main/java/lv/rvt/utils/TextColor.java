@@ -1,4 +1,5 @@
-package src.main.java.lv.rvt.utils;
+package lv.rvt.utils;
+
 public enum TextColor {
     RED("\u001B[31m"),
     GREEN("\u001B[32m"),

@@ -1,4 +1,4 @@
-package src.test.java.lv.rvt;
+package lv.rvt;
 
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;

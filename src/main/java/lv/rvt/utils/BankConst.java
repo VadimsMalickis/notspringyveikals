@@ -1,4 +1,5 @@
-package src.main.java.lv.rvt.utils;
+package lv.rvt.utils;
+
 import src.main.java.lv.rvt.model.BankAccount;
 
 public enum BankConst {

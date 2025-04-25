@@ -1,4 +1,5 @@
-package src.main.java.lv.rvt.service;
+package lv.rvt.service;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -10,10 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import lv.rvt.model.*;
+
 class FileManager {
     String filePath;
-    ArrayList<Product> productsObj;
-    ArrayList<User> usersObj;
+    List<Product> productsObj;
+    List<User> usersObj;
 
     public FileManager(String path) {
         filePath = path;
@@ -22,7 +25,7 @@ class FileManager {
     }
     
     public void GetAll() throws FileNotFoundException, IOException{
-        ArrayList<String> csvRows = new ArrayList<String>();
+        List<String> csvRows = new ArrayList<String>();
         csvRows = readFile();
         
         for (String CSVrow : csvRows){

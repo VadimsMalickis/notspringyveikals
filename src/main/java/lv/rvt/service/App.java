@@ -1,12 +1,14 @@
-package src.main.java.lv.rvt.service;
+package lv.rvt.service;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import src.main.java.lv.rvt.model.BankAccount;
-import src.main.java.lv.rvt.model.User;
+import lv.rvt.model.*;
+import lv.rvt.ui.*;
+import lv.rvt.service.*;
 
 public class App {
     ConsoleController console;
@@ -44,7 +46,6 @@ public class App {
         signInService = new SignIn();
 
         //Save all products from CSV
-        list = new ArrayList<Product>();
         list = file.productsObj;
 
         //Create list for Search UI
@@ -60,11 +61,9 @@ public class App {
         sortPriceA = false;
         sortPriceD = false;
 
-        //Get products from CSV
         file.GetAll();
     }
 
-    // works the LogIn page
     public void start() throws Exception {
         
         while (true) {
@@ -74,7 +73,7 @@ public class App {
             System.out.print("\nYour choice: ");
             String signInUserChoice = scanner.next();
 
-            switch (signInUserChoice) { // makes sure user enters a valid input
+            switch (signInUserChoice) {
                 case "L": 
                     signInService.LogIn();
                     loggedInUser = signInService.loggedinUser;

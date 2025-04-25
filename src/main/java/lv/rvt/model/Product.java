@@ -1,5 +1,6 @@
-package src.main.java.lv.rvt.model;
-class Product{
+package lv.rvt.model;
+
+public class Product{
     // Parent class of all products
     int ID;
     String name;

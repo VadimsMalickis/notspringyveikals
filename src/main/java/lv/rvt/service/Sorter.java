@@ -1,4 +1,4 @@
-package src.main.java.lv.rvt.service;
+package lv.rvt.service;
 
 import java.util.Collections;
 import java.util.Comparator;

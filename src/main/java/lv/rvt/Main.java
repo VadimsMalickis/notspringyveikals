@@ -1,4 +1,4 @@
-package src.main.java.lv.rvt;
+package lv.rvt;   
 import javax.swing.*;
 
 

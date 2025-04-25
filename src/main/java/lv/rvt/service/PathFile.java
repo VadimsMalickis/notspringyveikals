@@ -1,4 +1,5 @@
-package src.main.java.lv.rvt.service;
+package lv.rvt.service;
+
 public enum PathFile {
     // Enum class with constant filepath variables
     

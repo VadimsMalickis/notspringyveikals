@@ -1,4 +1,5 @@
-package src.main.java.lv.rvt.service;
+package lv.rvt.service;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;

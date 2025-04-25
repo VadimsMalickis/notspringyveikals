@@ -1,4 +1,5 @@
-package src.main.java.lv.rvt.model;
+package lv.rvt.model;
+
 class Jellys extends Product{
     // Child class of Produc
     public Jellys(int ID, String name, double price, int amountInStorage, String type){
